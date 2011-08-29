@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/acp-menu.xsd">
         <delete>
-                <acpmenuitem name="wcf.acp.menu.link.admintools.lostandfound">
-		</acpmenuitem>
                 <acpmenuitem name="wcf.acp.menu.link.admintools.phpinfo">
 		</acpmenuitem>
         </delete>
@@ -46,13 +44,21 @@
 			<icon>icon/cronjobsM.png</icon>
 			<showorder>2</showorder>	
 			<permissions>admin.system.admintools.canView</permissions>		
-		</acpmenuitem>		
+		</acpmenuitem>	
+		
+		<acpmenuitem name="wcf.acp.menu.link.admintools.lostandfound">
+			<parent>wcf.acp.menu.link.admintools.main</parent>
+			<link>index.php?page=AdminToolsLostAndFound</link>
+			<icon>icon/adminToolsLostNFoundM.png</icon>
+			<showorder>3</showorder>	
+			<permissions>admin.system.admintools.canView</permissions>		
+		</acpmenuitem>	
 		
 		<acpmenuitem name="wcf.acp.menu.link.admintools.spider">
 			<parent>wcf.acp.menu.link.admintools.main</parent>
 			<link>index.php?page=AdminToolsSpiderList</link>
 			<icon>icon/adminToolsSpiderM.png</icon>
-			<showorder>3</showorder>
+			<showorder>4</showorder>
 			<permissions>admin.system.admintools.canView</permissions>
 		</acpmenuitem>		
 
@@ -60,7 +66,7 @@
 			<parent>wcf.acp.menu.link.admintools.main</parent>
 			<link>index.php?page=AdminToolsMenu</link>
 			<icon>icon/adminToolsMenuLinkM.png</icon>
-			<showorder>4</showorder>
+			<showorder>5</showorder>
 			<permissions>admin.system.admintools.canView</permissions>
 		</acpmenuitem>
 

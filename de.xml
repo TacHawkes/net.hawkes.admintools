@@ -55,6 +55,17 @@
 		<item name="wcf.acp.admintools.functions.success"><![CDATA[Die Einstellungen wurden erfolgreich gespeichert.]]></item>
                 <item name="wcf.acp.admintools.functions.none"><![CDATA[Es sind keine Funktionen vorhanden.]]></item>
 		<item name="wcf.acp.admintools.function.success"><![CDATA[Die Funktion &raquo;{$functionName}&laquo; wurde erfolgreich ausgeführt.]]></item>
+		<item name="wcf.acp.admintools.lostandfound"><![CDATA[Lost and Found]]></item>
+		<item name="wcf.acp.admintools.lostandfound.attachments"><![CDATA[Anhänge]]></item>
+		<item name="wcf.acp.admintools.lostandfound.avatars"><![CDATA[Avatare]]></item>
+		<item name="wcf.acp.admintools.lostandfound.backup"><![CDATA[Backups]]></item>
+		<item name="wcf.acp.admintools.lostandfound.database"><![CDATA[Datenbank]]></item>
+		<item name="wcf.acp.admintools.lostandfound.filename"><![CDATA[Dateiname]]></item>
+		<item name="wcf.acp.admintools.lostandfound.filesize"><![CDATA[Größe]]></item>
+		<item name="wcf.acp.admintools.lostandfound.filesystem"><![CDATA[Dateisystem]]></item>
+		<item name="wcf.acp.admintools.lostandfound.markedItems"><![CDATA[this.count == 1 ? "Ein Eintrag markiert" : this.count+" Einträge markiert"]]></item>
+		<item name="wcf.acp.admintools.lostandfound.time"><![CDATA[Zeit]]></item>
+		<item name="wcf.acp.admintools.lostandfound.username"><![CDATA[Benutzername]]></item>
 		<item name="wcf.acp.admintools.importAndExport"><![CDATA[Admin Tools Optionen sichern & wiederherstellten]]></item>
 		<item name="wcf.acp.admintools.cronjobs.list.count"><![CDATA[Insgesamt {#$items} Cronjobs]]></item>
 		<item name="wcf.acp.admintools.cronjobs.wcffunctions"><![CDATA[WCF Funktionen]]></item>
@@ -106,6 +117,7 @@
 		<item name="wcf.acp.menu.link.admintools.export"><![CDATA[Exportieren]]></item>
 		<item name="wcf.acp.menu.link.admintools.importandexport"><![CDATA[Sichern & wiederherstellen]]></item>
 		<item name="wcf.acp.menu.link.admintools.functions"><![CDATA[Funktionen]]></item>
+		<item name="wcf.acp.menu.link.admintools.lostandfound"><![CDATA[Lost and Found]]></item>
 		<item name="wcf.acp.menu.link.admintools.index"><![CDATA[Übersicht]]></item>		
 		<item name="wcf.acp.menu.link.admintools.menu"><![CDATA[Admin Links]]></item>		
 		<item name="wcf.acp.menu.link.admintools.spider"><![CDATA[Spider]]></item>
