@@ -20,26 +20,26 @@ require_once(WCF_DIR.'lib/acp/admintools/spider/SpiderEditor.class.php');
  * You should have received a copy of the GNU General Public License
  * along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
+ * 
  * @author	Oliver Kliebisch
  * @copyright	2009 Oliver Kliebisch
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.form
- * @category WCF
+ * @category WCF 
  */
 class AdminToolsSpiderAddForm extends ACPForm  {
 	public $templateName = 'adminToolsSpiderAdd';
 	public $activeMenuItem = 'wcf.acp.menu.link.admintools.spider';
 	public $neededPermissions = 'admin.system.admintools.canView';
 	public $action = 'add';
-
+	
 	public $spiderName = '';
 	public $spiderIdentifier = '';
 	public $spiderURL = '';
-
+	
 	/**
-	 * @see Form::readFormParameters()
+	 * @see Form::readFormParameters()	 
 	 */
 	public function readFormParameters() {
 		parent::readFormParameters();
@@ -50,7 +50,7 @@ class AdminToolsSpiderAddForm extends ACPForm  {
 	}
 
 	/**
-	 * @see Form::save()
+	 * @see Form::save()	 
 	 */
 	public function save() {
 		parent::save();
@@ -69,7 +69,7 @@ class AdminToolsSpiderAddForm extends ACPForm  {
 
 
 	/**
-	 * @see Page::assignVariables()
+	 * @see Page::assignVariables()	 
 	 */
 	public function assignVariables() {
 		parent::assignVariables();

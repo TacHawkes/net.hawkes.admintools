@@ -15,23 +15,23 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
+ * 
  */
 require_once(WCF_DIR.'lib/acp/page/CronjobsListPage.class.php');
 
 /**
  * An extend cronjobs list which filters non-admin-tools cronjobs
- *
+ * 
  * @author	Oliver Kliebisch
  * @copyright	2009 Oliver Kliebisch
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.page
- * @category WCF
+ * @category WCF 
  */
 class AdminToolsCronjobsListPage extends CronjobsListPage  {
 	public $templateName = 'adminToolsCronjobs';
-
+	
 	/**
 	 * Gets the list of cronjobs.
 	 */
@@ -43,16 +43,16 @@ class AdminToolsCronjobsListPage extends CronjobsListPage  {
 		foreach($this->cronjobs as $cronjob) {
 			$cronjobIDs[]  = $cronjob['cronjobID'];
 		}
-
+		
 		$sql = "SELECT DISTINCT cronjobID FROM wcf".WCF_N."_admin_tools_function_to_cronjob
 				WHERE cronjobID IN (".implode(',', $cronjobIDs).")";
 		$result = WCF::getDB()->sendQuery($sql);
-
+		
 		$adminToolsCronjobIDs = array();
 		while($row = WCF::getDB()->fetchArray($result)) {
 			$adminToolsCronjobIDs[] = $row['cronjobID'];
 		}
-
+				
 		foreach($this->cronjobs as $key => $cronjob) {
 			if(!in_array($cronjob['cronjobID'], $adminToolsCronjobIDs)) {
 				unset($this->cronjobs[$key]);
@@ -65,7 +65,7 @@ class AdminToolsCronjobsListPage extends CronjobsListPage  {
 	 */
 	public function countItems() {
 		SortablePage::countItems();
-
+				
 		$sql = "SELECT COUNT(DISTINCT cronjobID) AS count FROM wcf".WCF_N."_admin_tools_function_to_cronjob";
 		$row = WCF::getDB()->getFirstRow($sql);
 		return $row['count'];
@@ -79,7 +79,7 @@ class AdminToolsCronjobsListPage extends CronjobsListPage  {
 		WCFACP::getMenu()->setActiveMenuItem('wcf.acp.menu.link.admintools.cronjobs');
 
 		// check permission
-		WCF::getUser()->checkPermission(array('admin.system.cronjobs.canEditCronjob', 'admin.system.cronjobs.canDeleteCronjob', 'admin.system.cronjobs.canEnableDisableCronjob', 'admin.system.admintools.canView'));
+		WCF::getUser()->checkPermission(array('admin.system.cronjobs.canEditCronjob', 'admin.system.cronjobs.canDeleteCronjob', 'admin.system.cronjobs.canEnableDisableCronjob', 'admin.system.admintools.canView'));		
 		SortablePage::show();
 	}
 }

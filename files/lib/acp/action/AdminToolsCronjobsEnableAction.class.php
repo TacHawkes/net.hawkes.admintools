@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
+ * 
  */
 require_once(WCF_DIR.'lib/acp/action/CronjobsEnableAction.class.php');
 
@@ -30,13 +30,13 @@ require_once(WCF_DIR.'lib/acp/action/CronjobsEnableAction.class.php');
  * @category WCF
  */
 class AdminToolsCronjobsEnableAction extends CronjobsEnableAction {
-
+	
 	/**
 	 * @see Action::executed()
 	 */
 	protected function executed() {
 		parent::executed();
-
+		
 		// forward
 		HeaderUtil::redirect('index.php?page=AdminToolsCronjobsList&packageID='.PACKAGE_ID.SID_ARG_2ND_NOT_ENCODED);
 		exit;

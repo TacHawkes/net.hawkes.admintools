@@ -42,7 +42,7 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 	public $functionID = 0;
 	public $activeTabMenuItem = '';
 	public $activeSubTabMenuItem = '';
-
+	
 	const CHECKALL_LOWER_LIMIT = 1;
 
 	/**
@@ -53,7 +53,7 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 
 		if (isset($_POST['functionName'])) $this->functionName = StringUtil::trim($_POST['functionName']);
 		if (isset($_POST['functionID'])) $this->functionID = intval($_POST['functionID']);
-		if (isset($_POST['activeTabMenuItem'])) $this->activeTabMenuItem = $_POST['activeTabMenuItem'];
+		if (isset($_POST['activeTabMenuItem'])) $this->activeTabMenuItem = $_POST['activeTabMenuItem'];		
 	}
 
 	/**
@@ -101,7 +101,7 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 			WCF::getCache()->clear(WCF_DIR.'cache/', 'cache.admin_tools-option*');
 		}
 
-		if($this->functionID) {
+		if($this->functionID) {			
 			$executor->callFunction($this->functionID);
 
 			foreach($this->options as $superCategory) {
@@ -175,11 +175,11 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 	public function show() {
 		// set active menu item
 		WCFACP::getMenu()->setActiveMenuItem($this->activeMenuItem);
-
+		
 		// check permission
 		WCF::getUser()->checkPermission('admin.system.admintools.canView');
 
-		// check master password
+                // check master password
 		WCFACP::checkMasterPassword();
 
 		// get user options and categories from cache
@@ -188,18 +188,18 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 		// show form
 		parent::show();
 	}
-
+	
 	/**
 	 * @see DynamicOptionListForm::readCache()
 	 */
 	protected function readCache() {
 		parent::readCache();
-
+		
 		WCF::getCache()->addResource('admin_tools_functions-'.PACKAGE_ID, WCF_DIR.'cache/cache.admin_tools_functions-'.PACKAGE_ID.'.php', WCF_DIR.'lib/system/cache/CacheBuilderAdminToolsFunction.class.php');
 		$this->functions = WCF::getCache()->get('admin_tools_functions-'.PACKAGE_ID);
-		if (!count($this->functions)) {
-			throw new NamedUserException(WCF::getLanguage('wcf.acp.admintools.functions.none'));
-		}
+                if (!count($this->functions)) {
+                        throw new NamedUserException(WCF::getLanguage('wcf.acp.admintools.functions.none'));
+                }
 	}
 
 	/**
@@ -259,7 +259,7 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 
 		return $options;
 	}
-
+	
 	/**
 	 * Determines if the passed category is a checkbox category and displays a 'check all' button
 	 *
@@ -275,10 +275,10 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 		foreach($category['options'] as $option) {
 			if($option['optionType'] == 'boolean') {
 				$countBoxes++;
-			}
-		}
+			}			
+		}		
 		if ($countBoxes > self::CHECKALL_LOWER_LIMIT) return true;
-
+		
 		return false;
 	}
 

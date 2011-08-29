@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
+ * 
  */
 require_once(WCF_DIR.'lib/acp/form/AdminToolsMenuAddForm.class.php');
 
@@ -27,16 +27,16 @@ require_once(WCF_DIR.'lib/acp/form/AdminToolsMenuAddForm.class.php');
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.form
- * @category WCF
+ * @category WCF 
  */
 class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 	public $action = 'edit';
 	public $menuItemID;
 	public $iframeID = 0;
 	public $deleteItem = false;
-
+	
 	/**
-	 * @see Page::readParameters()
+	 * @see Page::readParameters()	 
 	 */
 	public function readParameters() {
 		parent::readParameters();
@@ -58,32 +58,32 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 		}
 		if(isset($_POST['iframeID'])) {
 			$this->iframeID = intval($_POST['iframeID']);
-		}
-
+		}				
+		
 		if(!$this->menuItemID) {
 			require_once(WCF_DIR.'lib/system/exception/IllegalLinkException.class.php');
 			throw new IllegalLinkException();
 		}
 	}
-
+	
 	/**
-	 * @see Form::readFormParamerters()
+	 * @see Form::readFormParamerters()	 
 	 */
 	public function readFormParameters() {
 		parent::readFormParameters();
-
+		
 		if(isset($_POST['deleteItem'])) {
 			$this->deleteItem = $_POST['deleteItem'] ? true : false;
-				
+			
 			if($this->deleteItem) {
 				$sql = "DELETE FROM wcf".WCF_N."_acp_menu_item WHERE menuItemID = ".$this->menuItemID;
 				WCF::getDB()->sendQuery($sql);
-
+				
 				$sql = "DELETE FROM wcf".WCF_N."_admin_tools_iframe WHERE menuItemID = ".$this->menuItemID;
 				WCF::getDB()->sendQuery($sql);
-
+				
 				WCF::getCache()->clear(WCF_DIR.'cache/', 'cache.menu-*');
-
+				
 				HeaderUtil::redirect('index.php?page=AdminToolsMenu&deletedItemID='.$this->menuItemID.'&packageID='.PACKAGE_ID.SID_ARG_2ND_NOT_ENCODED);
 				exit;
 			}
@@ -91,7 +91,7 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 	}
 
 	/**
-	 * @see Page::readData()
+	 * @see Page::readData()	 
 	 */
 	public function readData() {
 		parent::readData();
@@ -102,7 +102,7 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 				ON (iframe.menuItemID = item.menuItemID)  WHERE item.menuItemID=".$this->menuItemID;
 		$item = WCF::getDB()->getFirstRow($sql);
 		if(is_array($item)) {
-			$this->menuItem = StringUtil::trim($item['menuItem']);
+			$this->menuItem = StringUtil::trim($item['menuItem']);			
 			$this->menuItemLink = $item['menuItemLink'];
 			$this->menuItemIcon = $item['menuItemIcon'];
 			$this->showOrder = $item['showOrder'];
@@ -125,7 +125,7 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 			require_once(WCF_DIR.'lib/system/exception/IllegalLinkException.class.php');
 			throw new IllegalLinkException();
 		}
-
+		
 		if(isset($this->menuItemSelect[$this->menuItem])) {
 			unset($this->menuItemSelect[$this->menuItem]);
 		}
@@ -133,7 +133,7 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 	}
 
 	/**
-	 * @see Form::save()
+	 * @see Form::save()	 
 	 */
 	public function save() {
 		AbstractForm::save();
@@ -166,7 +166,7 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 
 		$sql = "SELECT menuItem FROM wcf".WCF_N."_acp_menu_item
                  			WHERE menuItemID=".$this->menuItemID;
-		$row = WCF::getDB()->getFirstRow($sql);
+		$row = WCF::getDB()->getFirstRow($sql);		
 		if($row['menuItem'] != $this->menuItem) {
 			//	relink children
 			$sql = "UPDATE wcf".WCF_N."_acp_menu_item
@@ -201,7 +201,7 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 	}
 
 	/**
-	 * @see Page::assignVariables()
+	 * @see Page::assignVariables()	 
 	 */
 	public function assignVariables() {
 		parent::assignVariables();
@@ -211,7 +211,7 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 	}
 
 	/**
-	 * @see Page::show()
+	 * @see Page::show()	 
 	 */
 	public function show() {
 

@@ -15,64 +15,64 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
+ * 
  */
 require_once(WCF_DIR.'lib/page/AbstractPage.class.php');
 
 /**
  * Displays iFrame pages
- *
+ * 
  * @author	Oliver Kliebisch
  * @copyright	2009 Oliver Kliebisch
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.page
- * @category WCF
+ * @category WCF 
  */
 class AdminToolsiFramePage extends AbstractPage {
 	public $templateName = 'adminToolsiFrame';
 	public $iFrameID = 0;
 	public $iFrameData = array();
-
+	
 	/**
-	 * @see Page::readParameters()
+	 * @see Page::readParameters()	 
 	 */
 	public function readParameters() {
 		parent::readParameters();
-
+		
 		if (isset($_GET['iFrameID'])) $this->iFrameID = intval($_GET['iFrameID']);
 		else {
 			require_once(WCF_DIR.'lib/system/exception/IllegalLinkException.class.php');
 			throw new IllegalLinkException();
 		}
 	}
-
+	
 	/**
-	 * @see Page::readData()
+	 * @see Page::readData()	 
 	 */
 	public function readData() {
 		parent::readData();
-
+		
 		$sql = "SELECT item.menuItem, iframe.* FROM wcf".WCF_N."_admin_tools_iframe iframe
 				LEFT JOIN			wcf".WCF_N."_acp_menu_item item
 				ON (item.menuItemID = iframe.menuItemID)
 				WHERE iframeID = ".$this->iFrameID;
 		$this->iFrameData = WCF::getDB()->getFirstRow($sql);
 	}
-
+	
 	/**
-	 * @see Page::assignVariables()
+	 * @see Page::assignVariables()	 
 	 */
 	public function assignVariables() {
 		parent::assignVariables();
-
+		
 		WCFACP::getMenu()->setActiveMenuItem($this->iFrameData['menuItem']);
-
+		
 		WCF::getTPL()->assign(array('iFrameData' => $this->iFrameData));
 	}
 
 	/**
-	 * @see Page::show()
+	 * @see Page::show()	 
 	 */
 	public function show() {
 		WCF::getUser()->checkPermission('admin.system.admintools.canView');

@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
+ * 
  */
 
 /**
@@ -26,16 +26,16 @@
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.admintools.function
- * @category WCF
+ * @category WCF 
  */
 interface AdminToolsFunction {
 
-	/**
-	 * Executes a function
-	 *
-	 * @param mixed $data
-	 */
+        /**
+         * Executes a function
+         *
+         * @param mixed $data
+         */
 	public function execute($data);
-
+	
 }
 ?>

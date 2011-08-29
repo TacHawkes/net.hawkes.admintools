@@ -30,34 +30,34 @@ class Spider extends DatabaseObject  {
 	protected $sqlJoins = '';
 	protected $sqlSelects = '';
 	protected $sqlGroupBy = '';
-
+	
 	/**
-	 * Gets the main data of the passed spider
+	 * Gets the main data of the passed spider	 
 	 *
 	 * @param 	string 		$spiderID
-	 * @param 	array 		$row
+	 * @param 	array 		$row	 
 	 */
-	public function __construct($spiderID, $row = null) {
+	public function __construct($spiderID, $row = null) {				
 		// execute sql statement
 		$sqlCondition = '';
 		if ($spiderID !== null) {
 			$sqlCondition = "spider.spiderID = ".$spiderID;
-		}
-
+		}		
+		
 		if (!empty($sqlCondition)) {
 			$sql = "SELECT 	".$this->sqlSelects."
 					spider.*
 				FROM 	wcf".WCF_N."_admin_tools_spider spider
 					".$this->sqlJoins."
 				WHERE 	".$sqlCondition.
-			$this->sqlGroupBy;
+					$this->sqlGroupBy;
 			$row = WCF::getDB()->getFirstRow($sql);
 		}
-
+		
 		// handle result set
 		parent::__construct($row);
 	}
-
+	
 	/**
 	 * Returns true, if this spider is marked in the active session.
 	 */
@@ -66,7 +66,7 @@ class Spider extends DatabaseObject  {
 		if (isset($sessionVars['markedSpiders'])) {
 			if (in_array($this->spiderID, $sessionVars['markedSpiders'])) return 1;
 		}
-
+		
 		return 0;
 	}
 

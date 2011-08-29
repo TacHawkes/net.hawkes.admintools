@@ -15,19 +15,19 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
+ * 
  */
 require_once(WCF_DIR.'lib/page/SortablePage.class.php');
 
 /**
  * The page for handling lost and found items. Backups, attachments and avatars are harcodet. Further functions can be used via event listeners
- *
+ * 
  * @author	Oliver Kliebisch
  * @copyright	2009 Oliver Kliebisch
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.page
- * @category WCF
+ * @category WCF 
  */
 class AdminToolsLostAndFoundPage extends SortablePage  {
 	public $activeMenuItem = 'wcf.acp.menu.link.admintools.lostandfound';
@@ -40,16 +40,16 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 	public $classname = '';
 
 	public $count = 0;
-
+	
 	/**
 	 * The object array storing the lost and found items
-	 *
-	 * @var array<MarkableLostAndFoundItem>
+	 * 
+	 * @var array<MarkableLostAndFoundItem> 
 	 */
 	public $itemData = array();
 
 	/**
-	 * @see Page::readParameters()
+	 * @see Page::readParameters() 
 	 */
 	public function readParameters() {
 		parent::readParameters();
@@ -57,9 +57,9 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 		if (isset($_GET['activeTabMenuItem'])) $this->activeTabMenuItem = StringUtil::trim($_GET['activeTabMenuItem']);
 		if (isset($_GET['activeSubTabMenuItem'])) $this->activeSubTabMenuItem = StringUtil::trim($_GET['activeSubTabMenuItem']);
 	}
-
+	
 	/**
-	 * @see Page::readData()
+	 * @see Page::readData() 
 	 */
 	public function readData() {
 		$functionName = 'read'.ucfirst($this->activeTabMenuItem);
@@ -72,7 +72,7 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 
 	/**
 	 * Reads the backup items
-	 */
+	 */ 
 	protected function readBackup() {
 		$this->activeSubTabMenuItem = 'filesystem';
 		require_once(WCF_DIR.'lib/acp/admintools/lostandfound/BackupFilesystemLostAndFoundItem.class.php');
@@ -106,7 +106,7 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 
 	/**
 	 * Reads attachment items
-	 */
+	 */ 
 	public function readAttachments() {
 		switch($this->activeSubTabMenuItem) {
 			case 'database' :
@@ -178,10 +178,10 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 				break;
 		}
 	}
-
+	
 	/**
 	 * Reads avatar items
-	 */
+	 */ 
 	public function readAvatars() {
 		switch($this->activeSubTabMenuItem) {
 			case 'database' :
@@ -200,8 +200,8 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 							continue;
 						}
 						$avatar = new AvatarsDatabaseLostAndFoundItem($row['avatarID']);
-						$avatar->filename = $row['avatarName'];
-						$avatar->user = $row['username'];
+						$avatar->filename = $row['avatarName'];						
+						$avatar->user = $row['username'];						
 						$this->itemData[] = $avatar;
 						$i++;
 					}
@@ -243,11 +243,11 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 						}
 						else if($i > $this->pageNo*$this->itemsPerPage) break;
 						$file = WCF_DIR.'images/avatars/avatar-'.$avatarID.$avatars[$avatarID];
-						$avatar = new AvatarsFilesystemLostAndFoundItem(AvatarsFilesystemLostAndFoundItem::getVirtualID('avatarsFilesystem', $file));
-						$avatar->filename = $file;
+						$avatar = new AvatarsFilesystemLostAndFoundItem(AvatarsFilesystemLostAndFoundItem::getVirtualID('avatarsFilesystem', $file)); 
+						$avatar->filename = $file;						
 						$avatar->filesize = round((filesize($file) / 1000),2).' kB';
 						$avatar->fileLastModTime = filemtime($file);
-						$this->itemData[] = $avatar;
+						$this->itemData[] = $avatar;						
 						$i++;
 					}
 				}
@@ -257,7 +257,7 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 	}
 
 	/**
-	 * @see Page::assignVariables()
+	 * @see Page::assignVariables()	 
 	 */
 	public function assignVariables() {
 		parent::assignVariables();
@@ -272,18 +272,18 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 	}
 
 	/**
-	 * @see Page::show()
+	 * @see Page::show()	
 	 */
 	public function show() {
 		WCF::getUser()->checkPermission('admin.system.admintools.canView');
-
+		
 		WCFACP::getMenu()->setActiveMenuItem($this->activeMenuItem);
 
 		parent::show();
 	}
-
+	
 	/**
-	 * @see MultipleLinkPage::countItems()
+	 * @see MultipleLinkPage::countItems()	 	 
 	 */
 	public function countItems() {
 		parent::countItems();

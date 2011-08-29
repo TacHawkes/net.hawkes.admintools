@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.woltlab.com/XSD/language.xsd"
-	languagecode="de-informal">
-	<category name="wcf.acp.admintools">
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/language.xsd" languagecode="de-informal">
+<category name="wcf.acp.admintools">
 		<item name="wcf.acp.admintools.about"><![CDATA[Über Admin Tools 2]]></item>
-		<item name="wcf.acp.admintools.acpmenu.add"><![CDATA[Menüeintrag hinzufügen]]></item>
+		<item name="wcf.acp.admintools.acpmenu.add"><![CDATA[Menüeintrag hinzufügen]]></item>		
 		<item name="wcf.acp.admintools.acpmenu.add.success"><![CDATA[Der Menüeintrag wurde erfolgreich hinzugefügt.]]></item>
 		<item name="wcf.acp.admintools.acpmenu.edit"><![CDATA[Menüeintrag bearbeiten]]></item>
 		<item name="wcf.acp.admintools.acpmenu.edit.success"><![CDATA[Der Menüeintrag wurde erfolreich gespeichert.]]></item>
@@ -14,19 +12,19 @@
 		<item name="wcf.acp.admintools.acpmenu.deleteItem.description"><![CDATA[Bestätige, dass du diesen Menüeintrag dauerhaft und endültig entfernen möchtest.]]></item>
 		<item name="wcf.acp.admintools.acpmenu.editinfo"><![CDATA[Klicke in der Menükarte auf den Text eines Menüeintrages, um diesen zu bearbeiten]]></item>
 		<item name="wcf.acp.admintools.acpmenu.data"><![CDATA[Daten des Menüeintrages]]></item>
-		<item name="wcf.acp.admintools.acpmenu.menuItem"><![CDATA[Titel des Menüeintrages]]></item>
-		<item name="wcf.acp.admintools.acpmenu.menuItem.description"><![CDATA[Gib den Titel des Menüeintrages ein. Wenn keine Sprachvariable angegeben wird, generiert das System dynamisch eine Sprachvariable aus dem Titel des Menüeintrages.]]></item>
-		<item name="wcf.acp.admintools.acpmenu.menuItemLink"><![CDATA[Link des Menüeintrages]]></item>
-		<item name="wcf.acp.admintools.acpmenu.menuItemLink.description"><![CDATA[Gib die Linkadresse des Menüeintrages an. Wenn du auf eine externe Seite verlinken möchtest, kannst du dies tun, indem du auf den dereferrer des WCFs umleitest.]]></item>
-		<item name="wcf.acp.admintools.acpmenu.menuItemIcon"><![CDATA[Grafik des Menüeintrages]]></item>
-		<item name="wcf.acp.admintools.acpmenu.menuItemIcon.description"><![CDATA[Gib die URL einer Grafik an, die für den Eintrag verwendet werden soll.]]></item>
-		<item name="wcf.acp.admintools.acpmenu.permissions"><![CDATA[Benötigte Berechtigungen]]></item>
-		<item name="wcf.acp.admintools.acpmenu.permissions.description"><![CDATA[Wähle die nötigen Berechtigungen aus, um diesen Eintrag sehen zu können. Mehrfache Markierungen sind durch zusätzliches Drücken der Taste &raquo;Strg/Ctrl&laquo; (Windows) oder &raquo;Befehl/Command&laquo; (Mac OS) möglich.]]></item>
-		<item name="wcf.acp.admintools.acpmenu.parentMenuItem"><![CDATA[Übergeordneter Eintrag]]></item>
-		<item name="wcf.acp.admintools.acpmenu.parentMenuItem.description"><![CDATA[Wähle einen übergeordneten Menüeintrag aus, um ein verschachteltes Menü zu erstellen. Alle Einträge, die von einem anderen Eintrag abhängig sind erscheinen in einem Javascript Dropdown.]]></item>
-		<item name="wcf.acp.admintools.acpmenu.showOrder"><![CDATA[Reihenfolge]]></item>
+		<item name="wcf.acp.admintools.acpmenu.menuItem"><![CDATA[Titel des Menüeintrages]]></item>	
+		<item name="wcf.acp.admintools.acpmenu.menuItem.description"><![CDATA[Gib den Titel des Menüeintrages ein. Wenn keine Sprachvariable angegeben wird, generiert das System dynamisch eine Sprachvariable aus dem Titel des Menüeintrages.]]></item>	
+		<item name="wcf.acp.admintools.acpmenu.menuItemLink"><![CDATA[Link des Menüeintrages]]></item>	
+		<item name="wcf.acp.admintools.acpmenu.menuItemLink.description"><![CDATA[Gib die Linkadresse des Menüeintrages an. Wenn du auf eine externe Seite verlinken möchtest, kannst du dies tun, indem du auf den dereferrer des WCFs umleitest.]]></item>	
+		<item name="wcf.acp.admintools.acpmenu.menuItemIcon"><![CDATA[Grafik des Menüeintrages]]></item>	
+		<item name="wcf.acp.admintools.acpmenu.menuItemIcon.description"><![CDATA[Gib die URL einer Grafik an, die für den Eintrag verwendet werden soll.]]></item>	
+		<item name="wcf.acp.admintools.acpmenu.permissions"><![CDATA[Benötigte Berechtigungen]]></item>	
+		<item name="wcf.acp.admintools.acpmenu.permissions.description"><![CDATA[Wähle die nötigen Berechtigungen aus, um diesen Eintrag sehen zu können. Mehrfache Markierungen sind durch zusätzliches Drücken der Taste &raquo;Strg/Ctrl&laquo; (Windows) oder &raquo;Befehl/Command&laquo; (Mac OS) möglich.]]></item>	
+		<item name="wcf.acp.admintools.acpmenu.parentMenuItem"><![CDATA[Übergeordneter Eintrag]]></item>	
+		<item name="wcf.acp.admintools.acpmenu.parentMenuItem.description"><![CDATA[Wähle einen übergeordneten Menüeintrag aus, um ein verschachteltes Menü zu erstellen. Alle Einträge, die von einem anderen Eintrag abhängig sind erscheinen in einem Javascript Dropdown.]]></item>	
+		<item name="wcf.acp.admintools.acpmenu.showOrder"><![CDATA[Reihenfolge]]></item>	
 		<item name="wcf.acp.admintools.acpmenu.showOrder.description"><![CDATA[Gib die Reihenfolge an. Wird dieses Feld auf 0 gelassen wird der Eintrag am Ende des Menüs eingereiht.]]></item>
-		<item name="wcf.acp.admintools.acpmenu.useiFrame"><![CDATA[iFrame Seite aktivieren]]></item>
+		<item name="wcf.acp.admintools.acpmenu.useiFrame"><![CDATA[iFrame Seite aktivieren]]></item>	
 		<item name="wcf.acp.admintools.acpmenu.useiFrame.description"><![CDATA[Aktiviere diese Funktion, wenn du möchtest, dass eine dynamische iFrame Seite generiert wird, die den oben eingegebenen Link in einem iFrame öffnet. Beachten sie die iFrame Einstellungen unten auf dieser Seite.]]></item>
 		<item name="wcf.acp.admintools.acpmenu.iframe"><![CDATA[iFrame Einstellungen]]></item>
 		<item name="wcf.acp.admintools.acpmenu.iframeWidth"><![CDATA[Breite des iFrame]]></item>
@@ -38,7 +36,7 @@
 		<item name="wcf.acp.admintools.acpmenu.borderColor"><![CDATA[Farbe des Rahmens]]></item>
 		<item name="wcf.acp.admintools.acpmenu.borderColor.description"><![CDATA[Gib die Farbe des Rahmens um den iFrame an. Es können englische Farbnamen oder Farbhashes (Hex-RGB) verwendet werden.]]></item>
 		<item name="wcf.acp.admintools.acpmenu.borderStyle"><![CDATA[Stil des Rahmens]]></item>
-		<item name="wcf.acp.admintools.acpmenu.borderStyle.description"><![CDATA[Wähle einen Rahmenstil aus.]]></item>
+		<item name="wcf.acp.admintools.acpmenu.borderStyle.description"><![CDATA[Wähle einen Rahmenstil aus.]]></item>  
 		<item name="wcf.acp.admintools.cronjob"><![CDATA[Cronjob]]></item>
 		<item name="wcf.acp.admintools.credits"><![CDATA[Über Admin Tools 2]]></item>
 		<item name="wcf.acp.admintools.credits.developedFor"><![CDATA[Entwickelt für]]></item>
@@ -51,8 +49,8 @@
 		<item name="wcf.acp.admintools.diskinformation"><![CDATA[Speicherkapazität {#$diskInformation.totalSpace} MB - frei {#$diskInformation.freeSpace}  MB - benutzt {#$diskInformation.usedSpace} MB]]></item>
 		<item name="wcf.acp.admintools.function.run"><![CDATA[Ausführen]]></item>
 		<item name="wcf.acp.admintools.functions"><![CDATA[Funktionen]]></item>
-		<item name="wcf.acp.admintools.functions.none"><![CDATA[Es sind keine Funktionen vorhanden.]]></item>
-		<item name="wcf.acp.admintools.menulink"><![CDATA[Admin Links]]></item>
+                <item name="wcf.acp.admintools.functions.none"><![CDATA[Es sind keine Funktionen vorhanden.]]></item>
+		<item name="wcf.acp.admintools.menulink"><![CDATA[Admin Links]]></item>		
 		<item name="wcf.acp.admintools.function.execute.confirm"><![CDATA['Möchtest du wirklich die Funktion ' + functionName + ' ausführen?']]></item>
 		<item name="wcf.acp.admintools.functions.success"><![CDATA[Die Einstellungen wurden erfolgreich gespeichert.]]></item>
 		<item name="wcf.acp.admintools.function.success"><![CDATA[Die Funktion &raquo;{$functionName}&laquo; wurde erfolgreich ausgeführt.]]></item>
@@ -87,7 +85,7 @@
 		<item name="wcf.acp.admintools.spider.delete"><![CDATA[Spider löschen]]></item>
 		<item name="wcf.acp.admintools.spider.delete.sure"><![CDATA[Möchtest du diesen Spider wirklich löschen?]]></item>
 		<item name="wcf.acp.admintools.spider.delete.success"><![CDATA[Spider erfolgreich gelöscht]]></item>
-		<item name="wcf.acp.admintools.spider.spiderid"><![CDATA[ID]]></item>
+		<item name="wcf.acp.admintools.spider.spiderid"><![CDATA[ID]]></item>		 	
 		<item name="wcf.acp.admintools.spider.spidername"><![CDATA[Name]]></item>
 		<item name="wcf.acp.admintools.spider.spidername.description"><![CDATA[Gib den Namen des Spiders ein.]]></item>
 		<item name="wcf.acp.admintools.spider.spideridentifier"><![CDATA[Browserkennung]]></item>
@@ -95,7 +93,7 @@
 		<item name="wcf.acp.admintools.spider.spiderurl"><![CDATA[Website]]></item>
 		<item name="wcf.acp.admintools.spider.spiderurl.description"><![CDATA[Hier kannst du einen Link zur Website des Spiders angeben. [optional]]]></item>
 		<item name="wcf.acp.admintools.spider.data"><![CDATA[Daten]]></item>
-		<item name="wcf.acp.admintools.spider.noneAvailable"><![CDATA[Derzeit sind keine eigenen Spider verfügbar.]]></item>
+		<item name="wcf.acp.admintools.spider.noneAvailable"><![CDATA[Derzeit sind keine eigenen Spider verfügbar.]]></item> 
 		<item name="wcf.acp.admintools.spider.markedSpiders"><![CDATA[this.count == 1 ? "Ein Spider markiert" : this.count+" Spider markiert"]]></item>
 		<item name="wcf.acp.admintools.delete.sure"><![CDATA[Möchtest du den Eintrag wirklich löschen?]]></item>
 		<item name="wcf.acp.admintools.spider.importandexport"><![CDATA[Sichern & wiederherstellen]]></item>
@@ -119,28 +117,23 @@
 		<item name="wcf.acp.menu.link.admintools.importandexport"><![CDATA[Sichern & wiederherstellen]]></item>
 		<item name="wcf.acp.menu.link.admintools.functions"><![CDATA[Funktionen]]></item>
 		<item name="wcf.acp.menu.link.admintools.lostandfound"><![CDATA[Lost and Found]]></item>
-		<item name="wcf.acp.menu.link.admintools.index"><![CDATA[Übersicht]]></item>
-		<item name="wcf.acp.menu.link.admintools.menu"><![CDATA[Admin Links]]></item>
+		<item name="wcf.acp.menu.link.admintools.index"><![CDATA[Übersicht]]></item>		
+		<item name="wcf.acp.menu.link.admintools.menu"><![CDATA[Admin Links]]></item>		
 		<item name="wcf.acp.menu.link.admintools.spider"><![CDATA[Spider]]></item>
 		<item name="wcf.acp.menu.link.admintools.about"><![CDATA[Über Admin Tools 2]]></item>
 	</category>
 	<category name="wcf.acp.package">
-		<item
-			name="wcf.acp.package.step.install.AdminToolsFunctionPackageInstallationPlugin"><![CDATA[Admin Tools Funktionen werden installiert ...]]></item>
-		<item
-			name="wcf.acp.package.step.uninstall.AdminToolsFunctionPackageInstallationPlugin"><![CDATA[Admin Tools Funktionen werden deinstalliert ...]]></item>
-		<item
-			name="wcf.acp.package.step.update.AdminToolsFunctionPackageInstallationPlugin"><![CDATA[Admin Tools Funktionen werden aktualisiert ...]]></item>
+		<item name="wcf.acp.package.step.install.AdminToolsFunctionPackageInstallationPlugin"><![CDATA[Admin Tools Funktionen werden installiert ...]]></item>
+		<item name="wcf.acp.package.step.uninstall.AdminToolsFunctionPackageInstallationPlugin"><![CDATA[Admin Tools Funktionen werden deinstalliert ...]]></item>
+		<item name="wcf.acp.package.step.update.AdminToolsFunctionPackageInstallationPlugin"><![CDATA[Admin Tools Funktionen werden aktualisiert ...]]></item>
 	</category>
 	<category name="wcf.global">
 		<item name="wcf.global.button.saveSettings"><![CDATA[Einstellungen speichern]]></item>
 	</category>
 	<category name="wcf.acp.group">
-		<item name="wcf.acp.group.option.admin.system.admintools"><![CDATA[Admin Tools]]></item>
-		<item name="wcf.acp.group.option.admin.system.admintools.description"><![CDATA[]]>
-		</item>
-		<item name="wcf.acp.group.option.admin.system.admintools.canView"><![CDATA[Admin Tools Rechte]]></item>
-		<item
-			name="wcf.acp.group.option.admin.system.admintools.canView.description"><![CDATA[Benutzer dieser Benutzergruppe können die Admin Tools verwenden.]]></item>
+        <item name="wcf.acp.group.option.admin.system.admintools"><![CDATA[Admin Tools]]></item>
+        <item name="wcf.acp.group.option.admin.system.admintools.description"><![CDATA[]]></item>
+    	<item name="wcf.acp.group.option.admin.system.admintools.canView"><![CDATA[Admin Tools Rechte]]></item>
+    	<item name="wcf.acp.group.option.admin.system.admintools.canView.description"><![CDATA[Benutzer dieser Benutzergruppe können die Admin Tools verwenden.]]></item>
 	</category>
 </language>

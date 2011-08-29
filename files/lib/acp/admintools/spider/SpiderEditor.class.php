@@ -27,7 +27,7 @@ require_once(WCF_DIR.'lib/acp/admintools/spider/Spider.class.php');
  * @category WCF
  */
 class SpiderEditor extends Spider  {
-
+	
 	/**
 	 * Creates a new spider object
 	 *
@@ -38,15 +38,15 @@ class SpiderEditor extends Spider  {
 	public static function create($spiderIdentifier, $spiderName, $spiderURL = '') {
 		$sql = "INSERT INTO wcf".WCF_N."_admin_tools_spider
 					(spiderIdentifier, spiderName, spiderURL)
-			VALUES 		('".escapeString($spiderIdentifier)."',
-					'".escapeString($spiderName)."',
-					'".escapeString($spiderURL)."')";
+					VALUES ('".escapeString($spiderIdentifier)."',
+							'".escapeString($spiderName)."',
+							'".escapeString($spiderURL)."')";
 		WCF::getDB()->sendQuery($sql);
-
+		
 		$spiderID = WCF::getDB()->getInsertID();
 		return new SpiderEditor($spiderID);
 	}
-
+	
 	/**
 	 * Updates a spider
 	 *
@@ -55,34 +55,34 @@ class SpiderEditor extends Spider  {
 	 * @param string $spiderURL
 	 */
 	public function update($spiderIdentifier, $spiderName, $spiderURL = '') {
-		$sql = "UPDATE 	wcf".WCF_N."_admin_tools_spider
-			SET 	spiderIdentifier = '".escapeString($spiderIdentifier)."',
-				spiderName = '".escapeString($spiderName)."',
-				spiderURL = '".escapeString($spiderURL)."'
-			WHERE 	spiderID = ".$this->spiderID;
+		$sql = "UPDATE wcf".WCF_N."_admin_tools_spider
+					SET spiderIdentifier = '".escapeString($spiderIdentifier)."',
+						spiderName = '".escapeString($spiderName)."',
+						spiderURL = '".escapeString($spiderURL)."'
+					WHERE spiderID = ".$this->spiderID;
 		WCF::getDB()->sendQuery($sql);
 	}
-
+	
 	/**
 	 * Tests whether this spider exists in the native spider list or in the admin tools list.
 	 * Returns false if none exists.
 	 *
 	 * @param string $spiderIdentifier
 	 */
-	public static function test($spiderIdentifier) {
+	public static function test($spiderIdentifier) {		
 		// native table
 		$sql = "SELECT COUNT(spiderID) AS count FROM wcf".WCFN."_spider WHERE spiderIdentifier = '".$spiderIdentifier."'";
 		$row = WCF::getDB()->getFirstRow($sql);
 		if ($row['count'] > 0) return true;
-
+		
 		// admin tools table
 		$sql = "SELECT COUNT(spiderID) AS count FROM wcf".WCFN."_admin_tools_spider WHERE spiderIdentifier = '".$spiderIdentifier."'";
 		$row = WCF::getDB()->getFirstRow($sql);
 		if ($row['count'] > 0) return true;
-
+		
 		return false;
 	}
-
+	
 	/**
 	 * Deletes this spider
 	 *
@@ -90,13 +90,13 @@ class SpiderEditor extends Spider  {
 	public function delete() {
 		self::deleteAll(array($this->spiderID));
 	}
-
+	
 	/**
 	 * Deletes all passed spiders from the database
 	 *
 	 * @param array<integer> $spiderIDs
 	 */
-	public static function deleteAll($spiderIDs) {
+	public static function deleteAll($spiderIDs) {		
 		if (!is_array($spiderIDs)) {
 			$spiderIDs = array(intval($spiderIDs));
 		}
@@ -104,10 +104,10 @@ class SpiderEditor extends Spider  {
 				WHERE spiderID IN(".implode(',', $spiderIDs).")";
 		WCF::getDB()->sendQuery($sql);
 	}
-
+	
 	/**
 	 * Returns the marked spiders.
-	 *
+	 * 
 	 * @return	array		marked spiders
 	 */
 	public static function getMarkedSpiders() {
@@ -117,14 +117,14 @@ class SpiderEditor extends Spider  {
 		}
 		return null;
 	}
-
-
+	
+	
 	/**
 	 * Marks this spider.
 	 */
 	public function mark() {
 		$markedSpiders = self::getMarkedSpiders();
-		if ($markedSpiders == null || !is_array($markedSpiders)) {
+		if ($markedSpiders == null || !is_array($markedSpiders)) { 
 			$markedSpiders = array($this->spiderID);
 			WCF::getSession()->register('markedSpiders', $markedSpiders);
 		}
@@ -135,7 +135,7 @@ class SpiderEditor extends Spider  {
 			}
 		}
 	}
-
+	
 	/**
 	 * Unmarks this spider.
 	 */
@@ -143,7 +143,7 @@ class SpiderEditor extends Spider  {
 		$markedSpiders = self::getMarkedSpiders();
 		if (is_array($markedSpiders) && in_array($this->spiderID, $markedSpiders)) {
 			$key = array_search($this->spiderID, $markedSpiders);
-				
+			
 			unset($markedSpiders[$key]);
 			if (count($markedSpiders) == 0) {
 				self::unmarkAll();
@@ -153,27 +153,27 @@ class SpiderEditor extends Spider  {
 			}
 		}
 	}
-
+	
 	/**
 	 * Unmarks all marked spiders.
 	 */
 	public static function unmarkAll() {
 		WCF::getSession()->unregister('markedSpiders');
 	}
-
+	
 	/**
-	 * Synchronizes the admin tools spiders with the native spiders
+	 * Synchronizes the admin tools spiders with the native spiders	 
 	 */
 	public static function synchronize() {
 		require_once(WCF_DIR.'lib/system/cronjob/RefreshSearchRobotsCronjob.class.php');
-		RefreshSearchRobotsCronjob::execute(null);
-		$sql = "INSERT IGNORE INTO	wcf".WCF_N."_spider
-						(spiderIdentifier, spiderName, spiderURL)
-			SELECT 			spiderIdentifier, spiderName, spiderURL
-			FROM 			wcf".WCF_N."_admin_tools_spider"; 
+		RefreshSearchRobotsCronjob::execute(null);		
+		$sql = "INSERT IGNORE INTO wcf".WCF_N."_spider
+					(spiderIdentifier, spiderName, spiderURL)
+					SELECT spiderIdentifier, spiderName, spiderURL
+					FROM wcf".WCF_N."_admin_tools_spider"; 
 		WCF::getDB()->sendQuery($sql);
-		WCF::getCache()->clear(WCF_DIR.'cache', 'cache.spiders.php');
+        WCF::getCache()->clear(WCF_DIR.'cache', 'cache.spiders.php');
 	}
-
+	
 }
 ?>

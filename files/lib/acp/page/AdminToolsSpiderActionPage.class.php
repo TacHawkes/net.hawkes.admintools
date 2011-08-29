@@ -4,7 +4,7 @@ require_once(WCF_DIR.'lib/acp/admintools/spider/SpiderEditor.class.php');
 
 /**
  * Performs AJAX actions for the spider page
- *
+ * 
  * This file is part of Admin Tools 2.
  *
  * Admin Tools 2 is free software: you can redistribute it and/or modify
@@ -19,54 +19,54 @@ require_once(WCF_DIR.'lib/acp/admintools/spider/SpiderEditor.class.php');
  *
  * You should have received a copy of the GNU General Public License
  * along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  * @author	Oliver Kliebisch
  * @copyright	2009 Oliver Kliebisch
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.page
- * @category WCF
+ * @category WCF 
  */
-class AdminToolsSpiderActionPage extends AbstractPage {
+class AdminToolsSpiderActionPage extends AbstractPage {	
 	public $itemID = 0;
 	public $item;
 	public $items = array();
 	public $url = '';
 	public static $validFunctions = array('mark', 'unmark', 'delete', 'unmarkAll', 'deleteAll');
-
+	
 	/**
 	 * @see Page::readParameters()
 	 */
 	public function readParameters() {
 		parent::readParameters();
-
+		
 		if (isset($_REQUEST['classname'])) $this->classname = $_REQUEST['classname'];
 		if (isset($_REQUEST['pagename'])) $this->pagename = $_REQUEST['pagename'];
 		if (isset($_REQUEST['spiderID'])) $this->itemID = ArrayUtil::toIntegerArray($_REQUEST['spiderID']);
 		if (isset($_REQUEST['itemID'])) $this->itemID = ArrayUtil::toIntegerArray($_REQUEST['itemID']);
-		if (isset($_REQUEST['url'])) $this->url = $_REQUEST['url'];
+		if (isset($_REQUEST['url'])) $this->url = $_REQUEST['url'];							
 	}
-
+	
 	/**
 	 * @see Page::show()
 	 */
 	public function show() {
 		parent::show();
-			
+					
 		if(is_array($this->itemID)) {
-			foreach($this->itemID as $itemID) {
+			foreach($this->itemID as $itemID) {				
 				$this->items[] = new SpiderEditor($itemID);
 			}
 		}
-		else $this->item = new SpiderEditor($this->itemID);
-		if (in_array($this->action, self::$validFunctions)) {
+		else $this->item = new SpiderEditor($this->itemID);		
+		if (in_array($this->action, self::$validFunctions)) {			
 			$this->{$this->action}();
-		}
-
+		}					
+		
 	}
-
+	
 	/**
-	 * Marks items
+	 * Marks items	 
 	 */
 	public function mark() {
 		if(is_array($this->itemID)) {
@@ -76,9 +76,9 @@ class AdminToolsSpiderActionPage extends AbstractPage {
 		}
 		else $this->item->mark();
 	}
-
+	
 	/**
-	 * Unmarks items
+	 * Unmarks items	 
 	 */
 	public function unmark() {
 		if(is_array($this->itemID)) {
@@ -88,16 +88,16 @@ class AdminToolsSpiderActionPage extends AbstractPage {
 		}
 		else $this->item->unmark();
 	}
-
+	
 	/**
-	 * Unmarks all items
+	 * Unmarks all items	 
 	 */
 	public function unmarkAll() {
 		SpiderEditor::unmarkAll();
 	}
-
+	
 	/**
-	 * Deletes items
+	 * Deletes items	 
 	 */
 	public function delete() {
 		$this->item->delete();
@@ -106,9 +106,9 @@ class AdminToolsSpiderActionPage extends AbstractPage {
 			HeaderUtil::redirect($this->url);
 		}
 	}
-
+	
 	/**
-	 * Deletes all items
+	 * Deletes all items	 
 	 */
 	public function deleteAll() {
 		$spiders = SpiderEditor::getMarkedSpiders();

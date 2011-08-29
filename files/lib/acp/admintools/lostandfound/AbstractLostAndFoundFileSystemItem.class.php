@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
+ * 
  */
 require_once(WCF_DIR.'lib/acp/admintools/lostandfound/AbstractLostAndFoundDatabaseItem.class.php');
 
@@ -27,33 +27,33 @@ require_once(WCF_DIR.'lib/acp/admintools/lostandfound/AbstractLostAndFoundDataba
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.admintools.lostandfound
- * @category WCF
+ * @category WCF 
  */
 abstract class AbstractLostAndFoundFileSystemItem extends AbstractLostAndFoundDatabaseItem {
-
+	
 	/**
 	 * A multi-dimensional array containing the virtual IDs
 	 *
 	 * @var array<mixed>
 	 */
-	protected static $virtualFileIDs  = array();
-
+	protected static $virtualFileIDs  = array();		
+	
 	/**
 	 * A boolean to check that the session cache is loaded only once
 	 *
 	 * @var boolean
 	 */
 	public static $sessionCacheUsed = false;
-
+	
 	/**
 	 * The last modification time of the file ressource
 	 *
 	 * @var integer
-	 */
-	public $fileLastModTime = 0;
-
+	 */	
+	public $fileLastModTime = 0;	
+	
 	/**
-	 * @see AbstractLostAndFounDatabaseItem::__construct($itemName, $objectID)
+	 * @see AbstractLostAndFounDatabaseItem::__construct($itemName, $objectID)	 
 	 */
 	public function __construct($itemName, $objectID) {
 		if(!self::$sessionCacheUsed) {
@@ -62,19 +62,19 @@ abstract class AbstractLostAndFoundFileSystemItem extends AbstractLostAndFoundDa
 		}
 		parent::__construct($itemName, $objectID);
 	}
-
+	
 	/**
-	 * Saves the virtual ID filespace so IDs won't change over a session
+	 * Saves the virtual ID filespace so IDs won't change over a session	 
 	 */
 	public function __destruct() {
 		WCF::getSession()->register('virtualLostAndFoundIDs', self::$virtualFileIDs);
 	}
-
+	
 	/**
-	 * Creates the virtual ID filespace. This has to be implemented by subclasses
+	 * Creates the virtual ID filespace. This has to be implemented by subclasses	 
 	 */
 	public static function createVirtualIDSpace() { }
-
+	
 	/**
 	 * Returns all virtualIDs of a certain ressource type
 	 *
@@ -86,9 +86,9 @@ abstract class AbstractLostAndFoundFileSystemItem extends AbstractLostAndFoundDa
 			self::getVirtualIDsFromSession();
 			self::$sessionCacheUsed = true;
 		}
-		return isset(self::$virtualFileIDs[$type]) ? self::$virtualFileIDs[$type] : null;
+		return isset(self::$virtualFileIDs[$type]) ? self::$virtualFileIDs[$type] : null; 
 	}
-
+	
 	/**
 	 * Returns the virtual ID of a file
 	 *
@@ -101,7 +101,7 @@ abstract class AbstractLostAndFoundFileSystemItem extends AbstractLostAndFoundDa
 			self::getVirtualIDsFromSession();
 			self::$sessionCacheUsed = true;
 		}
-		if(isset(self::$virtualFileIDs[$type])) {
+		if(isset(self::$virtualFileIDs[$type])) {			
 			$fileIDs = array_flip(self::$virtualFileIDs[$type]);
 			if(isset($fileIDs[$filename])) {
 				return $fileIDs[$filename];
@@ -109,9 +109,9 @@ abstract class AbstractLostAndFoundFileSystemItem extends AbstractLostAndFoundDa
 		}
 		else return null;
 	}
-
+	
 	/**
-	 * Loads the session cache
+	 * Loads the session cache	 
 	 */
 	protected static function getVirtualIDsFromSession() {
 		$sessionVars = WCF::getSession()->getVars();

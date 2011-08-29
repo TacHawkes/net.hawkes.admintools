@@ -3,7 +3,7 @@ require_once(WCF_DIR.'lib/acp/form/OptionImportAndExportForm.class.php');
 
 /**
  * 	 Imports and exports admin tools function options
- *
+ * 
  *
  *   This file is part of Admin Tools 2.
  *
@@ -31,16 +31,16 @@ require_once(WCF_DIR.'lib/acp/form/OptionImportAndExportForm.class.php');
 class AdminToolsImportAndExportForm extends OptionImportAndExportForm {
 	public $templateName = 'adminToolsImportAndExport';
 	public $activeMenuItem = 'wcf.acp.menu.link.admintools.importandexport';
-	public $neededPermissions = 'admin.system.admintools.canView';
-
+	public $neededPermissions = 'admin.system.admintools.canView';	
+	
 	/**
 	 * @see Form::save()
 	 */
 	public function save() {
 		ACPForm::save();
-
+		
 		// get option ids
-		$sql = "SELECT		optionName, optionID
+		$sql = "SELECT		optionName, optionID 
 			FROM		wcf".WCF_N."_admin_tools_option acp_option,
 					wcf".WCF_N."_package_dependency package_dependency
 			WHERE 		acp_option.packageID = package_dependency.dependency
@@ -51,7 +51,7 @@ class AdminToolsImportAndExportForm extends OptionImportAndExportForm {
 		while ($row = WCF::getDB()->fetchArray($result)) {
 			$optionIDArray[$row['optionName']] = $row['optionID'];
 		}
-
+		
 		// save
 		foreach ($this->options as $name => $value) {
 			if (isset($optionIDArray[$name])) {
@@ -61,11 +61,11 @@ class AdminToolsImportAndExportForm extends OptionImportAndExportForm {
 				WCF::getDB()->sendQuery($sql);
 			}
 		}
-
+		
 		// reset cache
 		WCF::getCache()->clear(WCF_DIR.'cache/', 'cache.admin_tools-option*');
 		$this->saved();
-
+		
 		// show success message
 		WCF::getTPL()->assign('success', true);
 	}

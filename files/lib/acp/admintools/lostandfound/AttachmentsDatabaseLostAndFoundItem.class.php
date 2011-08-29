@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
+ * 
  */
 require_once(WCF_DIR.'lib/acp/admintools/lostandfound/AbstractLostAndFoundDatabaseItem.class.php');
 require_once(WCF_DIR.'lib/data/message/attachment/AttachmentsEditor.class.php');
@@ -28,9 +28,9 @@ require_once(WCF_DIR.'lib/data/message/attachment/AttachmentsEditor.class.php');
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.admintools.lostandfound
- * @category WCF
+ * @category WCF 
  */
-class AttachmentsDatabaseLostAndFoundItem extends AbstractLostAndFoundDatabaseItem {
+class AttachmentsDatabaseLostAndFoundItem extends AbstractLostAndFoundDatabaseItem {	
 
 	/**
 	 * Creates the object by setting the objectID
@@ -40,20 +40,20 @@ class AttachmentsDatabaseLostAndFoundItem extends AbstractLostAndFoundDatabaseIt
 	public function __construct($attachmentID) {
 		parent::__construct('attachmentsDatabase', $attachmentID);
 	}
-
+	
 	/**
-	 * @see AbstractLostAndFounDatabaseItem::delete
+	 * @see AbstractLostAndFounDatabaseItem::delete	 
 	 */
 	public function delete() {
 		$editor = new AttachmentsEditor();
 		$editor->delete($this->objectID);
 	}
-
+	
 	/**
-	 * @see AbstractLostAndFounDatabaseItem::deleteAll()
+	 * @see AbstractLostAndFounDatabaseItem::deleteAll()	 
 	 */
 	public static function deleteAll() {
-		$itemIDs = self::getMarkedItems('attachmentsDatabase');
+		$itemIDs = self::getMarkedItems('attachmentsDatabase');		
 		foreach($itemIDs as $itemID) {
 			$item = new AttachmentsDatabaseLostAndFoundItem($itemID);
 			$item->delete();
