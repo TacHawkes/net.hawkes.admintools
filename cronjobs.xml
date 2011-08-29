@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/cronjobs.xsd">
+	<import>
+		<cronjob>
+			<classPath>lib/system/cronjob/AdminToolsSpiderSynchronizeCronjob.class.php</classPath>
+			<description>Admin Tools Spider Synchronization</description>
+			<startMinute>*</startMinute>
+			<startHour>4</startHour>
+			<startDom>1</startDom>
+			<startMonth>*</startMonth>
+			<startDow>*</startDow>
+			<execMultiple>0</execMultiple>
+			<canbeedited>1</canbeedited>
+			<canbedisabled>1</canbedisabled>
+			<active>1</active>
+		</cronjob>
+	</import>
+</data>
