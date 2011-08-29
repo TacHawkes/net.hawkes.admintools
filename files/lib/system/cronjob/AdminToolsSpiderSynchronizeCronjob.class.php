@@ -20,20 +20,20 @@ require_once(WCF_DIR.'lib/acp/admintools/spider/SpiderEditor.class.php');
  * You should have received a copy of the GNU General Public License
  * along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- * 
+ *
  * @author	Oliver Kliebisch
  * @copyright	2009 Oliver Kliebisch
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage system.cronjob
- * @category WCF 
+ * @category WCF
  */
 class AdminToolsSpiderSynchronizeCronjob implements Cronjob {
 	/**
-	* @see Cronjob::execute()
-	*/
+	 * @see Cronjob::execute()
+	 */
 	public function execute($data) {
 		SpiderEditor::synchronize();
- 	}
+	}
 }
 ?>

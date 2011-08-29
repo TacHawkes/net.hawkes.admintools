@@ -15,21 +15,21 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- * 
+ *
  */
 
 /**
  * The central utility class
- * 
+ *
  * @author	Oliver Kliebisch
  * @copyright	2009 Oliver Kliebisch
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage util
- * @category WCF 
+ * @category WCF
  */
 class AdminToolsUtil {
-	
+
 	/**
 	 * Reads the disk quota info
 	 *

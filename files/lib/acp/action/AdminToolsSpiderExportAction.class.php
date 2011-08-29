@@ -54,7 +54,7 @@ class AdminToolsSpiderExportAction extends AbstractAction {
 			echo "\t<spider>\n";
 			echo "\t\t<spiderName><![CDATA[".StringUtil::escapeCDATA($spider['spiderName'])."]]></spiderName>\n";
 			echo "\t\t<spiderIdentifier><![CDATA[".StringUtil::escapeCDATA($spider['spiderIdentifier'])."]]></spiderIdentifier>\n";
-			echo "\t\t<spiderUrl><![CDATA[".StringUtil::escapeCDATA($spider['spiderURL'])."]]></spiderUrl>\n";			
+			echo "\t\t<spiderUrl><![CDATA[".StringUtil::escapeCDATA($spider['spiderURL'])."]]></spiderUrl>\n";
 			echo "\t</spider>\n";
 		}
 
@@ -65,11 +65,11 @@ class AdminToolsSpiderExportAction extends AbstractAction {
 
 	/**
 	 * Returns a list of spiders.
-	 *	 
+	 *
 	 * @return	array
 	 */
 	public function getSpiders() {
-		$sql = "SELECT * FROM wcf".WCF_N."_admin_tools_spider";				
+		$sql = "SELECT * FROM wcf".WCF_N."_admin_tools_spider";
 		return WCF::getDB()->getResultList($sql);
 	}
 }

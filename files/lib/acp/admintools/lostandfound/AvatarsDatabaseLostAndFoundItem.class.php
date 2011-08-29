@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- * 
+ *
  */
 require_once(WCF_DIR.'lib/acp/admintools/lostandfound/AbstractLostAndFoundDatabaseItem.class.php');
 require_once(WCF_DIR.'lib/data/user/avatar/AvatarEditor.class.php');
@@ -28,9 +28,9 @@ require_once(WCF_DIR.'lib/data/user/avatar/AvatarEditor.class.php');
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.admintools.lostandfound
- * @category WCF 
+ * @category WCF
  */
-class AvatarsDatabaseLostAndFoundItem extends AbstractLostAndFoundDatabaseItem {	
+class AvatarsDatabaseLostAndFoundItem extends AbstractLostAndFoundDatabaseItem {
 
 	/**
 	 * Creates the object by passing the objectID
@@ -40,20 +40,20 @@ class AvatarsDatabaseLostAndFoundItem extends AbstractLostAndFoundDatabaseItem {
 	public function __construct($avatarID) {
 		parent::__construct('avatarsDatabase', $avatarID);
 	}
-	
+
 	/**
-	 * @see AbstractLostAndFounDatabaseItem::delete()	 
+	 * @see AbstractLostAndFounDatabaseItem::delete()
 	 */
 	public function delete() {
-		$editor = new AvatarEditor($this->objectID);		
+		$editor = new AvatarEditor($this->objectID);
 		$editor->delete();
 	}
-	
+
 	/**
-	 * @see AbstractLostAndFounDatabaseItem::deleteAll()	 
+	 * @see AbstractLostAndFounDatabaseItem::deleteAll()
 	 */
 	public static function deleteAll() {
-		$itemIDs = self::getMarkedItems('avatarsDatabase');		
+		$itemIDs = self::getMarkedItems('avatarsDatabase');
 		foreach($itemIDs as $itemID) {
 			$item = new AvatarsDatabaseLostAndFoundItem($itemID);
 			$item->delete();

@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- * 
+ *
  */
 require_once(WCF_DIR.'lib/acp/action/AdminToolsCronjobsEnableAction.class.php');
 

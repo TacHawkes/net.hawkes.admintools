@@ -79,7 +79,7 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 			while($row = WCF::getDB()->fetchArray($result)) {
 				$this->activeFunctions[] = $row['functionID'];
 			}
-				
+
 			if($this->cronjob->packageID == 1) {
 				$this->wcfCronjob = 1;
 			}
@@ -117,7 +117,7 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 			foreach($this->activeFunctions as $functionID) {
 				if(!empty($this->functions[$functionID]['packageDir'])) unset($this->activeFunctions[$functionID]);
 			}
-			
+				
 			$this->packageID = 1;
 		}
 		else $this->packageID = PACKAGE_ID;
@@ -151,11 +151,11 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 		}
 		else {
 			$path = FileUtil::getRealPath(WCF_DIR.$row['packageDir']);
-		}		
+		}
 		@unlink($path.'lib/system/cronjob/AdminToolsCronjob'.$this->cronjobID.'.class.php');
-		
+
 		// update cronjob
-		$this->cronjob->update($this->classPath, $this->packageID, $this->description, $this->execMultiple, $this->startMinute, $this->startHour, $this->startDom, $this->startMonth, $this->startDow);				
+		$this->cronjob->update($this->classPath, $this->packageID, $this->description, $this->execMultiple, $this->startMinute, $this->startHour, $this->startDom, $this->startMonth, $this->startDow);
 
 		$inserts = '';
 		foreach($this->activeFunctions as $functionID) {
@@ -165,9 +165,9 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 		$sql = "INSERT IGNORE INTO wcf".WCF_N."_admin_tools_function_to_cronjob
 					(functionID, cronjobID)
 					VALUES ".$inserts;
-		WCF::getDB()->sendQuery($sql);				
+		WCF::getDB()->sendQuery($sql);
 		$package = new Package($this->packageID);
-		$path = FileUtil::getRealPath(WCF_DIR.$package->getDir());		
+		$path = FileUtil::getRealPath(WCF_DIR.$package->getDir());
 		$fileName = $path.'lib/system/cronjob/AdminToolsCronjob'.$this->cronjobID.'.class.php';
 		if(file_exists($fileName)) unlink($fileName);
 		$this->writeCronjob($this->cronjobID, $fileName);

@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- * 
+ *
  */
 require_once(WCF_DIR.'lib/acp/action/CronjobsDeleteAction.class.php');
 
@@ -30,7 +30,7 @@ require_once(WCF_DIR.'lib/acp/action/CronjobsDeleteAction.class.php');
  * @category WCF
  */
 class AdminToolsCronjobsDeleteAction extends CronjobsDeleteAction {
-	
+
 	/**
 	 * @see Action::execute()
 	 */
@@ -41,11 +41,11 @@ class AdminToolsCronjobsDeleteAction extends CronjobsDeleteAction {
 			throw new IllegalLinkException();
 		}
 		WCF::getUser()->checkPermission('admin.system.cronjobs.canDeleteCronjob');
-		
+
 		$sql = "DELETE FROM wcf".WCF_N."_admin_tools_function_to_cronjob
 				WHERE cronjobID = ".$this->cronjobID;
 		WCF::getDB()->sendQuery($sql);
-		
+
 		$sql = "SELECT packageDir FROM wcf".WCF_N."_package package
 				LEFT JOIN wcf".WCF_N."_cronjobs cronjob
 				ON (cronjob.packageID = package.packageID)
@@ -57,17 +57,17 @@ class AdminToolsCronjobsDeleteAction extends CronjobsDeleteAction {
 		else {
 			$path = FileUtil::getRealPath(WCF_DIR.$row['packageDir']);
 		}
-		@unlink($path.'lib/system/cronjob/AdminToolsCronjob'.$this->cronjobID.'.class.php');		
-		
+		@unlink($path.'lib/system/cronjob/AdminToolsCronjob'.$this->cronjobID.'.class.php');
+
 		parent::execute();
 	}
-	
+
 	/**
 	 * @see Action::execute()
 	 */
 	protected function executed() {
 		parent::executed();
-		
+
 		// forward
 		HeaderUtil::redirect('index.php?page=AdminToolsCronjobsList&deleteJob='.$this->cronjobID.'&packageID='.PACKAGE_ID.SID_ARG_2ND_NOT_ENCODED);
 		exit;

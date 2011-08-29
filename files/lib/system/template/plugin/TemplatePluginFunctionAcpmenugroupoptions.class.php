@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- * 
+ *
  */
 require_once(WCF_DIR.'lib/system/exception/SystemException.class.php');
 require_once(WCF_DIR.'lib/system/template/TemplatePluginFunction.class.php');
@@ -23,13 +23,13 @@ require_once(WCF_DIR.'lib/system/template/Template.class.php');
 
 /**
  * Outputs a group options multi select
- * 
+ *
  * @author	Oliver Kliebisch
  * @copyright	2009 Oliver Kliebisch
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage system.template.plugin
- * @category WCF 
+ * @category WCF
  */
 class TemplatePluginFunctionAcpmenugroupoptions implements TemplatePluginFunction {
 	public $html = '';
@@ -54,7 +54,7 @@ class TemplatePluginFunctionAcpmenugroupoptions implements TemplatePluginFunctio
 		if (isset($tagArgs['selected'])) {
 			$this->selected = $tagArgs['selected'];
 		}
-		
+
 
 		if (!isset($tagArgs['separator'])) {
 			$tagArgs['separator'] = '';
@@ -62,7 +62,7 @@ class TemplatePluginFunctionAcpmenugroupoptions implements TemplatePluginFunctio
 
 		// build html
 		foreach ($tagArgs['options'] as $key => $value) {
-			$this->buildHtml($value);			
+			$this->buildHtml($value);
 		}
 
 		return $this->html;
@@ -74,13 +74,13 @@ class TemplatePluginFunctionAcpmenugroupoptions implements TemplatePluginFunctio
 	 * @param string $item
 	 * @param integer $depth
 	 */
-	protected function buildHtml($item, $depth=0) {		
+	protected function buildHtml($item, $depth=0) {
 		if(isset($item['categoryID'])) {
 			$first = false;
 			if($depth == 0) {
 				$first = true;
 				$this->html .= "<optgroup label='".$item['localizedName']."'>";
-			}					
+			}
 			foreach($item['options'] as $option) {
 				$this->buildHtml($option, $depth);
 			}
@@ -95,8 +95,8 @@ class TemplatePluginFunctionAcpmenugroupoptions implements TemplatePluginFunctio
 		else if(isset($item['optionID'])) {
 			$selected='';
 			if(in_array($item['optionName'], $this->selected)) $selected='selected="selected"';
-			$this->html .= "<option label='".WCF::getLanguage()->get('wcf.acp.group.option.'.$item['optionName'])."' value='".$item['optionName']."' ".$selected.">".$item['localizedName']."</option>";			
-		}		
+			$this->html .= "<option label='".WCF::getLanguage()->get('wcf.acp.group.option.'.$item['optionName'])."' value='".$item['optionName']."' ".$selected.">".$item['localizedName']."</option>";
+		}
 	}
 }
 
