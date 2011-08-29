@@ -22,35 +22,35 @@
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.admintools.lostandfound
- * @category WCF 
+ * @category WCF
  */
 interface MarkableLostAndFoundItem {
-	
+
 	/**
 	 * Marks the current item
 	 *
 	 */
 	public function mark();
-	
+
 	/**
 	 * Unmarks the current item
 	 *
 	 */
 	public function unmark();
-	
+
 	/**
 	 * Checks if the current item is marked
-	 * 
+	 *
 	 * @return integer
 	 */
 	public function isMarked();
-	
+
 	/**
 	 * Unmarks all items of certain item type
-	 * 
+	 *
 	 * @param string $itemName
 	 */
 	public static function unmarkAll($itemName);
-	
+
 }
 ?>

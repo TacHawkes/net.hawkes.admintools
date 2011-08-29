@@ -15,32 +15,32 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- * 
+ *
  */
 require_once(WCF_DIR.'lib/page/AbstractPage.class.php');
 
 /**
  * The Index Page
- * 
+ *
  * @author	Oliver Kliebisch
  * @copyright	2009 Oliver Kliebisch
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.page
- * @category WCF 
+ * @category WCF
  */
 class AdminToolsPage extends AbstractPage {
 	public $templateName = 'adminTools';
-	
+
 	/**
-	 * @see Page::show()	 
+	 * @see Page::show()
 	 */
 	public function show() {
 		// set active menu item
 		WCFACP::getMenu()->setActiveMenuItem('wcf.acp.menu.link.admintools.index');
-		
+
 		WCF::getUser()->checkPermission('admin.system.admintools.canView');
-		
+
 		parent::show();
 	}
 }

@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- * 
+ *
  */
 require_once(WCF_DIR.'lib/acp/form/DynamicOptionListForm.class.php');
 require_once(WCF_DIR.'lib/system/language/LanguageEditor.class.php');
@@ -28,7 +28,7 @@ require_once(WCF_DIR.'lib/system/language/LanguageEditor.class.php');
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.form
- * @category WCF 
+ * @category WCF
  */
 class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	public $templateName = 'adminToolsAcpMenuAdd';
@@ -57,9 +57,9 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	public $borderStyles = array('solid', 'dotted', 'dashed', 'double', 'groove', 'ridge', 'inset', 'outset');
 
 	public $createLangVar = false;
-	
+
 	/**
-	 * @see Page::readData()	 
+	 * @see Page::readData()
 	 */
 	public function readData() {
 		parent::readData();
@@ -70,7 +70,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	}
 
 	/**
-	 * @see Form::readFormParameters()	 
+	 * @see Form::readFormParameters()
 	 */
 	public function readFormParameters() {
 		parent::readFormParameters();
@@ -89,7 +89,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 		if (isset($_POST['iframeHeight'])) $this->iframeHeight = StringUtil::trim($_POST['iframeHeight']);
 		if (isset($_POST['borderWidth'])) $this->borderWidth = StringUtil::trim($_POST['borderWidth']);
 		if (isset($_POST['borderColor'])) $this->borderColor = StringUtil::trim($_POST['borderColor']);
-		if (isset($_POST['borderStyle'])) $this->borderStyle = $this->borderStyles[intval($_POST['borderStyle'])];		
+		if (isset($_POST['borderStyle'])) $this->borderStyle = $this->borderStyles[intval($_POST['borderStyle'])];
 	}
 
 	/**
@@ -111,7 +111,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	}
 
 	/**
-	 * @see Form::validate()	 
+	 * @see Form::validate()
 	 */
 	public function validate() {
 		AbstractForm::validate();
@@ -135,12 +135,12 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	}
 
 	/**
-	 * @see Form::save()	 
+	 * @see Form::save()
 	 */
 	public function save() {
 		parent::save();
 		$this->showOrder = $this->getShowOrder($this->showOrder, $this->parentMenuItem, 'parentMenuItem');
-		
+
 		$iframeID = 0;
 		// save iframe
 		if($this->useiFrame) {
@@ -153,9 +153,9 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 							 '".escapeString($this->borderStyle)."')";
 			WCF::getDB()->sendQuery($sql);
 			$iframeID = WCF::getDB()->getInsertID();
-			$this->menuItemLink = 'index.php?page=AdminToolsiFrame&iFrameID='.$iframeID;	
+			$this->menuItemLink = 'index.php?page=AdminToolsiFrame&iFrameID='.$iframeID;
 		}
-		
+
 		// create menu item
 		$sql = "INSERT INTO wcf".WCF_N."_acp_menu_item (packageID, menuItem, menuItemLink, menuItemIcon, permissions, showOrder,  parentMenuItem)
 				VALUES	(1,
@@ -166,12 +166,12 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 				 ".$this->showOrder.",				 
 				 '".escapeString($this->parentMenuItem)."')";
 		WCF::getDB()->sendQuery($sql);
-		
+
 		if($this->useiFrame) {
 			$sql = "UPDATE wcf".WCF_N."_admin_tools_iframe SET menuItemID = ".WCF::getDB()->getInsertID()." WHERE iframeID = ".$iframeID;
 			WCF::getDB()->sendQuery($sql);
 		}
-		
+
 		// create language variable if necessary
 		if($this->createLangVar) {
 			$menuItemID = WCF::getDB()->getInsertID();
@@ -182,18 +182,18 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 				$langEdit = new LanguageEditor($language['languageID']);
 				$langEdit->updateItems(array($name => $value));
 			}
-				
+
 			$sql = "UPDATE wcf".WCF_N."_acp_menu_item
 							SET menuItem = '".escapeString($name)."'
 							WHERE menuItemID = ".$menuItemID;
 			WCF::getDB()->sendQuery($sql);
-		}				
-		
+		}
+
 		// reset values
 		$this->menuItem = $this->menuItemLink = $this->menuItemIcon = $this->parentMenuItem = $this->iframeHeight = $this->iframeWidth = $this->borderWidth = $this->borderColor = $this->borderStyle = '';
 		$this->permissions = array();
 		$this->showOrder = 0;
-		
+
 		WCF::getCache()->clear(WCF_DIR.'cache/', 'cache.menu-*');
 
 		$this->saved();
@@ -240,7 +240,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	}
 
 	/**
-	 * @see Page::assignVariables()	 
+	 * @see Page::assignVariables()
 	 */
 	public function assignVariables() {
 		parent::assignVariables();
@@ -264,16 +264,16 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	}
 
 	/**
-	 * @see Page::show()	 
+	 * @see Page::show()
 	 */
 	public function show() {
 		WCFACP::getMenu()->setActiveMenuItem($this->activeMenuItem);
-		
+
 		WCF::getUser()->checkPermission('admin.system.admintools.canView');
 
-                // check master password
+		// check master password
 		WCFACP::checkMasterPassword();
-		
+
 		$this->readCache();
 
 		//WCF::getUser()->checkPermission('admin.headermenu.canAddItem');
@@ -363,13 +363,13 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 		if (!isset($this->typeObjects[$type])) {
 			$className = 'GroupOptionType'.ucfirst(strtolower($type));
 			$classPath = WCF_DIR.'lib/acp/group/'.$className.'.class.php';
-				
+
 			// include class file
 			if (!file_exists($classPath)) {
 				throw new SystemException("unable to find class file '".$classPath."'", 11000);
 			}
 			require_once($classPath);
-				
+
 			// create instance
 			if (!class_exists($className)) {
 				throw new SystemException("unable to find class '".$className."'", 11001);

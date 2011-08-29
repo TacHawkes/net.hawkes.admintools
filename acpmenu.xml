@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/acp-menu.xsd">
-        <delete>
-                <acpmenuitem name="wcf.acp.menu.link.admintools.phpinfo">
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.woltlab.com/XSD/acp-menu.xsd">
+	<delete>
+		<acpmenuitem name="wcf.acp.menu.link.admintools.phpinfo">
 		</acpmenuitem>
-        </delete>
+	</delete>
 	<import>
 		<acpmenuitem name="wcf.acp.menu.link.admintools">
 			<parent>wcf.acp.menu.link.system</parent>
 			<permissions>admin.system.admintools.canView</permissions>
-		</acpmenuitem>						
+		</acpmenuitem>
 
 		<acpmenuitem name="wcf.acp.menu.link.admintools.index">
 			<parent>wcf.acp.menu.link.admintools</parent>
 			<link>index.php?page=AdminTools</link>
 			<icon>icon/adminToolsM.png</icon>
 			<showorder>1</showorder>
-			<permissions>admin.system.admintools.canView</permissions>			
+			<permissions>admin.system.admintools.canView</permissions>
 		</acpmenuitem>
-		
+
 		<acpmenuitem name="wcf.acp.menu.link.admintools.main">
 			<parent>wcf.acp.menu.link.admintools</parent>
 			<showorder>2</showorder>
 			<permissions>admin.system.admintools.canView</permissions>
 		</acpmenuitem>
-		
+
 		<acpmenuitem name="wcf.acp.menu.link.admintools.miscellanious">
 			<parent>wcf.acp.menu.link.admintools</parent>
 			<showorder>3</showorder>
@@ -35,32 +36,32 @@
 			<link>index.php?form=AdminToolsFunction</link>
 			<icon>icon/adminToolsFunctionM.png</icon>
 			<showorder>1</showorder>
-			<permissions>admin.system.admintools.canView</permissions>			
+			<permissions>admin.system.admintools.canView</permissions>
 		</acpmenuitem>
 
 		<acpmenuitem name="wcf.acp.menu.link.admintools.cronjobs">
 			<parent>wcf.acp.menu.link.admintools.main</parent>
 			<link>index.php?page=AdminToolsCronjobsList</link>
 			<icon>icon/cronjobsM.png</icon>
-			<showorder>2</showorder>	
-			<permissions>admin.system.admintools.canView</permissions>		
-		</acpmenuitem>	
-		
+			<showorder>2</showorder>
+			<permissions>admin.system.admintools.canView</permissions>
+		</acpmenuitem>
+
 		<acpmenuitem name="wcf.acp.menu.link.admintools.lostandfound">
 			<parent>wcf.acp.menu.link.admintools.main</parent>
 			<link>index.php?page=AdminToolsLostAndFound</link>
 			<icon>icon/adminToolsLostNFoundM.png</icon>
-			<showorder>3</showorder>	
-			<permissions>admin.system.admintools.canView</permissions>		
-		</acpmenuitem>	
-		
+			<showorder>3</showorder>
+			<permissions>admin.system.admintools.canView</permissions>
+		</acpmenuitem>
+
 		<acpmenuitem name="wcf.acp.menu.link.admintools.spider">
 			<parent>wcf.acp.menu.link.admintools.main</parent>
 			<link>index.php?page=AdminToolsSpiderList</link>
 			<icon>icon/adminToolsSpiderM.png</icon>
 			<showorder>4</showorder>
 			<permissions>admin.system.admintools.canView</permissions>
-		</acpmenuitem>		
+		</acpmenuitem>
 
 		<acpmenuitem name="wcf.acp.menu.link.admintools.menu">
 			<parent>wcf.acp.menu.link.admintools.main</parent>
@@ -70,19 +71,19 @@
 			<permissions>admin.system.admintools.canView</permissions>
 		</acpmenuitem>
 
-                <acpmenuitem name="wcf.acp.menu.link.admintools.importandexport">
-                        <parent>wcf.acp.menu.link.admintools.miscellanious</parent>
-                        <link>index.php?form=AdminToolsImportAndExport</link>
-                        <showorder>1</showorder>
-                </acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.admintools.importandexport">
+			<parent>wcf.acp.menu.link.admintools.miscellanious</parent>
+			<link>index.php?form=AdminToolsImportAndExport</link>
+			<showorder>1</showorder>
+		</acpmenuitem>
 
-		
+
 		<acpmenuitem name="wcf.acp.menu.link.admintools.about">
 			<parent>wcf.acp.menu.link.admintools.miscellanious</parent>
 			<link>index.php?page=AdminToolsAbout</link>
 			<icon>icon/adminToolsAboutM.png</icon>
-			<showorder>2</showorder>		
-			<permissions>admin.system.admintools.canView</permissions>	
+			<showorder>2</showorder>
+			<permissions>admin.system.admintools.canView</permissions>
 		</acpmenuitem>
 	</import>
 </data>

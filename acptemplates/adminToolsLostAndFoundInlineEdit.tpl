@@ -1,6 +1,10 @@
-<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/InlineListEdit.class.js"></script>
-<script type="text/javascript" src="{@RELATIVE_WCF_DIR}acp/js/LostAndFoundItemListEdit.class.js"></script>
-<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/StringUtil.class.js"></script>
+<script type="text/javascript"
+	src="{@RELATIVE_WCF_DIR}js/InlineListEdit.class.js"></script>
+<script
+	type="text/javascript"
+	src="{@RELATIVE_WCF_DIR}acp/js/LostAndFoundItemListEdit.class.js"></script>
+<script
+	type="text/javascript" src="{@RELATIVE_WCF_DIR}js/StringUtil.class.js"></script>
 <script type="text/javascript">
 	//<![CDATA[
 	// data array

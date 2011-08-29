@@ -122,7 +122,7 @@ class AdminToolsSpiderImportAndExportForm extends ACPForm {
 		if(count($this->spiders)) {
 			$sql = "TRUNCATE TABLE wcf".WCF_N."_admin_tools_spider";
 			WCF::getDB()->sendQuery($sql);
-				
+
 			$inserts = '';
 			foreach ($this->spiders as $spider) {
 				$identifier = $spider[0];

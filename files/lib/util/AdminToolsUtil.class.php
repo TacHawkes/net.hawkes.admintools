@@ -15,21 +15,21 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- * 
+ *
  */
 
 /**
  * The central utility class
- * 
+ *
  * @author	Oliver Kliebisch
  * @copyright	2009 Oliver Kliebisch
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage util
- * @category WCF 
+ * @category WCF
  */
 class AdminToolsUtil {
-	
+
 	/**
 	 * Reads the disk quota info
 	 *
@@ -43,8 +43,9 @@ class AdminToolsUtil {
 			$root = '';
 			if($tmp = @disk_total_space($_SERVER["DOCUMENT_ROOT"])) $root = $_SERVER["DOCUMENT_ROOT"];
 			else {
-				$sql = "SELECT packageDir FROM wcf".WCF_N."_package
-            			WHERE packageID = ".PACKAGE_ID;
+				$sql = "SELECT 	packageDir
+					FROM 	wcf".WCF_N."_package
+            				WHERE 	packageID = ".PACKAGE_ID;
 				$row = WCF::getDB()->getFirstRow($sql);
 				$root = FileUtil::getRealPath(WCF_DIR.$row['packageDir']);
 			}

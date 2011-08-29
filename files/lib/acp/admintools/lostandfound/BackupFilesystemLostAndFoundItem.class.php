@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- * 
+ *
  */
 require_once(WCF_DIR.'lib/acp/admintools/lostandfound/AbstractLostAndFoundFileSystemItem.class.php');
 
@@ -27,50 +27,50 @@ require_once(WCF_DIR.'lib/acp/admintools/lostandfound/AbstractLostAndFoundFileSy
  * @license	GNU General Public License <http://www.gnu.org/licenses/>
  * @package	net.hawkes.admintools
  * @subpackage acp.admintools.lostandfound
- * @category WCF 
+ * @category WCF
  */
-class BackupFilesystemLostAndFoundItem extends AbstractLostAndFoundFileSystemItem {	
-	
+class BackupFilesystemLostAndFoundItem extends AbstractLostAndFoundFileSystemItem {
+
 	/**
 	 * Creates the object by passing the objectID
 	 *
 	 * @param integer $backupID
 	 */
 	public function __construct($backupID) {
-		parent::__construct('backupFilesystem', $backupID);	
+		parent::__construct('backupFilesystem', $backupID);
 	}
-	
+
 	/**
-	 * @see AbstractLostAndFoundFileSystemItem::createVirtualIDSpace()	 
+	 * @see AbstractLostAndFoundFileSystemItem::createVirtualIDSpace()
 	 */
 	public static function createVirtualIDSpace() {
 		$backups = array();
 		chdir(WCF_DIR.'acp/backup');
-		$dh = opendir(WCF_DIR.'acp/backup');				
+		$dh = opendir(WCF_DIR.'acp/backup');
 		while($file = readdir ($dh)) {
-			if($file != '.' && $file != '..' && $file != '.htaccess' && !is_dir($file)) {				
-				$backups[] = $file;				
+			if($file != '.' && $file != '..' && $file != '.htaccess' && !is_dir($file)) {
+				$backups[] = $file;
 			}
 		}
 		closedir($dh);
 		self::$virtualFileIDs['backupFilesystem'] = $backups;
 		WCF::getSession()->register('virtualLostAndFoundIDs', self::$virtualFileIDs);
 	}
-	
+
 	/**
-	 * @see AbstractLostAndFounDatabaseItem::delete()	 
+	 * @see AbstractLostAndFounDatabaseItem::delete()
 	 */
-	public function delete() {		
+	public function delete() {
 		if (isset(self::$virtualFileIDs['backupFilesystem'][$this->objectID])) {
 			@unlink(WCF_DIR.'acp/backup/'.self::$virtualFileIDs['backupFilesystem'][$this->objectID]);
 		}
 	}
 
 	/**
-	 * @see AbstractLostAndFounDatabaseItem::deleteAll()	 
+	 * @see AbstractLostAndFounDatabaseItem::deleteAll()
 	 */
 	public static function deleteAll() {
-		$itemIDs = self::getMarkedItems('backupFilesystem');		
+		$itemIDs = self::getMarkedItems('backupFilesystem');
 		foreach($itemIDs as $itemID) {
 			$item = new BackupFilesystemLostAndFoundItem($itemID);
 			$item->delete();
