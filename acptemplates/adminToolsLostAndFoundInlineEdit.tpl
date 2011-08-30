@@ -4,11 +4,10 @@
 <script type="text/javascript">
 	//<![CDATA[
 	// data array
-	var itemData = new Array();
+	var itemData = new Hash();
 	
 	// ids	
 	var itemID = {if $item|isset}{@$item->itemID}{else}0{/if};
-		
 
 	// language
 	language['wcf.global.button.mark']					= '{lang}wcf.global.button.mark{/lang}';
@@ -18,8 +17,7 @@
 	language['wcf.acp.admintools.delete.sure'] 		= '{lang}wcf.acp.admintools.delete.sure{/lang}';
 	
 	// permissions
-	var permissions = new Object();
-	
+	var permissions = new Object();	
 	
 	// item editing	
 	permissions['canMarkItem'] = 1;		

@@ -14,12 +14,13 @@
 									<img id="{$jsname}Edit{$item->objectID}" src="{@RELATIVE_WCF_DIR}icon/lostAndFoundAttachmentItemM.png" alt="" />									
 									{cycle print=false}
 										<script type="text/javascript">
-									//<![CDATA[
-									itemData[{$item->objectID}] = new Object();																																										
-									itemData[{$item->objectID}]['isMarked'] = {$item->isMarked()};									
-									itemData[{$item->objectID}]['class'] = '{cycle}';																		
-									//]]>									
-								</script>
+											//<![CDATA[
+												itemData.set({@$item->objectID}, {
+													'isMarked': {$item->isMarked()},
+													'className': '{cycle}'
+												});
+											//]]>																	
+										</script>								
 								</td>     								               
 								<td class="columnFilename">																
 									{@$item->filename}
