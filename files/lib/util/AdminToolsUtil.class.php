@@ -49,8 +49,8 @@ class AdminToolsUtil {
 				$root = FileUtil::getRealPath(WCF_DIR.$row['packageDir']);
 			}
 			if(!empty($root)) {
-				$diskInformation['totalSpace'] = round(disk_total_space($root) / pow(1024, $pow), $dec);
-				$diskInformation['freeSpace']  = round(disk_free_space($root) / pow(1024, $pow), $dec);
+				$diskInformation['totalSpace'] = round(disk_total_space($root) / pow(1000, $pow), $dec);
+				$diskInformation['freeSpace']  = round(disk_free_space($root) / pow(1000, $pow), $dec);
 				$diskInformation['usedSpace']  = round($diskInformation['totalSpace'] - $diskInformation['freeSpace'], $dec);
 				if($diskInformation['totalSpace'] > 0) {
 					$diskInformation['freeQuota'] = round($diskInformation['freeSpace'] * 100 / $diskInformation['totalSpace'], $dec);
