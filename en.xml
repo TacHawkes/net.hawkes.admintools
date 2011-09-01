@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/language.xsd" languagecode="en">
-<category name="wcf.acp.admintools">
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/language.xsd" languagecode="en">
+	<category name="wcf.acp.admintools">
 		<item name="wcf.acp.admintools.about"><![CDATA[About Admin Tools 2]]></item>
 		<item name="wcf.acp.admintools.acpmenu.add"><![CDATA[Add a menu item]]></item>
 		<item name="wcf.acp.admintools.acpmenu.edit"><![CDATA[Edit menu item]]></item>
@@ -8,24 +8,24 @@
 		<item name="wcf.acp.admintools.acpmenu.enable"><![CDATA[Enable the menu item]]></item>
 		<item name="wcf.acp.admintools.acpmenu.disable"><![CDATA[Disable the menu item]]></item>
 		<item name="wcf.acp.admintools.acpmenu.add.success"><![CDATA[The menu item has been successfully added.]]></item>
-		<item name="wcf.acp.admintools.acpmenu.edit.success"><![CDATA[The menu item successfully edited.]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.delete.sure"><![CDATA[Are you sure that you want to delete this menu entry?]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.delete.success"><![CDATA[The menu item has been successfull deleted.]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.warning.isNative"><![CDATA[This menu item belongs to a plugin or a standalone package. Editing or deleting may limit the plugin's functionality.]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.data"><![CDATA[Menu Item Data]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.menuItem"><![CDATA[Title]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.menuItem.description"><![CDATA[Enter the title of the menu item. If the title entered is no language variable, a language variables is created dynamically from the menu item title.]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.menuItemLink"><![CDATA[Link]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.menuItemLink.description"><![CDATA[Enter the link if the menu item. If you want to set an external page as link you have to link to the WCF dereferrer.]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.menuItemIcon"><![CDATA[Icon]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.menuItemIcon.description"><![CDATA[Enter the URL of the menu item icon.]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.permissions"><![CDATA[Permissions]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.permissions.description"><![CDATA[Select one or more permissions that are required to be able to see this menu item. Multiple items can be selected by holding the &quot;Ctrl/Shift&quot; key (Windows) or &quot;Command&quot; (Mac OS) key and clicking the items required.]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.parentMenuItem"><![CDATA[Parent Menu Item]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.parentMenuItem.description"><![CDATA[Choose the parent menu item. This menu item is linked to that item and it will be displayed in a javascript drondown if it is not a top level item.]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.showOrder"><![CDATA[Show order]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.showOrder.description"><![CDATA[Enter a number for sorting this item. If this is left to zero the item will be placed at the end of the menu level.]]></item>	
-		<item name="wcf.acp.admintools.acpmenu.useiFrame"><![CDATA[Activate iFrame]]></item>	
+		<item name="wcf.acp.admintools.acpmenu.edit.success"><![CDATA[The menu item successfully edited.]]></item>
+		<item name="wcf.acp.admintools.acpmenu.delete.sure"><![CDATA[Are you sure that you want to delete this menu entry?]]></item>
+		<item name="wcf.acp.admintools.acpmenu.delete.success"><![CDATA[The menu item has been successfull deleted.]]></item>
+		<item name="wcf.acp.admintools.acpmenu.warning.isNative"><![CDATA[This menu item belongs to a plugin or a standalone package. Editing or deleting may limit the plugin's functionality.]]></item>
+		<item name="wcf.acp.admintools.acpmenu.data"><![CDATA[Menu Item Data]]></item>
+		<item name="wcf.acp.admintools.acpmenu.menuItem"><![CDATA[Title]]></item>
+		<item name="wcf.acp.admintools.acpmenu.menuItem.description"><![CDATA[Enter the title of the menu item. If the title entered is no language variable, a language variables is created dynamically from the menu item title.]]></item>
+		<item name="wcf.acp.admintools.acpmenu.menuItemLink"><![CDATA[Link]]></item>
+		<item name="wcf.acp.admintools.acpmenu.menuItemLink.description"><![CDATA[Enter the link if the menu item. If you want to set an external page as link you have to link to the WCF dereferrer.]]></item>
+		<item name="wcf.acp.admintools.acpmenu.menuItemIcon"><![CDATA[Icon]]></item>
+		<item name="wcf.acp.admintools.acpmenu.menuItemIcon.description"><![CDATA[Enter the URL of the menu item icon.]]></item>
+		<item name="wcf.acp.admintools.acpmenu.permissions"><![CDATA[Permissions]]></item>
+		<item name="wcf.acp.admintools.acpmenu.permissions.description"><![CDATA[Select one or more permissions that are required to be able to see this menu item. Multiple items can be selected by holding the &quot;Ctrl/Shift&quot; key (Windows) or &quot;Command&quot; (Mac OS) key and clicking the items required.]]></item>
+		<item name="wcf.acp.admintools.acpmenu.parentMenuItem"><![CDATA[Parent Menu Item]]></item>
+		<item name="wcf.acp.admintools.acpmenu.parentMenuItem.description"><![CDATA[Choose the parent menu item. This menu item is linked to that item and it will be displayed in a javascript drondown if it is not a top level item.]]></item>
+		<item name="wcf.acp.admintools.acpmenu.showOrder"><![CDATA[Show order]]></item>
+		<item name="wcf.acp.admintools.acpmenu.showOrder.description"><![CDATA[Enter a number for sorting this item. If this is left to zero the item will be placed at the end of the menu level.]]></item>
+		<item name="wcf.acp.admintools.acpmenu.useiFrame"><![CDATA[Activate iFrame]]></item>
 		<item name="wcf.acp.admintools.acpmenu.useiFrame.description"><![CDATA[Activate this option if you want to open the link entered above to open in an iframe.]]></item>
 		<item name="wcf.acp.admintools.acpmenu.iframe"><![CDATA[iFrame Settings]]></item>
 		<item name="wcf.acp.admintools.acpmenu.iframeWidth"><![CDATA[iFrame width]]></item>
@@ -51,7 +51,7 @@
 		<item name="wcf.acp.admintools.function.run"><![CDATA[Execute]]></item>
 		<item name="wcf.acp.admintools.functions"><![CDATA[Functions]]></item>
                 <item name="wcf.acp.admintools.functions.none"><![CDATA[No functions available.]]></item>
-		<item name="wcf.acp.admintools.menulink"><![CDATA[Admin Links]]></item>		
+		<item name="wcf.acp.admintools.menulink"><![CDATA[Admin Links]]></item>
 		<item name="wcf.acp.admintools.function.execute.confirm"><![CDATA['Do you really want to execute the function ' + functionName + '?']]></item>
 		<item name="wcf.acp.admintools.functions.success"><![CDATA[The settings have been saved successfully.]]></item>
 		<item name="wcf.acp.admintools.function.success"><![CDATA[The function &raquo;{$functionName}&laquo; has been executed successfully.]]></item>
@@ -86,7 +86,7 @@
 		<item name="wcf.acp.admintools.spider.delete"><![CDATA[Delete spider]]></item>
 		<item name="wcf.acp.admintools.spider.delete.sure"><![CDATA[Do you really want to delete this spider?]]></item>
 		<item name="wcf.acp.admintools.spider.delete.success"><![CDATA[The has been deleted successfully.]]></item>
-		<item name="wcf.acp.admintools.spider.spiderid"><![CDATA[ID]]></item>		 	
+		<item name="wcf.acp.admintools.spider.spiderid"><![CDATA[ID]]></item>		 
 		<item name="wcf.acp.admintools.spider.spidername"><![CDATA[Name]]></item>
 		<item name="wcf.acp.admintools.spider.spidername.description"><![CDATA[Enter the spider's name.]]></item>
 		<item name="wcf.acp.admintools.spider.spideridentifier"><![CDATA[User agent]]></item>
@@ -109,7 +109,7 @@
 		<item name="wcf.acp.admintools.spider.import.error.importFailed"><![CDATA[The spiders could not been imported. Your file is not a valid spider export.]]></item>
 		<item name="wcf.acp.admintools.spider.import.error.uploadFailed"><![CDATA[The upload of your file failed.]]></item>
 		<item name="wcf.acp.admintools.spider.oldAdminTools"><![CDATA[Old Admin Tools spider export]]></item>
-		<item name="wcf.acp.admintools.spider.oldAdminTools.description"><![CDATA[Activate this option if your file is an export from the old admin tools plugin.]]></item>		
+		<item name="wcf.acp.admintools.spider.oldAdminTools.description"><![CDATA[Activate this option if your file is an export from the old admin tools plugin.]]></item>
 	</category>
 	<category name="wcf.acp.menu">
 		<item name="wcf.acp.menu.link.admintools"><![CDATA[Admin Tools]]></item>
@@ -118,10 +118,10 @@
 		<item name="wcf.acp.menu.link.admintools.importandexport"><![CDATA[Export & Import]]></item>
 		<item name="wcf.acp.menu.link.admintools.functions"><![CDATA[Functions]]></item>
 		<item name="wcf.acp.menu.link.admintools.lostandfound"><![CDATA[Lost and Found]]></item>
-		<item name="wcf.acp.menu.link.admintools.index"><![CDATA[Overview]]></item>		
-		<item name="wcf.acp.menu.link.admintools.menu"><![CDATA[Admin Links]]></item>		
+		<item name="wcf.acp.menu.link.admintools.index"><![CDATA[Overview]]></item>
+		<item name="wcf.acp.menu.link.admintools.menu"><![CDATA[Admin Links]]></item>
 		<item name="wcf.acp.menu.link.admintools.spider"><![CDATA[Spiders]]></item>
-		<item name="wcf.acp.menu.link.admintools.about"><![CDATA[About Admin Tools 2]]></item>		
+		<item name="wcf.acp.menu.link.admintools.about"><![CDATA[About Admin Tools 2]]></item>
 	</category>
 	<category name="wcf.acp.package">
 		<item name="wcf.acp.package.step.install.AdminToolsFunctionPackageInstallationPlugin"><![CDATA[Installing Admin Tools functions ...]]></item>
@@ -132,9 +132,9 @@
 		<item name="wcf.global.button.saveSettings"><![CDATA[Save settings]]></item>
 	</category>
 	<category name="wcf.acp.group">
-        <item name="wcf.acp.group.option.admin.system.admintools"><![CDATA[Admin Tools]]></item>
-        <item name="wcf.acp.group.option.admin.system.admintools.description"><![CDATA[]]></item>
-    	<item name="wcf.acp.group.option.admin.system.admintools.canView"><![CDATA[Admin Tools permission]]></item>
-    	<item name="wcf.acp.group.option.admin.system.admintools.canView.description"><![CDATA[Users of this group can use the Admin Tools.]]></item>
+		<item name="wcf.acp.group.option.admin.system.admintools"><![CDATA[Admin Tools]]></item>
+		<item name="wcf.acp.group.option.admin.system.admintools.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.admin.system.admintools.canView"><![CDATA[Admin Tools permission]]></item>
+		<item name="wcf.acp.group.option.admin.system.admintools.canView.description"><![CDATA[Users of this group can use the Admin Tools.]]></item>
 	</category>
 </language>
