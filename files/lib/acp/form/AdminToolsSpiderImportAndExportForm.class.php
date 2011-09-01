@@ -97,7 +97,7 @@ class AdminToolsSpiderImportAndExportForm extends ACPForm {
 									$url = $spiderData['cdata'];
 							}
 						}
-							
+
 						if (!empty($name)) {
 							$this->spiders[$identifier] = array($identifier, $name, $url);
 						}

@@ -143,7 +143,7 @@ class SpiderEditor extends Spider  {
 		$markedSpiders = self::getMarkedSpiders();
 		if (is_array($markedSpiders) && in_array($this->spiderID, $markedSpiders)) {
 			$key = array_search($this->spiderID, $markedSpiders);
-				
+
 			unset($markedSpiders[$key]);
 			if (count($markedSpiders) == 0) {
 				self::unmarkAll();
@@ -170,7 +170,7 @@ class SpiderEditor extends Spider  {
 		$sql = "INSERT IGNORE INTO wcf".WCF_N."_spider
 					(spiderIdentifier, spiderName, spiderURL)
 					SELECT spiderIdentifier, spiderName, spiderURL
-					FROM wcf".WCF_N."_admin_tools_spider"; 
+					FROM wcf".WCF_N."_admin_tools_spider";
 		WCF::getDB()->sendQuery($sql);
 		WCF::getCache()->clear(WCF_DIR.'cache', 'cache.spiders.php');
 	}

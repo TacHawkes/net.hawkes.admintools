@@ -117,7 +117,7 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 			foreach($this->activeFunctions as $functionID) {
 				if (!empty($this->functions[$functionID]['packageDir'])) unset($this->activeFunctions[$functionID]);
 			}
-				
+
 			$this->packageID = 1;
 		}
 		else $this->packageID = PACKAGE_ID;

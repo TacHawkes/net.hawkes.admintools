@@ -87,7 +87,7 @@ class AdminToolsCronjobsAddForm extends CronjobsAddForm {
 		catch(UserInputException $e) {
 			$errorField = $e->getField();
 			$errorType = $e->getType();
-				
+
 			if ($errorField != 'classPath') {
 				throw new UserInputException($errorField, $errorType);
 			}
@@ -117,7 +117,7 @@ class AdminToolsCronjobsAddForm extends CronjobsAddForm {
 		$sql = "SELECT cronjobs.cronjobID, package.packageDir FROM wcf".WCF_N."_cronjobs cronjobs
 				LEFT JOIN wcf".WCF_N."_package package
 				ON (package.packageID = cronjobs.packageID)
-				 WHERE cronjobs.classPath = '".$this->classPath."'				 
+				 WHERE cronjobs.classPath = '".$this->classPath."'
 				 AND cronjobs.packageID = ".$this->packageID;
 		$row = WCF::getDB()->getFirstRow($sql);
 		$cronjobID = $row['cronjobID'];

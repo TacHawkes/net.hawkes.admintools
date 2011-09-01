@@ -135,7 +135,7 @@ class AdminToolsFunctionExecution {
 			}
 			require_once($path);
 		}
-			
+
 		// instance action object
 		if (!class_exists($function['functionClassName'])) {
 			throw new SystemException("Unable to find class '".$function['functionClassName']."'", 11001);

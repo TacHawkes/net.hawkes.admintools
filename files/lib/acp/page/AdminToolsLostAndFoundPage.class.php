@@ -264,7 +264,7 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 
 		WCF::getTPL()->assign(array('activeTabMenuItem' => $this->activeTabMenuItem,
 									'activeSubTabMenuItem' => $this->activeSubTabMenuItem,
-									'markedItems' => $this->markedItems,									
+									'markedItems' => $this->markedItems,
 									'defaultSortField' => $this->defaultSortField,
 									'defaultSortOrder' => $this->defaultSortOrder,
 									'classname' => $this->classname,

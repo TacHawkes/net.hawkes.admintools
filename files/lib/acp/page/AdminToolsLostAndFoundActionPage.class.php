@@ -56,7 +56,7 @@ class AdminToolsLostAndFoundActionPage extends AbstractPage {
 	 */
 	public function show() {
 		parent::show();
-			
+
 		require_once(WCF_DIR.'lib/acp/admintools/lostandfound/'.$this->classname.'.class.php');
 		if (is_array($this->itemID)) {
 			foreach($this->itemID as $itemID) {

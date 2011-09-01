@@ -40,7 +40,7 @@ class CacheBuilderAdminToolsFunction implements CacheBuilder {
 		// get all functions and filter functions with low priority
 		$sql = "SELECT		function.*,  package.packageDir
 			FROM		wcf".WCF_N."_package_dependency package_dependency,
-						wcf".WCF_N."_admin_tools_function function					
+						wcf".WCF_N."_admin_tools_function function
 			LEFT JOIN	wcf".WCF_N."_package package
 			ON			(package.packageID = function.packageID)
 			WHERE 		function.packageID = package_dependency.dependency
@@ -49,7 +49,7 @@ class CacheBuilderAdminToolsFunction implements CacheBuilder {
 		$result = WCF::getDB()->sendQuery($sql);
 		while ($row = WCF::getDB()->fetchArray($result)) {
 			$row['functionClassName'] = StringUtil::getClassName($row['classPath']);
-				
+
 			$data[$row['functionID']] = $row;
 		}
 

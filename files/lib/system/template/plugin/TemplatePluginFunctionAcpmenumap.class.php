@@ -46,13 +46,13 @@ class TemplatePluginFunctionAcpmenumap implements TemplatePluginFunction {
 			if (!isset($this->menuItems[$menuItemData[$i][0]])) {
 				$this->menuItems[$menuItemData[$i][0]] = array();
 			}
-				
+
 			$menuObject = array();
 			$menuObject['menuItem'] = $menuItemData[$i][1];
 			$menuObject['menuItemName'] = $menuItemData[$i][2];
 			$menuObject['menuItemLink'] = $menuItemData[$i][3];
 			$menuObject['menuItemIcon'] = $menuItemData[$i][4];
-				
+
 			$this->menuItems[$menuItemData[$i][0]][count($this->menuItems[$menuItemData[$i][0]])] = $menuObject;
 		}
 		$this->makeSiteMap();
@@ -98,11 +98,11 @@ class TemplatePluginFunctionAcpmenumap implements TemplatePluginFunction {
 			$itemTitle = $item['menuItemName'];
 			$this->output .= "<li";
 			$headline = "<h".($depth +2).">\n";
-				
+
 			if (!empty($item['menuItemIcon'])) {
 				$headline .= "<img src=\"".$item['menuItemIcon']."\" alt=\"\"/>\n";
 			}
-				
+
 			//if (!empty($item['menuItemLink'])) {
 			$headline .= "<a href=\"index.php?form=AdminToolsMenuEdit&amp;menuItem=".rawurlencode($item['menuItem'])."&amp;packageID=".PACKAGE_ID.SID_ARG_2ND."\">".$itemTitle."</a>\n";
 			//}
@@ -110,7 +110,7 @@ class TemplatePluginFunctionAcpmenumap implements TemplatePluginFunction {
 			//	$headline .= "<span>".$itemTitle."</span>\n";
 			//}
 			$headline .= "</h".($depth+2).">\n";
-				
+
 			if ($depth == 1) {
 				$this->output .= " class=\"border\">\n";
 				$this->output .= "<div class=\"containerHead\">\n".$headline."</div>\n";
@@ -118,7 +118,7 @@ class TemplatePluginFunctionAcpmenumap implements TemplatePluginFunction {
 			else {
 				$this->output .= ">\n".$headline;
 			}
-				
+
 			//$this->output .= "</li>\n";
 		}
 

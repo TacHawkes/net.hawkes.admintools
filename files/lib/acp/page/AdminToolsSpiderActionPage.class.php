@@ -52,7 +52,7 @@ class AdminToolsSpiderActionPage extends AbstractPage {
 	 */
 	public function show() {
 		parent::show();
-			
+
 		if (is_array($this->itemID)) {
 			foreach($this->itemID as $itemID) {
 				$this->items[] = new SpiderEditor($itemID);

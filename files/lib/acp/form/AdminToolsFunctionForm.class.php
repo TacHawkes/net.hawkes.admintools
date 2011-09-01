@@ -163,9 +163,9 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 		parent::assignVariables();
 
 		WCF::getTPL()->assign(array(
-			'options' 		=> $this->options,			
+			'options' 		=> $this->options,
 			'activeTabMenuItem' 	=> $this->activeTabMenuItem,
-			'activeSubTabMenuItem' 	=> $this->activeSubTabMenuItem			
+			'activeSubTabMenuItem' 	=> $this->activeSubTabMenuItem
 		));
 	}
 

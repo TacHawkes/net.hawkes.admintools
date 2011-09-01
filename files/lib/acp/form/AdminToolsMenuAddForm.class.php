@@ -163,7 +163,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 				 '".escapeString($this->menuItemLink)."',
 				 '".escapeString($this->menuItemIcon)."',
 				 '".escapeString($this->permissions)."',
-				 ".$this->showOrder.",				 
+				 ".$this->showOrder.",
 				 '".escapeString($this->parentMenuItem)."')";
 		WCF::getDB()->sendQuery($sql);
 
@@ -217,7 +217,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 		if ($showOrder === null) {
 			// get greatest showOrder value
 			$sql = "SELECT	MAX(showOrder) AS showOrder
-			  	FROM	wcf".WCF_N."_acp_menu_item".$tableNameExtension." 
+			  	FROM	wcf".WCF_N."_acp_menu_item".$tableNameExtension."
 				".($columnName !== null ? "WHERE ".$columnName." = '".escapeString($parentName)."'" : "");
 			$maxShowOrder = WCF::getDB()->getFirstRow($sql);
 			if (is_array($maxShowOrder) && isset($maxShowOrder['showOrder'])) {
@@ -231,7 +231,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 			// increase all showOrder values which are >= $showOrder
 			$sql = "UPDATE	wcf".WCF_N."_acp_menu_item".$tableNameExtension."
 				SET	showOrder = showOrder+1
-				WHERE	showOrder >= ".$showOrder." 
+				WHERE	showOrder >= ".$showOrder."
 				".($columnName !== null ? "AND ".$columnName." = '".escapeString($parentName)."'" : "");
 			WCF::getDB()->sendQuery($sql);
 			// return the wanted showOrder level

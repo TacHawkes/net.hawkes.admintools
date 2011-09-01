@@ -74,7 +74,7 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 
 		if (isset($_POST['deleteItem'])) {
 			$this->deleteItem = $_POST['deleteItem'] ? true : false;
-				
+
 			if ($this->deleteItem) {
 				$sql = "DELETE FROM wcf".WCF_N."_acp_menu_item WHERE menuItemID = ".$this->menuItemID;
 				WCF::getDB()->sendQuery($sql);
@@ -174,7 +174,7 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 				WHERE parentMenuItem='".$row['menuItem']."'";
 			WCF::getDB()->sendQuery($sql);
 		}
-			
+
 		//update the item
 		$sql = "UPDATE IGNORE wcf".WCF_N."_acp_menu_item SET
 				  menuItem = '".escapeString($this->menuItem)."',
@@ -183,7 +183,7 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 				  permissions ='".escapeString($this->permissions)."',
 				  showOrder = ".$this->showOrder.",
 				  parentMenuItem = '".escapeString($this->parentMenuItem)."'
-				  WHERE menuItemID=".$this->menuItemID;				
+				  WHERE menuItemID=".$this->menuItemID;
 		WCF::getDB()->sendQuery($sql);
 
 		$this->menuItem = $this->menuItemLink = $this->menuItemIcon = $this->parentMenuItem = $this->iframeHeight = $this->iframeWidth = $this->borderWidth = $this->borderColor = $this->borderStyle = '';

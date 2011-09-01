@@ -41,7 +41,7 @@ class AdminToolsSpiderExportAction extends AbstractAction {
 
 		// file name
 		@header('Content-disposition: attachment; filename="spiders.xml"');
-			
+
 		// no cache headers
 		@header('Pragma: no-cache');
 		@header('Expires: 0');
