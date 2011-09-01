@@ -68,7 +68,7 @@ class AdminToolsMenuPage extends AbstractPage {
 	 * Prepares the menu map
 	 */
 	public function makeItemStructure() {
-		if(!count($this->acpMenu->getMenuItems())) return;
+		if (!count($this->acpMenu->getMenuItems())) return;
 
 		$menuItemData = array();
 		$i = 0;
@@ -76,7 +76,7 @@ class AdminToolsMenuPage extends AbstractPage {
 			foreach($items as $item) {
 				$menuItemName = WCF::getLanguage()->get($item['menuItem']);
 				$menuItemData[$i] = array($item['parentMenuItem'], $item['menuItem'], $menuItemName, $item['menuItemLink'], $item['menuItemIcon']);
-					
+
 				$i++;
 			}
 		}
@@ -93,7 +93,7 @@ class AdminToolsMenuPage extends AbstractPage {
 		//var_dump($this->itemStructure[1]); die;
 		WCF::getTPL()->assign(array(
 			'items' => $this->itemStructure,
-			'deletedItemID' => $this->deletedItemID	
+			'deletedItemID' => $this->deletedItemID
 		));
 	}
 

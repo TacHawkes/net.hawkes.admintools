@@ -64,15 +64,15 @@ class AdminToolsSpiderImportAndExportForm extends ACPForm {
 
 			if ($this->oldAdminTools) {
 				$csv = file($this->spiderImport['tmp_name']);
-				if(count($csv)) {
+				if (count($csv)) {
 					foreach($csv as $line) {
 						$line = trim($line);
-						if(preg_match('/^"/', $line)) {
+						if (preg_match('/^"/', $line)) {
 							$spiderIdentifier = $spiderName = $spiderURL = '';
 							list($spiderIdentifier, $spiderName, $spiderURL) = preg_split('/";"/', $line, 3);
 							$spiderIdentifier = preg_replace('/^"/', '', $spiderIdentifier);
-							if($spiderURL) $spiderURL = preg_replace('/"$/', '', $spiderURL);
-							if(!empty($spiderIdentifier) && !empty($spiderName)) {
+							if ($spiderURL) $spiderURL = preg_replace('/"$/', '', $spiderURL);
+							if (!empty($spiderIdentifier) && !empty($spiderName)) {
 								$this->spiders[$spiderIdentifier] = array($spiderIdentifier, $spiderName, $spiderURL);
 							}
 						}
@@ -97,7 +97,7 @@ class AdminToolsSpiderImportAndExportForm extends ACPForm {
 									$url = $spiderData['cdata'];
 							}
 						}
-							
+
 						if (!empty($name)) {
 							$this->spiders[$identifier] = array($identifier, $name, $url);
 						}
@@ -119,9 +119,14 @@ class AdminToolsSpiderImportAndExportForm extends ACPForm {
 	public function save() {
 		parent::save();
 
+<<<<<<< HEAD
 		if(count($this->spiders)) {
 			$sql = "TRUNCATE TABLE 
 					wcf".WCF_N."_admin_tools_spider";
+=======
+		if (count($this->spiders)) {
+			$sql = "TRUNCATE TABLE wcf".WCF_N."_admin_tools_spider";
+>>>>>>> 3b1041c56e58136f80dcc6a4f9141fda8ba589ca
 			WCF::getDB()->sendQuery($sql);
 
 			$inserts = '';

@@ -104,7 +104,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 			$title = WCF::getLanguage()->get(StringUtil::encodeHTML($item['menuItem']));
 			if ($depth > 0) $title = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $depth). ' ' . $title;
 			$this->menuItemSelect[$item['menuItem']] = $title;
-			if(count($acpMenu->getMenuItems($item['menuItem'])) && $depth < 2) {
+			if (count($acpMenu->getMenuItems($item['menuItem'])) && $depth < 2) {
 				$this->makeItemSelect($item['menuItem'], $depth+1);
 			}
 		}
@@ -116,7 +116,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	public function validate() {
 		AbstractForm::validate();
 
-		if(empty($this->menuItem)) {
+		if (empty($this->menuItem)) {
 			throw new UserInputException('menuItem');
 		}
 
@@ -129,7 +129,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	 *
 	 */
 	protected function validateMenuItem() {
-		if(WCF::getLanguage()->get($this->menuItem) == $this->menuItem) {
+		if (WCF::getLanguage()->get($this->menuItem) == $this->menuItem) {
 			$this->createLangVar = true;
 		}
 	}
@@ -143,7 +143,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 
 		$iframeID = 0;
 		// save iframe
-		if($this->useiFrame) {
+		if ($this->useiFrame) {
 			$sql = "INSERT INTO wcf".WCF_N."_admin_tools_iframe (url, width, height, borderWidth, borderColor, borderStyle)
 					VALUES	('".escapeString($this->menuItemLink)."',
 							 '".escapeString($this->iframeWidth)."',
@@ -163,10 +163,11 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 				 '".escapeString($this->menuItemLink)."',
 				 '".escapeString($this->menuItemIcon)."',
 				 '".escapeString($this->permissions)."',
-				 ".$this->showOrder.",				 
+				 ".$this->showOrder.",
 				 '".escapeString($this->parentMenuItem)."')";
 		WCF::getDB()->sendQuery($sql);
 
+<<<<<<< HEAD
 		if($this->useiFrame) {
 			$sql = "UPDATE 
 					wcf".WCF_N."_admin_tools_iframe 
@@ -174,11 +175,15 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 					menuItemID = ".WCF::getDB()->getInsertID()." 
 				WHERE 
 					iframeID = ".$iframeID;
+=======
+		if ($this->useiFrame) {
+			$sql = "UPDATE wcf".WCF_N."_admin_tools_iframe SET menuItemID = ".WCF::getDB()->getInsertID()." WHERE iframeID = ".$iframeID;
+>>>>>>> 3b1041c56e58136f80dcc6a4f9141fda8ba589ca
 			WCF::getDB()->sendQuery($sql);
 		}
 
 		// create language variable if necessary
-		if($this->createLangVar) {
+		if ($this->createLangVar) {
 			$menuItemID = WCF::getDB()->getInsertID();
 			$name = 'wcf.acp.menu.menuItem'.$menuItemID;
 			$value = $this->menuItem;
@@ -224,10 +229,15 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	protected function getShowOrder($showOrder, $parentName = null, $columnName = null, $tableNameExtension = '') {
 		if ($showOrder === null) {
 			// get greatest showOrder value
+<<<<<<< HEAD
 			$sql = "SELECT	
 					MAX(showOrder) AS showOrder
 			  	FROM	
 					wcf".WCF_N."_acp_menu_item".$tableNameExtension." 
+=======
+			$sql = "SELECT	MAX(showOrder) AS showOrder
+			  	FROM	wcf".WCF_N."_acp_menu_item".$tableNameExtension."
+>>>>>>> 3b1041c56e58136f80dcc6a4f9141fda8ba589ca
 				".($columnName !== null ? "WHERE ".$columnName." = '".escapeString($parentName)."'" : "");
 			$maxShowOrder = WCF::getDB()->getFirstRow($sql);
 			if (is_array($maxShowOrder) && isset($maxShowOrder['showOrder'])) {
@@ -239,6 +249,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 		}
 		else {
 			// increase all showOrder values which are >= $showOrder
+<<<<<<< HEAD
 			$sql = "UPDATE	
 					wcf".WCF_N."_acp_menu_item".$tableNameExtension."
 				SET	
@@ -246,6 +257,12 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 				WHERE	
 						showOrder >= ".$showOrder." 
 					".($columnName !== null ? "AND ".$columnName." = '".escapeString($parentName)."'" : "");
+=======
+			$sql = "UPDATE	wcf".WCF_N."_acp_menu_item".$tableNameExtension."
+				SET	showOrder = showOrder+1
+				WHERE	showOrder >= ".$showOrder."
+				".($columnName !== null ? "AND ".$columnName." = '".escapeString($parentName)."'" : "");
+>>>>>>> 3b1041c56e58136f80dcc6a4f9141fda8ba589ca
 			WCF::getDB()->sendQuery($sql);
 			// return the wanted showOrder level
 			return $showOrder;
@@ -323,7 +340,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 				$option['localizedName'] = WCF::getLanguage()->get('wcf.acp.group.option.'.$option['optionName']);
 
 				// add option to list
-				if($option['optionType'] == 'boolean') {
+				if ($option['optionType'] == 'boolean') {
 					$children[] = $option;
 				}
 

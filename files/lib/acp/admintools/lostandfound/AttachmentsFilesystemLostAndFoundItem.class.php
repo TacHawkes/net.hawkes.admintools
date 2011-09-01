@@ -48,10 +48,10 @@ class AttachmentsFilesystemLostAndFoundItem extends AbstractLostAndFoundFileSyst
 		chdir(WCF_DIR.'attachments');
 		$dh=opendir(WCF_DIR.'attachments');
 		$attachmentIDs = array();
-		while($file = readdir ($dh)) {
-			if(preg_match("/^(attachment|thumbnail).*/",$file) && $file != '.' && $file != '..' && $file != '.htaccess' && !preg_match("/^.*\.php$/",$file)) {
+		while ($file = readdir ($dh)) {
+			if (preg_match("/^(attachment|thumbnail).*/",$file) && $file != '.' && $file != '..' && $file != '.htaccess' && !preg_match("/^.*\.php$/",$file)) {
 				$attachmentID = (int) preg_replace("/.*\-(\d+)$/", "$1", $file);
-				if($attachmentID > 0) {
+				if ($attachmentID > 0) {
 					$attachmentIDs[] = $attachmentID;
 				}
 			}
@@ -60,7 +60,7 @@ class AttachmentsFilesystemLostAndFoundItem extends AbstractLostAndFoundFileSyst
 			$sql = "SELECT attachmentID FROM wcf".WCF_N."_attachment WHERE attachmentID IN (".implode(',', $attachmentIDs).")";
 			$result = WCF::getDB()->sendQuery($sql);
 			$physicalAttachments = array_flip($attachmentIDs);
-			while($row = WCF::getDB()->fetchArray($result)) {
+			while ($row = WCF::getDB()->fetchArray($result)) {
 				unset($physicalAttachments[$row['attachmentID']]);
 			}
 			$physicalAttachments = array_keys($physicalAttachments);

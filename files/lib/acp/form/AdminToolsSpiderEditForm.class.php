@@ -55,7 +55,7 @@ class AdminToolsSpiderEditForm extends AdminToolsSpiderAddForm  {
 	public function readData() {
 		parent::readData();
 
-		if(!count($_POST)) {
+		if (!count($_POST)) {
 			$this->spiderName = $this->spider->spiderName;
 			$this->spiderIdentifier = $this->spider->spiderIdentifier;
 			$this->spiderURL = $this->spider->spiderURL;

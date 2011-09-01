@@ -53,12 +53,12 @@ class AdminToolsCronjobsListPage extends CronjobsListPage  {
 		$result = WCF::getDB()->sendQuery($sql);
 
 		$adminToolsCronjobIDs = array();
-		while($row = WCF::getDB()->fetchArray($result)) {
+		while ($row = WCF::getDB()->fetchArray($result)) {
 			$adminToolsCronjobIDs[] = $row['cronjobID'];
 		}
 
 		foreach($this->cronjobs as $key => $cronjob) {
-			if(!in_array($cronjob['cronjobID'], $adminToolsCronjobIDs)) {
+			if (!in_array($cronjob['cronjobID'], $adminToolsCronjobIDs)) {
 				unset($this->cronjobs[$key]);
 			}
 		}

@@ -45,12 +45,12 @@ class AdminToolsCronjobsAddForm extends CronjobsAddForm {
 
 		if (isset($_POST['wcfCronjob'])) {
 			$this->wcfCronjob = intval($_POST['wcfCronjob']);
-			if($this->wcfCronjob) {
+			if ($this->wcfCronjob) {
 				$this->packageID = 1;
 			}
 		}
 
-		if(isset($_POST['functions']) && is_array($_POST['functions'])) $this->activeFunctions = ArrayUtil::toIntegerArray($_POST['functions']);
+		if (isset($_POST['functions']) && is_array($_POST['functions'])) $this->activeFunctions = ArrayUtil::toIntegerArray($_POST['functions']);
 	}
 
 	/**
@@ -62,7 +62,7 @@ class AdminToolsCronjobsAddForm extends CronjobsAddForm {
 		WCF::getCache()->addResource('admin_tools_functions-'.PACKAGE_ID, WCF_DIR.'cache/cache.admin_tools_functions-'.PACKAGE_ID.'.php', WCF_DIR.'lib/system/cache/CacheBuilderAdminToolsFunction.class.php');
 		$this->functions = WCF::getCache()->get('admin_tools_functions-'.PACKAGE_ID);
 		foreach($this->functions as $key => $function) {
-			if(!$function['executeAsCronjob']) unset($this->functions[$key]);
+			if (!$function['executeAsCronjob']) unset($this->functions[$key]);
 		}
 	}
 
@@ -87,19 +87,19 @@ class AdminToolsCronjobsAddForm extends CronjobsAddForm {
 		catch(UserInputException $e) {
 			$errorField = $e->getField();
 			$errorType = $e->getType();
-				
-			if($errorField != 'classPath') {
+
+			if ($errorField != 'classPath') {
 				throw new UserInputException($errorField, $errorType);
 			}
 		}
 
-		if($this->wcfCronjob) {
+		if ($this->wcfCronjob) {
 			foreach($this->activeFunctions as $functionID) {
-				if(!empty($this->functions[$functionID]['packageDir'])) unset($this->activeFunctions[$functionID]);
+				if (!empty($this->functions[$functionID]['packageDir'])) unset($this->activeFunctions[$functionID]);
 			}
 		}
 
-		if(!count($this->activeFunctions)) {
+		if (!count($this->activeFunctions)) {
 			throw new UserInputException();
 		}
 
@@ -120,9 +120,14 @@ class AdminToolsCronjobsAddForm extends CronjobsAddForm {
 			LEFT JOIN 
 				wcf".WCF_N."_package package
 				ON (package.packageID = cronjobs.packageID)
+<<<<<<< HEAD
 			WHERE 
 					cronjobs.classPath = '".$this->classPath."'				 
 				AND 	cronjobs.packageID = ".$this->packageID;
+=======
+				 WHERE cronjobs.classPath = '".$this->classPath."'
+				 AND cronjobs.packageID = ".$this->packageID;
+>>>>>>> 3b1041c56e58136f80dcc6a4f9141fda8ba589ca
 		$row = WCF::getDB()->getFirstRow($sql);
 		$cronjobID = $row['cronjobID'];
 		$cronjob = new CronjobEditor($cronjobID);
@@ -130,7 +135,7 @@ class AdminToolsCronjobsAddForm extends CronjobsAddForm {
 
 		$inserts = '';
 		foreach($this->activeFunctions as $functionID) {
-			if(!empty($inserts)) $inserts .= ',';
+			if (!empty($inserts)) $inserts .= ',';
 			$inserts .= '('.$functionID.', '.$cronjobID.')';
 		}
 		$sql = "INSERT IGNORE INTO wcf".WCF_N."_admin_tools_function_to_cronjob

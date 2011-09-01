@@ -75,26 +75,26 @@ class TemplatePluginFunctionAcpmenugroupoptions implements TemplatePluginFunctio
 	 * @param integer $depth
 	 */
 	protected function buildHtml($item, $depth=0) {
-		if(isset($item['categoryID'])) {
+		if (isset($item['categoryID'])) {
 			$first = false;
-			if($depth == 0) {
+			if ($depth == 0) {
 				$first = true;
 				$this->html .= "<optgroup label='".$item['localizedName']."'>";
 			}
 			foreach($item['options'] as $option) {
 				$this->buildHtml($option, $depth);
 			}
-			if(isset($item['categories'])) {
+			if (isset($item['categories'])) {
 				$depth++;
 				foreach($item['categories'] as $category) {
 					$this->buildHtml($category, $depth);
 				}
 			}
-			if($first) $this->html .= "</optgroup>";
+			if ($first) $this->html .= "</optgroup>";
 		}
-		else if(isset($item['optionID'])) {
+		else if (isset($item['optionID'])) {
 			$selected='';
-			if(in_array($item['optionName'], $this->selected)) $selected='selected="selected"';
+			if (in_array($item['optionName'], $this->selected)) $selected='selected="selected"';
 			$this->html .= "<option label='".WCF::getLanguage()->get('wcf.acp.group.option.'.$item['optionName'])."' value='".$item['optionName']."' ".$selected.">".$item['localizedName']."</option>";
 		}
 	}

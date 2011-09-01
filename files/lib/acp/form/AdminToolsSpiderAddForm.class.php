@@ -76,7 +76,7 @@ class AdminToolsSpiderAddForm extends ACPForm  {
 
 		WCF::getTPL()->assign(array('spiderName' => $this->spiderName,
 									'spiderIdentifier' => $this->spiderIdentifier,
-									'spiderURL' => $this->spiderURL));	
+									'spiderURL' => $this->spiderURL));
 	}
 
 }

@@ -40,7 +40,7 @@ class AdminToolsSpiderListPage extends SortablePage {
 	public function validateSortField() {
 		parent::validateSortField();
 
-		switch($this->sortField) {
+		switch ($this->sortField) {
 			case 'spiderName' :
 			case 'spiderIdentifier' :
 			case 'spiderURL' :
@@ -64,7 +64,7 @@ class AdminToolsSpiderListPage extends SortablePage {
 				".$this->sortField." ".$this->sortOrder;
 		$result = WCF::getDB()->sendQuery($sql, $this->itemsPerPage, ($this->pageNo - 1) * $this->itemsPerPage);
 
-		while($row = WCF::getDB()->fetchArray($result)) {
+		while ($row = WCF::getDB()->fetchArray($result)) {
 			$this->spiders[] = new Spider(null, $row);
 		}
 

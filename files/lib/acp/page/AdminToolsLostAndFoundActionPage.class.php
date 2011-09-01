@@ -56,9 +56,9 @@ class AdminToolsLostAndFoundActionPage extends AbstractPage {
 	 */
 	public function show() {
 		parent::show();
-			
+
 		require_once(WCF_DIR.'lib/acp/admintools/lostandfound/'.$this->classname.'.class.php');
-		if(is_array($this->itemID)) {
+		if (is_array($this->itemID)) {
 			foreach($this->itemID as $itemID) {
 				$this->items[] = new $this->classname($itemID);
 			}
@@ -74,7 +74,7 @@ class AdminToolsLostAndFoundActionPage extends AbstractPage {
 	 * Marks items
 	 */
 	public function mark() {
-		if(is_array($this->itemID)) {
+		if (is_array($this->itemID)) {
 			foreach($this->items as $item) {
 				$item->mark();
 			}
@@ -86,7 +86,7 @@ class AdminToolsLostAndFoundActionPage extends AbstractPage {
 	 * Unmarks items
 	 */
 	public function unmark() {
-		if(is_array($this->itemID)) {
+		if (is_array($this->itemID)) {
 			foreach($this->items as $item) {
 				$item->unmark();
 			}
@@ -98,7 +98,7 @@ class AdminToolsLostAndFoundActionPage extends AbstractPage {
 	 * Unmarks all items
 	 */
 	public function unmarkAll() {
-		if(version_compare(PHP_VERSION, "5.2.3") < 0) {
+		if (version_compare(PHP_VERSION, "5.2.3") < 0) {
 			call_user_func($this->classname, 'unmarkAll', $this->pagename);
 		}
 		else call_user_func($this->classname.'::unmarkAll', $this->pagename);
@@ -110,7 +110,7 @@ class AdminToolsLostAndFoundActionPage extends AbstractPage {
 	public function delete() {
 		$this->item->delete();
 		$this->item->unmark();
-		if(!empty($this->url)) {
+		if (!empty($this->url)) {
 			HeaderUtil::redirect($this->url);
 		}
 	}
@@ -119,12 +119,12 @@ class AdminToolsLostAndFoundActionPage extends AbstractPage {
 	 * Deletes all items
 	 */
 	public function deleteAll() {
-		if(version_compare(PHP_VERSION, "5.2.3") < 0) {
+		if (version_compare(PHP_VERSION, "5.2.3") < 0) {
 			call_user_func($this->classname, 'deleteAll', $this->pagename);
 		}
 		else call_user_func($this->classname.'::deleteAll', $this->pagename);
 		$this->unmarkAll();
-		if(!empty($this->url)) {
+		if (!empty($this->url)) {
 			HeaderUtil::redirect($this->url);
 		}
 	}

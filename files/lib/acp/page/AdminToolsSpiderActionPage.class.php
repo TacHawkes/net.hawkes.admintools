@@ -52,8 +52,8 @@ class AdminToolsSpiderActionPage extends AbstractPage {
 	 */
 	public function show() {
 		parent::show();
-			
-		if(is_array($this->itemID)) {
+
+		if (is_array($this->itemID)) {
 			foreach($this->itemID as $itemID) {
 				$this->items[] = new SpiderEditor($itemID);
 			}
@@ -69,7 +69,7 @@ class AdminToolsSpiderActionPage extends AbstractPage {
 	 * Marks items
 	 */
 	public function mark() {
-		if(is_array($this->itemID)) {
+		if (is_array($this->itemID)) {
 			foreach($this->items as $item) {
 				$item->mark();
 			}
@@ -81,7 +81,7 @@ class AdminToolsSpiderActionPage extends AbstractPage {
 	 * Unmarks items
 	 */
 	public function unmark() {
-		if(is_array($this->itemID)) {
+		if (is_array($this->itemID)) {
 			foreach($this->items as $item) {
 				$item->unmark();
 			}
@@ -102,7 +102,7 @@ class AdminToolsSpiderActionPage extends AbstractPage {
 	public function delete() {
 		$this->item->delete();
 		$this->item->unmark();
-		if(!empty($this->url)) {
+		if (!empty($this->url)) {
 			HeaderUtil::redirect($this->url);
 		}
 	}
@@ -114,7 +114,7 @@ class AdminToolsSpiderActionPage extends AbstractPage {
 		$spiders = SpiderEditor::getMarkedSpiders();
 		SpiderEditor::deleteAll($spiders);
 		$this->unmarkAll();
-		if(!empty($this->url)) {
+		if (!empty($this->url)) {
 			HeaderUtil::redirect($this->url);
 		}
 	}

@@ -56,7 +56,7 @@ abstract class AbstractLostAndFoundFileSystemItem extends AbstractLostAndFoundDa
 	 * @see AbstractLostAndFounDatabaseItem::__construct($itemName, $objectID)
 	 */
 	public function __construct($itemName, $objectID) {
-		if(!self::$sessionCacheUsed) {
+		if (!self::$sessionCacheUsed) {
 			self::getVirtualIDsFromSession();
 			self::$sessionCacheUsed = true;
 		}
@@ -82,7 +82,7 @@ abstract class AbstractLostAndFoundFileSystemItem extends AbstractLostAndFoundDa
 	 * @return array<mixed>
 	 */
 	public static function getVirtualIDs($type) {
-		if(!self::$sessionCacheUsed) {
+		if (!self::$sessionCacheUsed) {
 			self::getVirtualIDsFromSession();
 			self::$sessionCacheUsed = true;
 		}
@@ -97,13 +97,13 @@ abstract class AbstractLostAndFoundFileSystemItem extends AbstractLostAndFoundDa
 	 * @return mixed
 	 */
 	public static function getVirtualID($type, $filename) {
-		if(!self::$sessionCacheUsed) {
+		if (!self::$sessionCacheUsed) {
 			self::getVirtualIDsFromSession();
 			self::$sessionCacheUsed = true;
 		}
-		if(isset(self::$virtualFileIDs[$type])) {
+		if (isset(self::$virtualFileIDs[$type])) {
 			$fileIDs = array_flip(self::$virtualFileIDs[$type]);
-			if(isset($fileIDs[$filename])) {
+			if (isset($fileIDs[$filename])) {
 				return $fileIDs[$filename];
 			}
 		}
@@ -115,7 +115,7 @@ abstract class AbstractLostAndFoundFileSystemItem extends AbstractLostAndFoundDa
 	 */
 	protected static function getVirtualIDsFromSession() {
 		$sessionVars = WCF::getSession()->getVars();
-		if(isset($sessionVars['virtualLostAndFoundIDs'])) {
+		if (isset($sessionVars['virtualLostAndFoundIDs'])) {
 			self::$virtualFileIDs = $sessionVars['virtualLostAndFoundIDs'];
 		}
 	}

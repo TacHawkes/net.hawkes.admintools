@@ -50,11 +50,11 @@ class AvatarsFilesystemLostAndFoundItem extends AbstractLostAndFoundFileSystemIt
 		$dh=opendir(WCF_DIR.'images/avatars');
 		$avatarIDs = array();
 		$avatars = array();
-		while($file = readdir ($dh)) {
-			if(preg_match("/^(avatar).*/",$file) && $file != '.' && $file != '..' && $file != '.htaccess' && !preg_match("/^.*\.php$/",$file)) {
+		while ($file = readdir ($dh)) {
+			if (preg_match("/^(avatar).*/",$file) && $file != '.' && $file != '..' && $file != '.htaccess' && !preg_match("/^.*\.php$/",$file)) {
 				$avatarID = (int) preg_replace("/.*\-(\d+).*/", "$1", $file);
 				$avatars[$avatarID] = preg_replace("/.*\-(\d+)(.*)/", "$2", $file);
-				if($avatarID > 0) {
+				if ($avatarID > 0) {
 					$avatarIDs[] = $avatarID;
 				}
 			}
@@ -63,7 +63,7 @@ class AvatarsFilesystemLostAndFoundItem extends AbstractLostAndFoundFileSystemIt
 			$sql = "SELECT avatarID, avatarExtension FROM wcf".WCF_N."_avatar WHERE avatarID IN (".implode(',', $avatarIDs).")";
 			$result = WCF::getDB()->sendQuery($sql);
 			$physicalAvatars = array_flip($avatarIDs);
-			while($row = WCF::getDB()->fetchArray($result)) {
+			while ($row = WCF::getDB()->fetchArray($result)) {
 				unset($physicalAvatars[$row['avatarID']]);
 			}
 			$physicalAvatars = array_keys($physicalAvatars);

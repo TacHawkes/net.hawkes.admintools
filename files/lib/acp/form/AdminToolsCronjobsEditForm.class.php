@@ -46,7 +46,7 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 		WCF::getCache()->addResource('admin_tools_functions-'.PACKAGE_ID, WCF_DIR.'cache/cache.admin_tools_functions-'.PACKAGE_ID.'.php', WCF_DIR.'lib/system/cache/CacheBuilderAdminToolsFunction.class.php');
 		$this->functions = WCF::getCache()->get('admin_tools_functions-'.PACKAGE_ID);
 		foreach($this->functions as $key => $function) {
-			if(!$function['executeAsCronjob']) unset($this->functions[$key]);
+			if (!$function['executeAsCronjob']) unset($this->functions[$key]);
 		}
 	}
 
@@ -58,12 +58,12 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 
 		if (isset($_POST['wcfCronjob'])) {
 			$this->wcfCronjob = intval($_POST['wcfCronjob']);
-			if($this->wcfCronjob) {
+			if ($this->wcfCronjob) {
 				$this->packageID = 1;
 			}
 		}
 
-		if(isset($_POST['functions']) && is_array($_POST['functions'])) $this->activeFunctions = ArrayUtil::toIntegerArray($_POST['functions']);
+		if (isset($_POST['functions']) && is_array($_POST['functions'])) $this->activeFunctions = ArrayUtil::toIntegerArray($_POST['functions']);
 	}
 
 	/**
@@ -72,17 +72,23 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 	public function readData() {
 		parent::readData();
 
+<<<<<<< HEAD
 		if(!count($_POST)) {
 			$sql = "SELECT 
 					functionID FROM wcf".WCF_N."_admin_tools_function_to_cronjob
 				WHERE 
 					cronjobID = ".$this->cronjobID;
+=======
+		if (!count($_POST)) {
+			$sql = "SELECT functionID FROM wcf".WCF_N."_admin_tools_function_to_cronjob
+				WHERE cronjobID = ".$this->cronjobID;
+>>>>>>> 3b1041c56e58136f80dcc6a4f9141fda8ba589ca
 			$result = WCF::getDB()->sendQuery($sql);
-			while($row = WCF::getDB()->fetchArray($result)) {
+			while ($row = WCF::getDB()->fetchArray($result)) {
 				$this->activeFunctions[] = $row['functionID'];
 			}
 
-			if($this->cronjob->packageID == 1) {
+			if ($this->cronjob->packageID == 1) {
 				$this->wcfCronjob = 1;
 			}
 		}
@@ -110,21 +116,21 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 			$errorField = $e->getField();
 			$errorType = $e->getType();
 
-			if($errorField != 'classPath') {
+			if ($errorField != 'classPath') {
 				throw new UserInputException($errorField, $errorType);
 			}
 		}
 
-		if($this->wcfCronjob) {
+		if ($this->wcfCronjob) {
 			foreach($this->activeFunctions as $functionID) {
-				if(!empty($this->functions[$functionID]['packageDir'])) unset($this->activeFunctions[$functionID]);
+				if (!empty($this->functions[$functionID]['packageDir'])) unset($this->activeFunctions[$functionID]);
 			}
-				
+
 			$this->packageID = 1;
 		}
 		else $this->packageID = PACKAGE_ID;
 
-		if(!count($this->activeFunctions)) {
+		if (!count($this->activeFunctions)) {
 			throw new UserInputException();
 		}
 
@@ -163,7 +169,7 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 
 		$inserts = '';
 		foreach($this->activeFunctions as $functionID) {
-			if(!empty($inserts)) $inserts .= ',';
+			if (!empty($inserts)) $inserts .= ',';
 			$inserts .= '('.$functionID.', '.$this->cronjobID.')';
 		}
 		$sql = "INSERT IGNORE INTO wcf".WCF_N."_admin_tools_function_to_cronjob
@@ -173,7 +179,7 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 		$package = new Package($this->packageID);
 		$path = FileUtil::getRealPath(WCF_DIR.$package->getDir());
 		$fileName = $path.'lib/system/cronjob/AdminToolsCronjob'.$this->cronjobID.'.class.php';
-		if(file_exists($fileName)) unlink($fileName);
+		if (file_exists($fileName)) unlink($fileName);
 		$this->writeCronjob($this->cronjobID, $fileName);
 
 		$this->saved();

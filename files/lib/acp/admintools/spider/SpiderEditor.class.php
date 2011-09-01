@@ -159,7 +159,7 @@ class SpiderEditor extends Spider  {
 		$markedSpiders = self::getMarkedSpiders();
 		if (is_array($markedSpiders) && in_array($this->spiderID, $markedSpiders)) {
 			$key = array_search($this->spiderID, $markedSpiders);
-				
+
 			unset($markedSpiders[$key]);
 			if (count($markedSpiders) == 0) {
 				self::unmarkAll();
@@ -184,9 +184,15 @@ class SpiderEditor extends Spider  {
 		require_once(WCF_DIR.'lib/system/cronjob/RefreshSearchRobotsCronjob.class.php');
 		RefreshSearchRobotsCronjob::execute(null);
 		$sql = "INSERT IGNORE INTO wcf".WCF_N."_spider
+<<<<<<< HEAD
 				(spiderIdentifier, spiderName, spiderURL)
 			SELECT spiderIdentifier, spiderName, spiderURL
 			FROM wcf".WCF_N."_admin_tools_spider"; 
+=======
+					(spiderIdentifier, spiderName, spiderURL)
+					SELECT spiderIdentifier, spiderName, spiderURL
+					FROM wcf".WCF_N."_admin_tools_spider";
+>>>>>>> 3b1041c56e58136f80dcc6a4f9141fda8ba589ca
 		WCF::getDB()->sendQuery($sql);
 		WCF::getCache()->clear(WCF_DIR.'cache', 'cache.spiders.php');
 	}

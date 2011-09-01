@@ -63,7 +63,7 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 	 */
 	public function readData() {
 		$functionName = 'read'.ucfirst($this->activeTabMenuItem);
-		if(method_exists($this, $functionName)) {
+		if (method_exists($this, $functionName)) {
 			$this->{$functionName}();
 		}
 
@@ -81,14 +81,14 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 		$this->classname = 'BackupFilesystemLostAndFoundItem';
 		chdir(WCF_DIR.'acp/backup');
 		$dh= opendir(WCF_DIR.'acp/backup');
-		if(!$dh) {
+		if (!$dh) {
 			$this->count = 0;
 			return;
 		}
 		$i=0;
-		while($file = readdir ($dh)) {
-			if($file != '.' && $file != '..' && $file != '.htaccess' && !is_dir($file)) {
-				if(($i < ($this->pageNo-1)*$this->itemsPerPage) || ($i > $this->pageNo*$this->itemsPerPage)) {
+		while ($file = readdir ($dh)) {
+			if ($file != '.' && $file != '..' && $file != '.htaccess' && !is_dir($file)) {
+				if (($i < ($this->pageNo-1)*$this->itemsPerPage) || ($i > $this->pageNo*$this->itemsPerPage)) {
 					$i++;
 					continue;
 				}
@@ -108,7 +108,7 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 	 * Reads attachment items
 	 */
 	public function readAttachments() {
-		switch($this->activeSubTabMenuItem) {
+		switch ($this->activeSubTabMenuItem) {
 			case 'database' :
 				require_once(WCF_DIR.'lib/acp/admintools/lostandfound/AttachmentsDatabaseLostAndFoundItem.class.php');
 				$this->markedItems = intval(count(AttachmentsDatabaseLostAndFoundItem::getMarkedItems('attachmentsDatabase')));
@@ -122,9 +122,9 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 						ON (user.userID = attachment.userID)";
 				$result = WCF::getDB()->sendQuery($sql);
 				$i = 0;
-				while($row = WCF::getDB()->fetchArray($result)) {
-					if(!is_file(WCF_DIR.'attachments/attachment-'.$row['attachmentID'])) {
-						if(($i < ($this->pageNo-1)*$this->itemsPerPage) || ($i > $this->pageNo*$this->itemsPerPage)) {
+				while ($row = WCF::getDB()->fetchArray($result)) {
+					if (!is_file(WCF_DIR.'attachments/attachment-'.$row['attachmentID'])) {
+						if (($i < ($this->pageNo-1)*$this->itemsPerPage) || ($i > $this->pageNo*$this->itemsPerPage)) {
 							$i++;
 							continue;
 						}
@@ -146,10 +146,10 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 				chdir(WCF_DIR.'attachments');
 				$dh=opendir(WCF_DIR.'attachments');
 				$attachmentIDs = array();
-				while($file = readdir ($dh)) {
-					if(preg_match("/^(attachment|thumbnail).*/",$file) && $file != '.' && $file != '..' && $file != '.htaccess' && !preg_match("/^.*\.php$/",$file)) {
+				while ($file = readdir ($dh)) {
+					if (preg_match("/^(attachment|thumbnail).*/",$file) && $file != '.' && $file != '..' && $file != '.htaccess' && !preg_match("/^.*\.php$/",$file)) {
 						$attachmentID = (int) preg_replace("/.*\-(\d+)$/", "$1", $file);
-						if($attachmentID > 0) {
+						if ($attachmentID > 0) {
 							$attachmentIDs[] = $attachmentID;
 						}
 					}
@@ -163,14 +163,14 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 							attachmentID IN (".implode(',', $attachmentIDs).")";
 					$result = WCF::getDB()->sendQuery($sql);
 					$physicalAttachments = array_flip($attachmentIDs);
-					while($row = WCF::getDB()->fetchArray($result)) {
+					while ($row = WCF::getDB()->fetchArray($result)) {
 						unset($physicalAttachments[$row['attachmentID']]);
 					}
 					$physicalAttachments = array_keys($physicalAttachments);
 					$this->count = count($physicalAttachments);
 					$i = 0;
 					foreach($physicalAttachments as $attachmentID) {
-						if(($i < ($this->pageNo-1)*$this->itemsPerPage) || ($i > $this->pageNo*$this->itemsPerPage)) {
+						if (($i < ($this->pageNo-1)*$this->itemsPerPage) || ($i > $this->pageNo*$this->itemsPerPage)) {
 							$i++;
 							continue;
 						}
@@ -192,7 +192,7 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 	 * Reads avatar items
 	 */
 	public function readAvatars() {
-		switch($this->activeSubTabMenuItem) {
+		switch ($this->activeSubTabMenuItem) {
 			case 'database' :
 				require_once(WCF_DIR.'lib/acp/admintools/lostandfound/AvatarsDatabaseLostAndFoundItem.class.php');
 				$this->markedItems = intval(count(AvatarsDatabaseLostAndFoundItem::getMarkedItems('avatarsDatabase')));
@@ -207,9 +207,9 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 						ON (user.userID = avatar.userID)";
 				$result = WCF::getDB()->sendQuery($sql);
 				$i = 0;
-				while($row = WCF::getDB()->fetchArray($result)) {
-					if(!is_file(WCF_DIR.'images/avatars/avatar-'.$row['avatarID'].'.'.$row['avatarExtension'])) {
-						if(($i < ($this->pageNo-1)*$this->itemsPerPage) || ($i > $this->pageNo*$this->itemsPerPage)) {
+				while ($row = WCF::getDB()->fetchArray($result)) {
+					if (!is_file(WCF_DIR.'images/avatars/avatar-'.$row['avatarID'].'.'.$row['avatarExtension'])) {
+						if (($i < ($this->pageNo-1)*$this->itemsPerPage) || ($i > $this->pageNo*$this->itemsPerPage)) {
 							$i++;
 							continue;
 						}
@@ -231,11 +231,11 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 				$dh=opendir(WCF_DIR.'images/avatars');
 				$avatarIDs = array();
 				$avatars = array();
-				while($file = readdir ($dh)) {
-					if(preg_match("/^(avatar).*/",$file) && $file != '.' && $file != '..' && $file != '.htaccess' && !preg_match("/^.*\.php$/",$file)) {
+				while ($file = readdir ($dh)) {
+					if (preg_match("/^(avatar).*/",$file) && $file != '.' && $file != '..' && $file != '.htaccess' && !preg_match("/^.*\.php$/",$file)) {
 						$avatarID = (int) preg_replace("/.*\-(\d+).*/", "$1", $file);
 						$avatars[$avatarID] = preg_replace("/.*\-(\d+)(.*)/", "$2", $file);
-						if($avatarID > 0) {
+						if ($avatarID > 0) {
 							$avatarIDs[] = $avatarID;
 						}
 					}
@@ -250,18 +250,18 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 							avatarID IN (".implode(',', $avatarIDs).")";
 					$result = WCF::getDB()->sendQuery($sql);
 					$physicalAvatars = array_flip($avatarIDs);
-					while($row = WCF::getDB()->fetchArray($result)) {
+					while ($row = WCF::getDB()->fetchArray($result)) {
 						unset($physicalAvatars[$row['avatarID']]);
 					}
 					$physicalAvatars = array_keys($physicalAvatars);
 					$this->count = count($physicalAvatars);
 					$i = 0;
 					foreach($physicalAvatars as $avatarID) {
-						if($i <= ($this->pageNo-1)*$this->itemsPerPage) {
+						if ($i <= ($this->pageNo-1)*$this->itemsPerPage) {
 							$i++;
 							continue;
 						}
-						else if($i > $this->pageNo*$this->itemsPerPage) break;
+						else if ($i > $this->pageNo*$this->itemsPerPage) break;
 						$file = WCF_DIR.'images/avatars/avatar-'.$avatarID.$avatars[$avatarID];
 						$avatar = new AvatarsFilesystemLostAndFoundItem(AvatarsFilesystemLostAndFoundItem::getVirtualID('avatarsFilesystem', $file));
 						$avatar->filename = $file;
@@ -284,7 +284,7 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 
 		WCF::getTPL()->assign(array('activeTabMenuItem' => $this->activeTabMenuItem,
 									'activeSubTabMenuItem' => $this->activeSubTabMenuItem,
-									'markedItems' => $this->markedItems,									
+									'markedItems' => $this->markedItems,
 									'defaultSortField' => $this->defaultSortField,
 									'defaultSortOrder' => $this->defaultSortOrder,
 									'classname' => $this->classname,

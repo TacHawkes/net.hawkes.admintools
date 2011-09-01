@@ -14,12 +14,12 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Admin Tools 2.  If not, see <http://www.gnu.org/licenses/>.
  *
- * 
+ *
  */
 
 /**
  * Handles the JS item actions
- * 
+ *
  * @author Oliver Kliebisch
  * @copyright 2009 Oliver Kliebisch
  * @license GNU General Public License <http://www.gnu.org/licenses/>
@@ -147,8 +147,8 @@ function LostAndFoundListEdit(data, count, page, classname) {
 						+ '&classname='
 						+ this.classname
 						+ '&action=unmarkAll' + SID_ARG_2ND);
-		
-		
+
+
 		// checkboxes
 		this.count = 0;
 		var itemDArray = this.data.keys();
@@ -177,7 +177,7 @@ function LostAndFoundListEdit(data, count, page, classname) {
 	 */
 	this.showStatus = function(id) {
 		var item = this.data.get(id);
-		
+
 		// get row
 		var row = document.getElementById(this.page + 'Row' + id);
 

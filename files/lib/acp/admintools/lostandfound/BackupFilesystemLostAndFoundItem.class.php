@@ -47,8 +47,8 @@ class BackupFilesystemLostAndFoundItem extends AbstractLostAndFoundFileSystemIte
 		$backups = array();
 		chdir(WCF_DIR.'acp/backup');
 		$dh = opendir(WCF_DIR.'acp/backup');
-		while($file = readdir ($dh)) {
-			if($file != '.' && $file != '..' && $file != '.htaccess' && !is_dir($file)) {
+		while ($file = readdir ($dh)) {
+			if ($file != '.' && $file != '..' && $file != '.htaccess' && !is_dir($file)) {
 				$backups[] = $file;
 			}
 		}
