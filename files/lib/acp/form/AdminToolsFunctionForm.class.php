@@ -94,7 +94,7 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 
 		if (!empty($inserts)) {
 			$sql = "INSERT INTO	wcf".WCF_N."_admin_tools_option
-						(optionID, optionValue)
+					(optionID, optionValue)
 				VALUES 		".$inserts."
 				ON DUPLICATE KEY UPDATE optionValue = VALUES(optionValue)";
 			WCF::getDB()->sendQuery($sql);

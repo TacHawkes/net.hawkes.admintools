@@ -53,10 +53,16 @@ class AdminToolsiFramePage extends AbstractPage {
 	public function readData() {
 		parent::readData();
 
-		$sql = "SELECT item.menuItem, iframe.* FROM wcf".WCF_N."_admin_tools_iframe iframe
-				LEFT JOIN			wcf".WCF_N."_acp_menu_item item
+		$sql = "SELECT 
+				item.menuItem, 
+				iframe.* 
+			FROM 
+				wcf".WCF_N."_admin_tools_iframe iframe
+			LEFT JOIN
+				wcf".WCF_N."_acp_menu_item item
 				ON (item.menuItemID = iframe.menuItemID)
-				WHERE iframeID = ".$this->iFrameID;
+			WHERE 
+				iframeID = ".$this->iFrameID;
 		$this->iFrameData = WCF::getDB()->getFirstRow($sql);
 	}
 

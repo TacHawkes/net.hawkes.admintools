@@ -42,14 +42,21 @@ class AdminToolsCronjobsDeleteAction extends CronjobsDeleteAction {
 		}
 		WCF::getUser()->checkPermission('admin.system.cronjobs.canDeleteCronjob');
 
-		$sql = "DELETE FROM wcf".WCF_N."_admin_tools_function_to_cronjob
-				WHERE cronjobID = ".$this->cronjobID;
+		$sql = "DELETE FROM 
+				wcf".WCF_N."_admin_tools_function_to_cronjob
+			WHERE 
+				cronjobID = ".$this->cronjobID;
 		WCF::getDB()->sendQuery($sql);
 
-		$sql = "SELECT packageDir FROM wcf".WCF_N."_package package
-				LEFT JOIN wcf".WCF_N."_cronjobs cronjob
+		$sql = "SELECT 
+				packageDir 
+			FROM 
+				wcf".WCF_N."_package package
+			LEFT JOIN 
+				wcf".WCF_N."_cronjobs cronjob
 				ON (cronjob.packageID = package.packageID)
-				WHERE cronjob.cronjobID = ".$this->cronjobID;
+			WHERE 
+				cronjob.cronjobID = ".$this->cronjobID;
 		$row = WCF::getDB()->getFirstRow($sql);
 		if (empty($row['packageDir'])) {
 			$path = WCF_DIR;

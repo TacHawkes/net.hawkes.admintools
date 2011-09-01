@@ -45,11 +45,14 @@ class Spider extends DatabaseObject  {
 		}
 
 		if (!empty($sqlCondition)) {
-			$sql = "SELECT 	".$this->sqlSelects."
+			$sql = "SELECT 	
+					".$this->sqlSelects."
 					spider.*
-				FROM 	wcf".WCF_N."_admin_tools_spider spider
+				FROM 	
+					wcf".WCF_N."_admin_tools_spider spider
 					".$this->sqlJoins."
-				WHERE 	".$sqlCondition.
+				WHERE 	
+					".$sqlCondition.
 			$this->sqlGroupBy;
 			$row = WCF::getDB()->getFirstRow($sql);
 		}

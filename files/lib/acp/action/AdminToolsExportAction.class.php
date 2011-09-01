@@ -69,12 +69,17 @@ class AdminToolsExportAction extends AbstractAction {
 	 * @return	array
 	 */
 	public function getOptions($packageID = PACKAGE_ID) {
-		$sql = "SELECT		optionName, optionID
-			FROM		wcf".WCF_N."_admin_tools_option acp_option,
-					wcf".WCF_N."_package_dependency package_dependency
-			WHERE 		acp_option.packageID = package_dependency.dependency
-					AND package_dependency.packageID = ".$packageID."
-			ORDER BY	package_dependency.priority";
+		$sql = "SELECT	
+				optionName, 
+				optionID
+			FROM
+				wcf".WCF_N."_admin_tools_option acp_option,
+				wcf".WCF_N."_package_dependency package_dependency
+			WHERE 		
+					acp_option.packageID = package_dependency.dependency
+				AND 	package_dependency.packageID = ".$packageID."
+			ORDER BY	
+				package_dependency.priority";
 		$result = WCF::getDB()->sendQuery($sql);
 		$optionIDs = array();
 		while ($row = WCF::getDB()->fetchArray($result)) {
@@ -84,10 +89,16 @@ class AdminToolsExportAction extends AbstractAction {
 		$options = array();
 		if (count($optionIDs) > 0) {
 			// get needed options
-			$sql = "SELECT		optionName, optionValue, optionType
-				FROM		wcf".WCF_N."_admin_tools_option
-				WHERE		optionID IN (".implode(',', $optionIDs).")
-				ORDER BY	optionName";
+			$sql = "SELECT		
+					optionName, 
+					optionValue, 
+					optionType
+				FROM		
+					wcf".WCF_N."_admin_tools_option
+				WHERE		
+					optionID IN (".implode(',', $optionIDs).")
+				ORDER BY	
+					optionName";
 			$result = WCF::getDB()->sendQuery($sql);
 			while ($row = WCF::getDB()->fetchArray($result)) {
 				$options[strtoupper($row['optionName'])] = $row;
