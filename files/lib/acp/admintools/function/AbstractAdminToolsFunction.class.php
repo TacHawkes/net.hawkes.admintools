@@ -61,15 +61,15 @@ abstract class AbstractAdminToolsFunction implements AdminToolsFunction {
 		if (!class_exists('WCFACP')) return;
 
 		$message = array();
-		if(is_array(WCF::getSession()->getVar('functionReturnMessage'))) {
+		if (is_array(WCF::getSession()->getVar('functionReturnMessage'))) {
 			$message = WCF::getSession()->getVar('functionReturnMessage');
 		}
-		if($override) {
+		if ($override) {
 			$message[$this->data['functionID']] = array($type => $messageText);
 		}
 		else {
-			if(!isset($message[$this->data['functionID']])) $message[$this->data['functionID']] = array();
-			if(!isset($message[$this->data['functionID']][$type])) {
+			if (!isset($message[$this->data['functionID']])) $message[$this->data['functionID']] = array();
+			if (!isset($message[$this->data['functionID']][$type])) {
 				$message[$this->data['functionID']][$type] = $messageText;
 			}
 			else $message[$this->data['functionID']][$type] .= $messageText;

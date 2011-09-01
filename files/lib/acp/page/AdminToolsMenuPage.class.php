@@ -68,7 +68,7 @@ class AdminToolsMenuPage extends AbstractPage {
 	 * Prepares the menu map
 	 */
 	public function makeItemStructure() {
-		if(!count($this->acpMenu->getMenuItems())) return;
+		if (!count($this->acpMenu->getMenuItems())) return;
 
 		$menuItemData = array();
 		$i = 0;

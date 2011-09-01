@@ -39,7 +39,7 @@ class TemplatePluginFunctionAcpmenumap implements TemplatePluginFunction {
 	 * @see TemplatePluginFunction::execute()
 	 */
 	public function execute($tagArgs, Template $tplObj) {
-		if(!class_exists('WCFACP')) return;
+		if (!class_exists('WCFACP')) return;
 		$menuItemData = $tagArgs['menuItemData'];
 
 		for ($i = 0; $i < count($menuItemData); $i++) {

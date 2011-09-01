@@ -73,7 +73,7 @@ class AdminToolsFunctionExecution {
 	 * @return AdminToolsFunctionExecution
 	 */
 	public static function getInstance() {
-		if(!self::$instance instanceof self) {
+		if (!self::$instance instanceof self) {
 			self::$instance = new self();
 		}
 
@@ -89,13 +89,13 @@ class AdminToolsFunctionExecution {
 	protected function getFunctionData($functionID) {
 		foreach($this->options as $superCategory) {
 			foreach($superCategory['categories'] as $functionCategory) {
-				if($functionCategory['functionID'] == $functionID) {
+				if ($functionCategory['functionID'] == $functionID) {
 					$this->activeOptions = array();
 					$this->loadActiveOptions($functionCategory['categoryName']);
 					$options = $this->activeOptions;
 					$params = array();
 					foreach($options as $option) {
-						if(!isset($params[$option['categoryName']])) {
+						if (!isset($params[$option['categoryName']])) {
 							$params[$option['categoryName']] = array();
 						}
 						$params[$option['categoryName']][str_ireplace($option['categoryName'].'.', '', $option['optionName'])] = $option['optionValue'];
@@ -152,7 +152,7 @@ class AdminToolsFunctionExecution {
 			// check for a return message. assume successful execution if no message is returned.
 			$returnMessages = WCF::getSession()->getVar('functionReturnMessage');
 
-			if(!isset($returnMessages[$functionID])) {
+			if (!isset($returnMessages[$functionID])) {
 				$object->setReturnMessage('success', WCF::getLanguage()->get('wcf.acp.admintools.function.success', array('$functionName' => WCF::getLanguage()->get('wcf.acp.admintools.function.'.$data['functionName']))));
 			}
 

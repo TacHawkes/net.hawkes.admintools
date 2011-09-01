@@ -67,7 +67,7 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 		foreach($this->options as $category) {
 			foreach($category['categories'] as $functionCategory) {
 				$function = $this->functions[$functionCategory['functionID']];
-				if(!$function['saveSettings']) continue;
+				if (!$function['saveSettings']) continue;
 				$this->activeOptions = array();
 				$this->loadActiveOptions($functionCategory['categoryName']);
 				$options = array_merge($options, $this->activeOptions);
@@ -101,12 +101,12 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 			WCF::getCache()->clear(WCF_DIR.'cache/', 'cache.admin_tools-option*');
 		}
 
-		if($this->functionID) {
+		if ($this->functionID) {
 			$executor->callFunction($this->functionID);
 
 			foreach($this->options as $superCategory) {
 				foreach($superCategory['categories'] as $functionCategory) {
-					if($functionCategory['functionID'] == $this->functionID) {
+					if ($functionCategory['functionID'] == $this->functionID) {
 						$this->activeTabMenuItem = $superCategory['categoryName'];
 						$this->activeSubTabMenuItem = $this->activeTabMenuItem.'-'.$functionCategory['categoryName'];
 					}
@@ -114,7 +114,7 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 			}
 
 			$returnMessages = WCF::getSession()->getVar('functionReturnMessage');
-			if(isset($returnMessages[$this->functionID])) {
+			if (isset($returnMessages[$this->functionID])) {
 				$functionMessage = $returnMessages[$this->functionID];
 				unset($returnMessages[$this->functionID]);
 				WCF::getSession()->register('functionReturnMessage', $returnMessages);
@@ -273,7 +273,7 @@ class AdminToolsFunctionForm extends DynamicOptionListForm {
 		}
 		$countBoxes = 0;
 		foreach($category['options'] as $option) {
-			if($option['optionType'] == 'boolean') {
+			if ($option['optionType'] == 'boolean') {
 				$countBoxes++;
 			}
 		}

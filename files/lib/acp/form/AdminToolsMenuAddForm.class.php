@@ -104,7 +104,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 			$title = WCF::getLanguage()->get(StringUtil::encodeHTML($item['menuItem']));
 			if ($depth > 0) $title = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $depth). ' ' . $title;
 			$this->menuItemSelect[$item['menuItem']] = $title;
-			if(count($acpMenu->getMenuItems($item['menuItem'])) && $depth < 2) {
+			if (count($acpMenu->getMenuItems($item['menuItem'])) && $depth < 2) {
 				$this->makeItemSelect($item['menuItem'], $depth+1);
 			}
 		}
@@ -116,7 +116,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	public function validate() {
 		AbstractForm::validate();
 
-		if(empty($this->menuItem)) {
+		if (empty($this->menuItem)) {
 			throw new UserInputException('menuItem');
 		}
 
@@ -129,7 +129,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	 *
 	 */
 	protected function validateMenuItem() {
-		if(WCF::getLanguage()->get($this->menuItem) == $this->menuItem) {
+		if (WCF::getLanguage()->get($this->menuItem) == $this->menuItem) {
 			$this->createLangVar = true;
 		}
 	}
@@ -143,7 +143,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 
 		$iframeID = 0;
 		// save iframe
-		if($this->useiFrame) {
+		if ($this->useiFrame) {
 			$sql = "INSERT INTO wcf".WCF_N."_admin_tools_iframe (url, width, height, borderWidth, borderColor, borderStyle)
 					VALUES	('".escapeString($this->menuItemLink)."',
 							 '".escapeString($this->iframeWidth)."',
@@ -167,13 +167,13 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 				 '".escapeString($this->parentMenuItem)."')";
 		WCF::getDB()->sendQuery($sql);
 
-		if($this->useiFrame) {
+		if ($this->useiFrame) {
 			$sql = "UPDATE wcf".WCF_N."_admin_tools_iframe SET menuItemID = ".WCF::getDB()->getInsertID()." WHERE iframeID = ".$iframeID;
 			WCF::getDB()->sendQuery($sql);
 		}
 
 		// create language variable if necessary
-		if($this->createLangVar) {
+		if ($this->createLangVar) {
 			$menuItemID = WCF::getDB()->getInsertID();
 			$name = 'wcf.acp.menu.menuItem'.$menuItemID;
 			$value = $this->menuItem;
@@ -310,7 +310,7 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 				$option['localizedName'] = WCF::getLanguage()->get('wcf.acp.group.option.'.$option['optionName']);
 
 				// add option to list
-				if($option['optionType'] == 'boolean') {
+				if ($option['optionType'] == 'boolean') {
 					$children[] = $option;
 				}
 
