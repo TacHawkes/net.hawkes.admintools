@@ -56,8 +56,12 @@ class AdminToolsSpiderListPage extends SortablePage {
 	public function readData() {
 		parent::readData();
 
-		$sql = "SELECT * FROM wcf".WCF_N."_admin_tools_spider
-				ORDER BY ".$this->sortField." ".$this->sortOrder;
+		$sql = "SELECT 
+				* 
+			FROM 
+				wcf".WCF_N."_admin_tools_spider
+			ORDER BY 
+				".$this->sortField." ".$this->sortOrder;
 		$result = WCF::getDB()->sendQuery($sql, $this->itemsPerPage, ($this->pageNo - 1) * $this->itemsPerPage);
 
 		while($row = WCF::getDB()->fetchArray($result)) {
@@ -102,7 +106,10 @@ class AdminToolsSpiderListPage extends SortablePage {
 	public function countItems() {
 		parent::countItems();
 
-		$sql = "SELECT COUNT(*) AS count FROM wcf".WCF_N."_admin_tools_spider";
+		$sql = "SELECT 
+				COUNT(*) AS count 
+			FROM 
+				wcf".WCF_N."_admin_tools_spider";
 		$row = WCF::getDB()->getFirstRow($sql);
 
 		return $row['count'];

@@ -41,14 +41,21 @@ class AdminToolsFunctionPackageInstallationPlugin extends AbstractOptionPackageI
 	public function install() {
 		AbstractXMLPackageInstallationPlugin::install();
 		try {
-			$sql = "SELECT		function.functionID, function.functionName,  package.packageDir
-			FROM		wcf".WCF_N."_package_dependency package_dependency,
-						wcf".WCF_N."_admin_tools_function function					
-			LEFT JOIN	wcf".WCF_N."_package package
-			ON			(package.packageID = function.packageID)
-			WHERE 		function.packageID = package_dependency.dependency
-					AND package_dependency.packageID = ".$this->installation->getPackageID()."
-			ORDER BY	package_dependency.priority";
+			$sql = "SELECT		
+					function.functionID, 
+					function.functionName,  
+					package.packageDir
+				FROM		
+					wcf".WCF_N."_package_dependency package_dependency,
+					wcf".WCF_N."_admin_tools_function function					
+				LEFT JOIN	
+					wcf".WCF_N."_package package
+					ON	(package.packageID = function.packageID)
+				WHERE 		
+						function.packageID = package_dependency.dependency
+					AND 	package_dependency.packageID = ".$this->installation->getPackageID()."
+				ORDER BY	
+					package_dependency.priority";
 			$result = WCF::getDB()->sendQuery($sql);
 			while($row = WCF::getDB()->fetchArray($result)) {
 				$this->functions[$row['functionName']] = $row['functionID'];
@@ -156,9 +163,12 @@ class AdminToolsFunctionPackageInstallationPlugin extends AbstractOptionPackageI
 								// if a parent category was set and this parent is not in database
 								// or it is a category from a package from other package environment: don't install further.
 								if ($parentCategoryName != '') {
-									$sql = "SELECT	COUNT(categoryID) AS count
-											FROM	wcf".WCF_N."_".$this->tableName."_category
-											WHERE	categoryName = '".escapeString($parentCategoryName)."'";
+									$sql = "SELECT	
+											COUNT(categoryID) AS count
+										FROM	
+											wcf".WCF_N."_".$this->tableName."_category
+										WHERE	
+											categoryName = '".escapeString($parentCategoryName)."'";
 									/*	AND packageID IN (
 									 SELECT	dependency
 									 FROM	wcf".WCF_N."_package_dependency
@@ -294,8 +304,10 @@ class AdminToolsFunctionPackageInstallationPlugin extends AbstractOptionPackageI
 		parent::uninstall();
 
 		// delete functions
-		$sql = "DELETE FROM	wcf".WCF_N."_admin_tools_function
-			WHERE		packageID = ".$this->installation->getPackageID();
+		$sql = "DELETE FROM	
+				wcf".WCF_N."_admin_tools_function
+			WHERE		
+				packageID = ".$this->installation->getPackageID();
 		WCF::getDB()->sendQuery($sql);
 	}
 
@@ -307,30 +319,36 @@ class AdminToolsFunctionPackageInstallationPlugin extends AbstractOptionPackageI
 	 */
 	protected function saveFunction($function, $functionXML = null) {
 		// 	search existing function
-		$sql = "SELECT	functionID
-			FROM	wcf".WCF_N."_admin_tools_function
-			WHERE	functionName = '".escapeString($function['functionName'])."'
-				AND packageID = ".$this->installation->getPackageID();
+		$sql = "SELECT	
+				functionID
+			FROM	
+				wcf".WCF_N."_admin_tools_function
+			WHERE	
+					functionName = '".escapeString($function['functionName'])."'
+				AND 	packageID = ".$this->installation->getPackageID();
 		$row = WCF::getDB()->getFirstRow($sql);
 		if (empty($row['functionID'])) {
 			// insert new function
 			$sql = "INSERT INTO wcf".WCF_N."_admin_tools_function
-											(packageID, functionName, classPath, saveSettings, executeAsCronjob)
-											VALUES (".$this->installation->getPackageID().",
-													'".$function['functionName']."',
-													'".$function['classPath']."',
-													".$function['saveSettings'].",
-													".$function['executeAsCronjob'].")";
+				(packageID, functionName, classPath, saveSettings, executeAsCronjob)
+				VALUES (".$this->installation->getPackageID().",
+					'".$function['functionName']."',
+					'".$function['classPath']."',
+					".$function['saveSettings'].",
+					".$function['executeAsCronjob'].")";
 			WCF::getDB()->sendQuery($sql);
 			$this->functions[$function['functionName']] = WCF::getDB()->getInsertID();
 		}
 		else {
 			// update existing function
-			$sql = "UPDATE 	wcf".WCF_N."_admin_tools_function
-				SET	classPath = '".escapeString($function['classPath'])."',
+			$sql = "UPDATE 	
+					wcf".WCF_N."_admin_tools_function
+				SET	
+					classPath = '".escapeString($function['classPath'])."',
 					saveSettings = '".intval($function['saveSettings'])."',
 					executeAsCronjob = '".intval($function['executeAsCronjob'])."'					
-				WHERE	functionID = ".$row['functionID'];
+				WHERE	
+					functionID = ".$row['functionID'];
 			WCF::getDB()->sendQuery($sql);
 		}
 	}
@@ -343,32 +361,38 @@ class AdminToolsFunctionPackageInstallationPlugin extends AbstractOptionPackageI
 	 */
 	protected function saveCategory($category, $categoryXML = null) {
 		// search existing category
-		$sql = "SELECT	categoryID
-			FROM	wcf".WCF_N."_".$this->tableName."_category
-			WHERE	categoryName = '".escapeString($category['categoryName'])."'
-				AND packageID = ".$this->installation->getPackageID();
+		$sql = "SELECT	
+				categoryID
+			FROM	
+				wcf".WCF_N."_".$this->tableName."_category
+			WHERE	
+					categoryName = '".escapeString($category['categoryName'])."'
+				AND 	packageID = ".$this->installation->getPackageID();
 		$row = WCF::getDB()->getFirstRow($sql);
 		if (empty($row['categoryID'])) {
 			// insert new category
 			$sql = "INSERT INTO	wcf".WCF_N."_".$this->tableName."_category
-						(packageID, functionID, categoryName, parentCategoryName, permissions, options".($category['showOrder'] !== null ? ",showOrder" : "").")
-				VALUES		(".$this->installation->getPackageID().",
-						".intval($category['functionID']).",
-						'".escapeString($category['categoryName'])."',
-						'".escapeString($category['parentCategoryName'])."',
-						'".escapeString($category['permissions'])."',
-						'".escapeString($category['options'])."'
-						".($category['showOrder'] !== null ? ",".$category['showOrder'] : "").")";
+					(packageID, functionID, categoryName, parentCategoryName, permissions, options".($category['showOrder'] !== null ? ",showOrder" : "").")
+				VALUES	(".$this->installation->getPackageID().",
+					".intval($category['functionID']).",
+					'".escapeString($category['categoryName'])."',
+					'".escapeString($category['parentCategoryName'])."',
+					'".escapeString($category['permissions'])."',
+					'".escapeString($category['options'])."'
+					".($category['showOrder'] !== null ? ",".$category['showOrder'] : "").")";
 			WCF::getDB()->sendQuery($sql);
 		}
 		else {
 			// update existing category
-			$sql = "UPDATE 	wcf".WCF_N."_".$this->tableName."_category
-				SET	parentCategoryName = '".escapeString($category['parentCategoryName'])."',
+			$sql = "UPDATE 	
+					wcf".WCF_N."_".$this->tableName."_category
+				SET	
+					parentCategoryName = '".escapeString($category['parentCategoryName'])."',
 					permissions = '".escapeString($category['permissions'])."',
 					options = '".escapeString($category['options'])."'
-					".($category['showOrder'] !== null ? ",showOrder = ".$category['showOrder'] : "")."
-				WHERE	categoryID = ".$row['categoryID'];
+					".($category['showOrder'] !== null ? ", showOrder = ".$category['showOrder'] : "")."
+				WHERE	
+					categoryID = ".$row['categoryID'];
 			WCF::getDB()->sendQuery($sql);
 		}
 	}
@@ -399,34 +423,35 @@ class AdminToolsFunctionPackageInstallationPlugin extends AbstractOptionPackageI
 		if (isset($option['options'])) $options = $option['options'];
 
 		// insert or update option
-		$sql = "INSERT INTO 			wcf".WCF_N."_".$this->tableName."
-							(packageID, optionName,
-							categoryName, optionType, 
-							optionValue, validationPattern, 
-							selectOptions, showOrder,
-							enableOptions, hidden,
-							permissions, options)
-			VALUES				(".$this->installation->getPackageID().", 
-							'".escapeString($optionName)."', 
-							'".escapeString($categoryName)."', 
-							'".escapeString($optionType)."', 
-							'".escapeString($defaultValue)."', 
-							'".escapeString($validationPattern)."',
-							'".escapeString($selectOptions)."',		 
-							".intval($showOrder).",
-							'".escapeString($enableOptions)."',
-							".intval($hidden).",
-							'".escapeString($permissions)."',
-							'".escapeString($options)."')
-			ON DUPLICATE KEY UPDATE		categoryName = VALUES(categoryName), 
-							optionType = VALUES(optionType),
-							validationPattern = VALUES(validationPattern),
-							selectoptions = VALUES(selectOptions),
-							showOrder = VALUES(showOrder),
-							enableOptions = VALUES(enableOptions),
-							hidden = VALUES(hidden),
-							permissions = VALUES(permissions),
-							options = VALUES(options)";
+		$sql = "INSERT INTO 	wcf".WCF_N."_".$this->tableName."
+				(packageID, optionName,
+				categoryName, optionType, 
+				optionValue, validationPattern, 
+				selectOptions, showOrder,
+				enableOptions, hidden,
+				permissions, options)
+			VALUES	(".$this->installation->getPackageID().", 
+				'".escapeString($optionName)."', 
+				'".escapeString($categoryName)."', 
+				'".escapeString($optionType)."', 
+				'".escapeString($defaultValue)."', 
+				'".escapeString($validationPattern)."',
+				'".escapeString($selectOptions)."',		 
+				".intval($showOrder).",
+				'".escapeString($enableOptions)."',
+				".intval($hidden).",
+				'".escapeString($permissions)."',
+				'".escapeString($options)."')
+			ON DUPLICATE KEY UPDATE	
+				categoryName = VALUES(categoryName), 
+				optionType = VALUES(optionType),
+				validationPattern = VALUES(validationPattern),
+				selectoptions = VALUES(selectOptions),
+				showOrder = VALUES(showOrder),
+				enableOptions = VALUES(enableOptions),
+				hidden = VALUES(hidden),
+				permissions = VALUES(permissions),
+				options = VALUES(options)";
 		WCF::getDB()->sendQuery($sql);
 	}
 
@@ -437,9 +462,11 @@ class AdminToolsFunctionPackageInstallationPlugin extends AbstractOptionPackageI
 	 */
 	protected function deleteFunctions($functionNames) {
 		// delete functions
-		$sql = "DELETE FROM	wcf".WCF_N."_admin_tools_function
-			WHERE		functionName IN (".$functionNames.")
-			AND 		packageID = ".$this->installation->getPackageID();
+		$sql = "DELETE FROM	
+				wcf".WCF_N."_admin_tools_function
+			WHERE		
+					functionName IN (".$functionNames.")
+				AND 	packageID = ".$this->installation->getPackageID();
 		WCF::getDB()->sendQuery($sql);
 	}
 }

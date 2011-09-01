@@ -113,8 +113,12 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 				require_once(WCF_DIR.'lib/acp/admintools/lostandfound/AttachmentsDatabaseLostAndFoundItem.class.php');
 				$this->markedItems = intval(count(AttachmentsDatabaseLostAndFoundItem::getMarkedItems('attachmentsDatabase')));
 				$this->classname = 'AttachmentsDatabaseLostAndFoundItem';
-				$sql = "SELECT attachment.*, user.username FROM wcf".WCF_N."_attachment attachment
-						LEFT JOIN wcf".WCF_N."_user user
+				$sql = "SELECT 
+						attachment.*, user.username 
+					FROM 
+						wcf".WCF_N."_attachment attachment
+					LEFT JOIN 
+						wcf".WCF_N."_user user
 						ON (user.userID = attachment.userID)";
 				$result = WCF::getDB()->sendQuery($sql);
 				$i = 0;
@@ -151,7 +155,12 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 					}
 				}
 				if (count($attachmentIDs)) {
-					$sql = "SELECT attachmentID FROM wcf".WCF_N."_attachment WHERE attachmentID IN (".implode(',', $attachmentIDs).")";
+					$sql = "SELECT 
+							attachmentID 
+						FROM 
+							wcf".WCF_N."_attachment 
+						WHERE 
+							attachmentID IN (".implode(',', $attachmentIDs).")";
 					$result = WCF::getDB()->sendQuery($sql);
 					$physicalAttachments = array_flip($attachmentIDs);
 					while($row = WCF::getDB()->fetchArray($result)) {
@@ -188,8 +197,13 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 				require_once(WCF_DIR.'lib/acp/admintools/lostandfound/AvatarsDatabaseLostAndFoundItem.class.php');
 				$this->markedItems = intval(count(AvatarsDatabaseLostAndFoundItem::getMarkedItems('avatarsDatabase')));
 				$this->classname = 'AvatarsDatabaseLostAndFoundItem';
-				$sql = "SELECT avatar.*, user.username FROM wcf".WCF_N."_avatar avatar
-						LEFT JOIN wcf".WCF_N."_user user
+				$sql = "SELECT 
+						avatar.*, 
+						user.username 
+					FROM 
+						wcf".WCF_N."_avatar avatar
+					LEFT JOIN 
+						wcf".WCF_N."_user user
 						ON (user.userID = avatar.userID)";
 				$result = WCF::getDB()->sendQuery($sql);
 				$i = 0;
@@ -227,7 +241,13 @@ class AdminToolsLostAndFoundPage extends SortablePage  {
 					}
 				}
 				if (count($avatarIDs)) {
-					$sql = "SELECT avatarID, avatarExtension FROM wcf".WCF_N."_avatar WHERE avatarID IN (".implode(',', $avatarIDs).")";
+					$sql = "SELECT 
+							avatarID, 
+							avatarExtension 
+						FROM 
+							wcf".WCF_N."_avatar 
+						WHERE 
+							avatarID IN (".implode(',', $avatarIDs).")";
 					$result = WCF::getDB()->sendQuery($sql);
 					$physicalAvatars = array_flip($avatarIDs);
 					while($row = WCF::getDB()->fetchArray($result)) {
