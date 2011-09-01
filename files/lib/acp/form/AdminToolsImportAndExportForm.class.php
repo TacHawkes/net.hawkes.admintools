@@ -40,12 +40,17 @@ class AdminToolsImportAndExportForm extends OptionImportAndExportForm {
 		ACPForm::save();
 
 		// get option ids
-		$sql = "SELECT		optionName, optionID
-			FROM		wcf".WCF_N."_admin_tools_option acp_option,
-					wcf".WCF_N."_package_dependency package_dependency
-			WHERE 		acp_option.packageID = package_dependency.dependency
-					AND package_dependency.packageID = ".PACKAGE_ID."
-			ORDER BY	package_dependency.priority";
+		$sql = "SELECT		
+				optionName, 
+				optionID
+			FROM		
+				wcf".WCF_N."_admin_tools_option acp_option,
+				wcf".WCF_N."_package_dependency package_dependency
+			WHERE 	
+					acp_option.packageID = package_dependency.dependency
+				AND 	package_dependency.packageID = ".PACKAGE_ID."
+			ORDER BY	
+				package_dependency.priority";
 		$result = WCF::getDB()->sendQuery($sql);
 		$optionIDArray = array();
 		while ($row = WCF::getDB()->fetchArray($result)) {
@@ -55,9 +60,12 @@ class AdminToolsImportAndExportForm extends OptionImportAndExportForm {
 		// save
 		foreach ($this->options as $name => $value) {
 			if (isset($optionIDArray[$name])) {
-				$sql = "UPDATE	wcf".WCF_N."_admin_tools_option
-					SET	optionValue = '".escapeString($value)."'
-					WHERE	optionID = ".$optionIDArray[$name];
+				$sql = "UPDATE	
+						wcf".WCF_N."_admin_tools_option
+					SET	
+						optionValue = '".escapeString($value)."'
+					WHERE	
+						optionID = ".$optionIDArray[$name];
 				WCF::getDB()->sendQuery($sql);
 			}
 		}

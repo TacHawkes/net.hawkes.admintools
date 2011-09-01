@@ -43,13 +43,17 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 
 		if(isset($_GET['menuItem'])) {
 			$menuItem = StringUtil::trim(($_REQUEST['menuItem']));
-			$sql = "SELECT		menuItem, menuItemID
-			FROM		wcf".WCF_N."_acp_menu_item menu_item,
+			$sql = "SELECT		
+					menuItem, menuItemID
+				FROM		
+					wcf".WCF_N."_acp_menu_item menu_item,
 					wcf".WCF_N."_package_dependency package_dependency
-			WHERE 		menu_item.packageID = package_dependency.dependency
-					AND package_dependency.packageID = ".PACKAGE_ID."
-					AND menu_item.menuItem = '".$menuItem."'
-			ORDER BY	package_dependency.priority";
+				WHERE 		
+						menu_item.packageID = package_dependency.dependency
+					AND 	package_dependency.packageID = ".PACKAGE_ID."
+					AND 	menu_item.menuItem = '".$menuItem."'
+				ORDER BY	
+					package_dependency.priority";
 			$row = WCF::getDB()->getFirstRow($sql);
 			$this->menuItemID = $row['menuItemID'];
 		}
@@ -76,10 +80,16 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 			$this->deleteItem = $_POST['deleteItem'] ? true : false;
 				
 			if($this->deleteItem) {
-				$sql = "DELETE FROM wcf".WCF_N."_acp_menu_item WHERE menuItemID = ".$this->menuItemID;
+				$sql = "DELETE FROM 
+						wcf".WCF_N."_acp_menu_item 
+					WHERE 
+						menuItemID = ".$this->menuItemID;
 				WCF::getDB()->sendQuery($sql);
 
-				$sql = "DELETE FROM wcf".WCF_N."_admin_tools_iframe WHERE menuItemID = ".$this->menuItemID;
+				$sql = "DELETE FROM 
+						wcf".WCF_N."_admin_tools_iframe 
+					WHERE 
+						menuItemID = ".$this->menuItemID;
 				WCF::getDB()->sendQuery($sql);
 
 				WCF::getCache()->clear(WCF_DIR.'cache/', 'cache.menu-*');
@@ -97,9 +107,16 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 		parent::readData();
 
 		//no cache use here because we need a clean item
-		$sql = "SELECT item.*, iframe.* FROM wcf".WCF_N."_acp_menu_item item
-				LEFT JOIN wcf".WCF_N."_admin_tools_iframe iframe
-				ON (iframe.menuItemID = item.menuItemID)  WHERE item.menuItemID=".$this->menuItemID;
+		$sql = "SELECT 
+				item.*, 
+				iframe.* 
+			FROM 
+				wcf".WCF_N."_acp_menu_item item
+			LEFT JOIN 
+				wcf".WCF_N."_admin_tools_iframe iframe
+				ON (iframe.menuItemID = item.menuItemID)
+			WHERE 
+				item.menuItemID=".$this->menuItemID;
 		$item = WCF::getDB()->getFirstRow($sql);
 		if(is_array($item)) {
 			$this->menuItem = StringUtil::trim($item['menuItem']);
@@ -140,14 +157,17 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 		$this->showOrder = $this->getShowOrder($this->showOrder, $this->parentMenuItem, 'parentMenuItem');
 
 		if($this->useiFrame) {
-			$sql = "UPDATE wcf".WCF_N."_admin_tools_iframe SET
-						url = '".$this->menuItemLink."',
-						width = '".escapeString($this->iframeWidth)."',
-						height = '".escapeString($this->iframeHeight)."',
-						borderWidth = '".escapeString($this->borderWidth)."',
-						borderColor = '".escapeString($this->borderColor)."',
-						borderStyle = '".escapeString($this->borderStyle)."'
-						WHERE iframeID = ".$this->iframeID;
+			$sql = "UPDATE 
+					wcf".WCF_N."_admin_tools_iframe 
+				SET
+					url = '".$this->menuItemLink."',
+					width = '".escapeString($this->iframeWidth)."',
+					height = '".escapeString($this->iframeHeight)."',
+					borderWidth = '".escapeString($this->borderWidth)."',
+					borderColor = '".escapeString($this->borderColor)."',
+					borderStyle = '".escapeString($this->borderStyle)."'
+				WHERE 
+					iframeID = ".$this->iframeID;
 			WCF::getDB()->sendQuery($sql);
 			$this->menuItemLink = 'index.php?page=AdminToolsiFrame&iFrameID='.$this->iframeID;
 		}
@@ -164,26 +184,36 @@ class AdminToolsMenuEditForm extends AdminToolsMenuAddForm {
 
 		}
 
-		$sql = "SELECT menuItem FROM wcf".WCF_N."_acp_menu_item
-                 			WHERE menuItemID=".$this->menuItemID;
+		$sql = "SELECT 
+				menuItem 
+			FROM 
+				wcf".WCF_N."_acp_menu_item
+			WHERE 
+				menuItemID = ".$this->menuItemID;
 		$row = WCF::getDB()->getFirstRow($sql);
 		if($row['menuItem'] != $this->menuItem) {
 			//	relink children
-			$sql = "UPDATE wcf".WCF_N."_acp_menu_item
-				SET parentMenuItem='".escapeString($this->menuItem)."'
-				WHERE parentMenuItem='".$row['menuItem']."'";
+			$sql = "UPDATE 
+					wcf".WCF_N."_acp_menu_item
+				SET 
+					parentMenuItem = '".escapeString($this->menuItem)."'
+				WHERE 
+					parentMenuItem = '".$row['menuItem']."'";
 			WCF::getDB()->sendQuery($sql);
 		}
 			
 		//update the item
-		$sql = "UPDATE IGNORE wcf".WCF_N."_acp_menu_item SET
-				  menuItem = '".escapeString($this->menuItem)."',
-				  menuItemLink = '".escapeString($this->menuItemLink)."',
-				  menuItemIcon ='".escapeString($this->menuItemIcon)."',
-				  permissions ='".escapeString($this->permissions)."',
-				  showOrder = ".$this->showOrder.",
-				  parentMenuItem = '".escapeString($this->parentMenuItem)."'
-				  WHERE menuItemID=".$this->menuItemID;				
+		$sql = "UPDATE IGNORE 
+				wcf".WCF_N."_acp_menu_item 
+			SET
+				menuItem = '".escapeString($this->menuItem)."',
+				menuItemLink = '".escapeString($this->menuItemLink)."',
+				menuItemIcon = '".escapeString($this->menuItemIcon)."',
+				permissions = '".escapeString($this->permissions)."',
+				showOrder = ".$this->showOrder.",
+				parentMenuItem = '".escapeString($this->parentMenuItem)."'
+			WHERE 
+				menuItemID = ".$this->menuItemID;				
 		WCF::getDB()->sendQuery($sql);
 
 		$this->menuItem = $this->menuItemLink = $this->menuItemIcon = $this->parentMenuItem = $this->iframeHeight = $this->iframeWidth = $this->borderWidth = $this->borderColor = $this->borderStyle = '';

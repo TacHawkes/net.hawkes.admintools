@@ -120,7 +120,8 @@ class AdminToolsSpiderImportAndExportForm extends ACPForm {
 		parent::save();
 
 		if(count($this->spiders)) {
-			$sql = "TRUNCATE TABLE wcf".WCF_N."_admin_tools_spider";
+			$sql = "TRUNCATE TABLE 
+					wcf".WCF_N."_admin_tools_spider";
 			WCF::getDB()->sendQuery($sql);
 
 			$inserts = '';
@@ -132,9 +133,10 @@ class AdminToolsSpiderImportAndExportForm extends ACPForm {
 				$inserts .= "('".escapeString(StringUtil::toLowerCase($identifier))."', '".escapeString($name)."', '".escapeString($url)."')";
 			}
 			if (!empty($inserts)) {
-				$sql = "INSERT IGNORE INTO	wcf".WCF_N."_admin_tools_spider
-								(spiderIdentifier, spiderName, spiderURL)
-					VALUES			".$inserts;
+				$sql = "INSERT IGNORE INTO	
+						wcf".WCF_N."_admin_tools_spider
+						(spiderIdentifier, spiderName, spiderURL)
+					VALUES ".$inserts;
 				WCF::getDB()->sendQuery($sql);
 			}
 		}
