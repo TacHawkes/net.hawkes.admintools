@@ -44,8 +44,12 @@ class AdminToolsCronjobsListPage extends CronjobsListPage  {
 			$cronjobIDs[]  = $cronjob['cronjobID'];
 		}
 
-		$sql = "SELECT DISTINCT cronjobID FROM wcf".WCF_N."_admin_tools_function_to_cronjob
-				WHERE cronjobID IN (".implode(',', $cronjobIDs).")";
+		$sql = "SELECT 
+				DISTINCT cronjobID 
+			FROM 
+				wcf".WCF_N."_admin_tools_function_to_cronjob
+			WHERE 
+				cronjobID IN (".implode(',', $cronjobIDs).")";
 		$result = WCF::getDB()->sendQuery($sql);
 
 		$adminToolsCronjobIDs = array();
@@ -66,7 +70,10 @@ class AdminToolsCronjobsListPage extends CronjobsListPage  {
 	public function countItems() {
 		SortablePage::countItems();
 
-		$sql = "SELECT COUNT(DISTINCT cronjobID) AS count FROM wcf".WCF_N."_admin_tools_function_to_cronjob";
+		$sql = "SELECT 
+				COUNT(DISTINCT cronjobID) AS count 
+			FROM 
+				wcf".WCF_N."_admin_tools_function_to_cronjob";
 		$row = WCF::getDB()->getFirstRow($sql);
 		return $row['count'];
 	}

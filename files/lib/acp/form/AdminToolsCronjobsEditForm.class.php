@@ -73,8 +73,10 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 		parent::readData();
 
 		if(!count($_POST)) {
-			$sql = "SELECT functionID FROM wcf".WCF_N."_admin_tools_function_to_cronjob
-				WHERE cronjobID = ".$this->cronjobID;
+			$sql = "SELECT 
+					functionID FROM wcf".WCF_N."_admin_tools_function_to_cronjob
+				WHERE 
+					cronjobID = ".$this->cronjobID;
 			$result = WCF::getDB()->sendQuery($sql);
 			while($row = WCF::getDB()->fetchArray($result)) {
 				$this->activeFunctions[] = $row['functionID'];
@@ -137,8 +139,10 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 		ACPForm::save();
 
 		// delete old entries
-		$sql = "DELETE FROM wcf".WCF_N."_admin_tools_function_to_cronjob
-				WHERE cronjobID = ".$this->cronjobID;
+		$sql = "DELETE FROM 
+				wcf".WCF_N."_admin_tools_function_to_cronjob
+			WHERE 
+				cronjobID = ".$this->cronjobID;
 		WCF::getDB()->sendQuery($sql);
 
 		$sql = "SELECT packageDir FROM wcf".WCF_N."_package package
@@ -163,8 +167,8 @@ class AdminToolsCronjobsEditForm extends CronjobsEditForm {
 			$inserts .= '('.$functionID.', '.$this->cronjobID.')';
 		}
 		$sql = "INSERT IGNORE INTO wcf".WCF_N."_admin_tools_function_to_cronjob
-					(functionID, cronjobID)
-					VALUES ".$inserts;
+				(functionID, cronjobID)
+			VALUES ".$inserts;
 		WCF::getDB()->sendQuery($sql);
 		$package = new Package($this->packageID);
 		$path = FileUtil::getRealPath(WCF_DIR.$package->getDir());

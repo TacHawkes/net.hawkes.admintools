@@ -69,7 +69,10 @@ class AdminToolsSpiderExportAction extends AbstractAction {
 	 * @return	array
 	 */
 	public function getSpiders() {
-		$sql = "SELECT * FROM wcf".WCF_N."_admin_tools_spider";
+		$sql = "SELECT 
+				* 
+			FROM 
+				wcf".WCF_N."_admin_tools_spider";
 		return WCF::getDB()->getResultList($sql);
 	}
 }

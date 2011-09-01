@@ -114,11 +114,15 @@ class AdminToolsCronjobsAddForm extends CronjobsAddForm {
 		// save cronjob
 		CronjobEditor::create($this->classPath, $this->packageID, $this->description, $this->execMultiple, $this->startMinute, $this->startHour, $this->startDom, $this->startMonth, $this->startDow);
 
-		$sql = "SELECT cronjobs.cronjobID, package.packageDir FROM wcf".WCF_N."_cronjobs cronjobs
-				LEFT JOIN wcf".WCF_N."_package package
+		$sql = "SELECT 
+				cronjobs.cronjobID, 
+				package.packageDir FROM wcf".WCF_N."_cronjobs cronjobs
+			LEFT JOIN 
+				wcf".WCF_N."_package package
 				ON (package.packageID = cronjobs.packageID)
-				 WHERE cronjobs.classPath = '".$this->classPath."'				 
-				 AND cronjobs.packageID = ".$this->packageID;
+			WHERE 
+					cronjobs.classPath = '".$this->classPath."'				 
+				AND 	cronjobs.packageID = ".$this->packageID;
 		$row = WCF::getDB()->getFirstRow($sql);
 		$cronjobID = $row['cronjobID'];
 		$cronjob = new CronjobEditor($cronjobID);
@@ -130,8 +134,8 @@ class AdminToolsCronjobsAddForm extends CronjobsAddForm {
 			$inserts .= '('.$functionID.', '.$cronjobID.')';
 		}
 		$sql = "INSERT IGNORE INTO wcf".WCF_N."_admin_tools_function_to_cronjob
-					(functionID, cronjobID)
-					VALUES ".$inserts;
+				(functionID, cronjobID)
+			VALUES ".$inserts;
 		WCF::getDB()->sendQuery($sql);
 		$path = FileUtil::getRealPath(WCF_DIR.$row['packageDir']);
 		$fileName = $path.'lib/system/cronjob/AdminToolsCronjob'.$cronjobID.'.class.php';

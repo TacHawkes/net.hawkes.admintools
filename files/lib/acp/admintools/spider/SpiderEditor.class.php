@@ -36,11 +36,12 @@ class SpiderEditor extends Spider  {
 	 * @param string $spiderURL
 	 */
 	public static function create($spiderIdentifier, $spiderName, $spiderURL = '') {
-		$sql = "INSERT INTO wcf".WCF_N."_admin_tools_spider
-					(spiderIdentifier, spiderName, spiderURL)
-					VALUES ('".escapeString($spiderIdentifier)."',
-							'".escapeString($spiderName)."',
-							'".escapeString($spiderURL)."')";
+		$sql = "INSERT INTO 
+				wcf".WCF_N."_admin_tools_spider
+				(spiderIdentifier, spiderName, spiderURL)
+			VALUES ('".escapeString($spiderIdentifier)."',
+				'".escapeString($spiderName)."',
+				'".escapeString($spiderURL)."')";
 		WCF::getDB()->sendQuery($sql);
 
 		$spiderID = WCF::getDB()->getInsertID();
@@ -55,11 +56,14 @@ class SpiderEditor extends Spider  {
 	 * @param string $spiderURL
 	 */
 	public function update($spiderIdentifier, $spiderName, $spiderURL = '') {
-		$sql = "UPDATE wcf".WCF_N."_admin_tools_spider
-					SET spiderIdentifier = '".escapeString($spiderIdentifier)."',
-						spiderName = '".escapeString($spiderName)."',
-						spiderURL = '".escapeString($spiderURL)."'
-					WHERE spiderID = ".$this->spiderID;
+		$sql = "UPDATE 
+				wcf".WCF_N."_admin_tools_spider
+			SET 
+				spiderIdentifier = '".escapeString($spiderIdentifier)."',
+				spiderName = '".escapeString($spiderName)."',
+				spiderURL = '".escapeString($spiderURL)."'
+			WHERE 
+				spiderID = ".$this->spiderID;
 		WCF::getDB()->sendQuery($sql);
 	}
 
@@ -71,12 +75,22 @@ class SpiderEditor extends Spider  {
 	 */
 	public static function test($spiderIdentifier) {
 		// native table
-		$sql = "SELECT COUNT(spiderID) AS count FROM wcf".WCFN."_spider WHERE spiderIdentifier = '".$spiderIdentifier."'";
+		$sql = "SELECT 
+				COUNT(*) AS count 
+			FROM 
+				wcf".WCF_N."_spider 
+			WHERE 
+				spiderIdentifier = '".$spiderIdentifier."'";
 		$row = WCF::getDB()->getFirstRow($sql);
 		if ($row['count'] > 0) return true;
 
 		// admin tools table
-		$sql = "SELECT COUNT(spiderID) AS count FROM wcf".WCFN."_admin_tools_spider WHERE spiderIdentifier = '".$spiderIdentifier."'";
+		$sql = "SELECT 
+				COUNT(*) AS count 
+			FROM 
+				wcf".WCF_N."_admin_tools_spider 
+			WHERE 
+				spiderIdentifier = '".$spiderIdentifier."'";
 		$row = WCF::getDB()->getFirstRow($sql);
 		if ($row['count'] > 0) return true;
 
@@ -100,8 +114,10 @@ class SpiderEditor extends Spider  {
 		if (!is_array($spiderIDs)) {
 			$spiderIDs = array(intval($spiderIDs));
 		}
-		$sql = "DELETE FROM wcf".WCF_N."_admin_tools_spider
-				WHERE spiderID IN(".implode(',', $spiderIDs).")";
+		$sql = "DELETE FROM 
+				wcf".WCF_N."_admin_tools_spider
+			WHERE 
+				spiderID IN(".implode(',', $spiderIDs).")";
 		WCF::getDB()->sendQuery($sql);
 	}
 
@@ -168,9 +184,9 @@ class SpiderEditor extends Spider  {
 		require_once(WCF_DIR.'lib/system/cronjob/RefreshSearchRobotsCronjob.class.php');
 		RefreshSearchRobotsCronjob::execute(null);
 		$sql = "INSERT IGNORE INTO wcf".WCF_N."_spider
-					(spiderIdentifier, spiderName, spiderURL)
-					SELECT spiderIdentifier, spiderName, spiderURL
-					FROM wcf".WCF_N."_admin_tools_spider"; 
+				(spiderIdentifier, spiderName, spiderURL)
+			SELECT spiderIdentifier, spiderName, spiderURL
+			FROM wcf".WCF_N."_admin_tools_spider"; 
 		WCF::getDB()->sendQuery($sql);
 		WCF::getCache()->clear(WCF_DIR.'cache', 'cache.spiders.php');
 	}

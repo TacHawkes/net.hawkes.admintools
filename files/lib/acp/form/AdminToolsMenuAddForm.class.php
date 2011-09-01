@@ -168,7 +168,12 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 		WCF::getDB()->sendQuery($sql);
 
 		if($this->useiFrame) {
-			$sql = "UPDATE wcf".WCF_N."_admin_tools_iframe SET menuItemID = ".WCF::getDB()->getInsertID()." WHERE iframeID = ".$iframeID;
+			$sql = "UPDATE 
+					wcf".WCF_N."_admin_tools_iframe 
+				SET 
+					menuItemID = ".WCF::getDB()->getInsertID()." 
+				WHERE 
+					iframeID = ".$iframeID;
 			WCF::getDB()->sendQuery($sql);
 		}
 
@@ -183,9 +188,12 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 				$langEdit->updateItems(array($name => $value));
 			}
 
-			$sql = "UPDATE wcf".WCF_N."_acp_menu_item
-							SET menuItem = '".escapeString($name)."'
-							WHERE menuItemID = ".$menuItemID;
+			$sql = "UPDATE 
+					wcf".WCF_N."_acp_menu_item
+				SET 
+					menuItem = '".escapeString($name)."'
+				WHERE 
+					menuItemID = ".$menuItemID;
 			WCF::getDB()->sendQuery($sql);
 		}
 
@@ -216,8 +224,10 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 	protected function getShowOrder($showOrder, $parentName = null, $columnName = null, $tableNameExtension = '') {
 		if ($showOrder === null) {
 			// get greatest showOrder value
-			$sql = "SELECT	MAX(showOrder) AS showOrder
-			  	FROM	wcf".WCF_N."_acp_menu_item".$tableNameExtension." 
+			$sql = "SELECT	
+					MAX(showOrder) AS showOrder
+			  	FROM	
+					wcf".WCF_N."_acp_menu_item".$tableNameExtension." 
 				".($columnName !== null ? "WHERE ".$columnName." = '".escapeString($parentName)."'" : "");
 			$maxShowOrder = WCF::getDB()->getFirstRow($sql);
 			if (is_array($maxShowOrder) && isset($maxShowOrder['showOrder'])) {
@@ -229,10 +239,13 @@ class AdminToolsMenuAddForm extends DynamicOptionListForm  {
 		}
 		else {
 			// increase all showOrder values which are >= $showOrder
-			$sql = "UPDATE	wcf".WCF_N."_acp_menu_item".$tableNameExtension."
-				SET	showOrder = showOrder+1
-				WHERE	showOrder >= ".$showOrder." 
-				".($columnName !== null ? "AND ".$columnName." = '".escapeString($parentName)."'" : "");
+			$sql = "UPDATE	
+					wcf".WCF_N."_acp_menu_item".$tableNameExtension."
+				SET	
+					showOrder = showOrder+1
+				WHERE	
+						showOrder >= ".$showOrder." 
+					".($columnName !== null ? "AND ".$columnName." = '".escapeString($parentName)."'" : "");
 			WCF::getDB()->sendQuery($sql);
 			// return the wanted showOrder level
 			return $showOrder;
